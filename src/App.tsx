@@ -10,7 +10,7 @@ import { AboutPage } from './Home/Components/About/Components/AboutPage';
 import { ArtPage } from './Home/Components/Art/Components/ArtPage';
 import { CommonPageWrapper } from './Home/Components/CommonPageWrapper';
 import { ErrorPage } from './Home/Components/ErrorPage';
-import { HomePage } from './Home/Components/HomePage';
+import { HomePage } from './Home/Components/Home/HomePage';
 import { paths } from './Home/contants';
 import { CSProjectsPage } from './Home/Components/CSProjects/Components/CSProjectsPage';
 import { ExamplePage } from './Home/Components/Example/ExamplePage';

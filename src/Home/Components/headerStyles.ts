@@ -36,7 +36,7 @@ interface INavBarLinkProps {
 }
 
 const navBorderStyle = css`
-    border: 1px solid var(--a-tag-color);
+    border: 1px solid var(--font-color);
 `;
 
 const navBarLinkStyle = css`
@@ -46,13 +46,14 @@ const navBarLinkStyle = css`
     font-family: var(--font-mono);
     line-height: 1;
     cursor: pointer;
-    margin-left: 15px;
+    margin-left: 5px;
     font-size: var(--fz-xs);
     transition: var(--transition);
+    color: var(--font-color) !important;
 
     :hover {
         ${navBorderStyle}
-        color: var(--a-tag-color) !important;
+        color: var(--font-color) !important;
     }
 `;
 

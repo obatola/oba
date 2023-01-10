@@ -22,6 +22,10 @@ body {
   color: var(--font-color);
 }
 
+section {
+  max-width: 1000px;
+}
+
 a:hover {
   color: var(--a-tag-hover-color);
   text-decoration: none;

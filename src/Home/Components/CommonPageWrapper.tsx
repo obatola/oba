@@ -41,9 +41,11 @@ export const CommonPageWrapper: React.FC<ICommonPageWrapperProps> = ({children})
               </div>
           </NavBar>
         </Header>
-        <Main>
-          {children}
-        </Main>
+        <div style={{width: '100%'}}>
+          <Main>
+            {children}
+          </Main>
+        </div>
       </div>
     )
 }
