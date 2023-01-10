@@ -3,27 +3,47 @@ import React from 'react';
 import {
     Link
   } from "react-router-dom";
-import { paths } from '../contants';
+import { linkToResume, paths } from '../contants';
+import { Main } from '../styles';
+import { ExternalNavBarLink, Header, LogoWrapper, NavBar, NavBarLink } from './headerStyles';
+import obaLogo from '../Assets/obase logo.png';
 
-interface Props {
-    children: React.ReactNode
+
+interface INavLinkProps {
+  name: string;
+  path: string;
 }
 
-export const CommonPageWrapper: React.FC<Props> = ({children}) => {
+export const NavLink = ({name, path}: INavLinkProps) => {
+  const isCurrentPath = path === window.location.pathname;
+
+  return (
+    <NavBarLink isCurrentPath={isCurrentPath} to={path}>{name.toUpperCase()}</NavBarLink>
+  )
+}
+
+interface ICommonPageWrapperProps {
+  children: React.ReactNode
+}
+
+export const CommonPageWrapper: React.FC<ICommonPageWrapperProps> = ({children}) => {
     return (
     <div>
-        <div>
-          <nav>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to={paths.csProjects}>CS Projects</Link></li>
-              <li><Link to={paths.uiUX}>UI / UX</Link></li>
-              <li><Link to={paths.art}>2D|3D ART</Link></li>
-              <li><Link to={paths.about}>About</Link></li>
-            </ul>
-          </nav>
-        </div>
-        {children}
+        <Header>
+          <NavBar>
+              <LogoWrapper><Link to={paths.home}><img height="50px" src={obaLogo} alt="oba seward-evans" /></Link></LogoWrapper>
+              <div>
+                <NavLink path={paths.csProjects} name="CS Projects" />
+                <NavLink path={paths.uiUX} name="UI | UX" />
+                <NavLink path={paths.art} name="2D | 3D ART" />
+                <NavLink path={paths.about} name="About" />
+                <ExternalNavBarLink target="_blank" href={linkToResume}>Resume</ExternalNavBarLink>
+              </div>
+          </NavBar>
+        </Header>
+        <Main>
+          {children}
+        </Main>
       </div>
     )
 }
