@@ -21,7 +21,7 @@ const Title = styled.h2`
 
 const Subtitle = styled.h2`
     font-size: 4vw;
-    color: #d1a44f;
+    color: var(--gold-accent);
     margin: 0;
     line-height: 1em;
 `

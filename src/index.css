@@ -5,10 +5,11 @@
   --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);;
 
   /* color */
-  --background-color: #4b382c;
+  --background-color: #694d3e;
   --font-color: #f7f6e8;
   --a-tag-color: #D3CFD2;
   --a-tag-hover-color: #AEA4AC;
+  --gold-accent: #e9bf70;
 }
 
 body {
