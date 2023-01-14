@@ -1,10 +1,20 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Main = styled.main`
-    padding: 100px 0 0 0;
-
     margin: 0px auto;
     max-width: 1600px;
     min-height: 100vh;
-    padding: 200px 150px;
+    padding: 0 150px 100px 150px;
+`
+
+interface ISpacerProps {
+    bottom: string;
+}
+
+export const Spacer = styled.div`
+    ${({bottom}: ISpacerProps) => bottom && css`margin-bottom: ${bottom};`}
+`;
+
+export const Section = styled.section`
+    padding: 80px 0;
 `

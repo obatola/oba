@@ -4,9 +4,11 @@ import styled from 'styled-components';
 const IntroSectionWrapper = styled.section`
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
     min-height: 100vh;
     height: 100vh;
-    margin: 0 auto;
+    padding: 0px;
 `
 
 const TitleContainer = styled.div`
@@ -32,12 +34,12 @@ const Text = styled.p`
 `
 
 export const IntroSection = () => (
-    <section>
+    <IntroSectionWrapper>
         <Text>Hi, my name is</Text>
         <TitleContainer>
             <Title>Oba Seward-Evans</Title>
             <Subtitle>I help companies launch and grow their products</Subtitle>
         </TitleContainer>
         <Text>I'm a full stack engineer with a heavy focus in frontend development based out of Brooklyn, NY. I have a passion for creating clean, intuitive, and elegant user ﬂows, designs, applications and code.</Text>
-    </section>
+    </IntroSectionWrapper>
 )
