@@ -6,7 +6,7 @@ import { GoldenLink } from './Components/GoldenLinks';
 import { TechnologiesPanel } from './Components/TechnologiesPanel';
 
 export const ProfessionalExperienceSection = () => (
-    <Section>
+    <Section id="professional-experience-section">
         <h2>Professional Experience</h2>
         <ExperienceAccordion />
     </Section>

@@ -3,8 +3,4 @@ export const linkToResume = "https://app.enhancv.com/r/3f0a895d/oba-seward-evans
 
 export const paths = {
     home: "/",
-    csProjects: "/cs-projects",
-    uiUX: "/ui-ux",
-    art: "/art",
-    about: "/about",
 }

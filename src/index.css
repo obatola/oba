@@ -26,7 +26,10 @@
   --project-grid-project-background-color: var(--darkerer-brown);
 
   --project-image-transition: all cubic-bezier(.4,0,.2,1) .4s;
+}
 
+html {
+  scroll-behavior: smooth;
 }
 
 body {

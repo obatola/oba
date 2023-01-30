@@ -5,8 +5,9 @@ import {
   } from "react-router-dom";
 import { linkToResume, paths } from '../contants';
 import { Main } from '../styles';
-import { ExternalNavBarLink, Header, LogoWrapper, NavBar, NavBarLink } from './headerStyles';
+import { ATagNavBarLink, Header, LogoWrapper, NavBar, NavBarLink } from './headerStyles';
 import obaLogo from '../Assets/obase logo.png';
+import { homePageAnchorPaths } from './Home/constants';
 
 interface ICommonPageWrapperProps {
   children: React.ReactNode
@@ -19,11 +20,11 @@ export const CommonPageWrapper: React.FC<ICommonPageWrapperProps> = ({children})
           <NavBar>
               <LogoWrapper><Link to={paths.home}><img height="50px" src={obaLogo} alt="oba seward-evans" /></Link></LogoWrapper>
               <div>
-                <NavLink path={paths.csProjects} name="CS Projects" />
-                <NavLink path={paths.uiUX} name="UI | UX" />
-                <NavLink path={paths.art} name="2D | 3D ART" />
-                <NavLink path={paths.about} name="About" />
-                <ExternalNavBarLink target="_blank" href={linkToResume}>Resume</ExternalNavBarLink>
+                {/* <NavLink path={paths.csProjects} name="CS Projects" /> */}
+                <ATagNavBarLink href={`#${homePageAnchorPaths.about}`}>About</ATagNavBarLink>
+                <ATagNavBarLink href={`#${homePageAnchorPaths.work}`}>Work</ATagNavBarLink>
+                <ATagNavBarLink href={`#${homePageAnchorPaths.projects}`}>Projects</ATagNavBarLink>
+                <ATagNavBarLink target="_blank" href={linkToResume}>Resume</ATagNavBarLink>
               </div>
           </NavBar>
         </Header>

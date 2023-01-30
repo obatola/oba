@@ -63,6 +63,6 @@ export const NavBarLink = styled(Link)<INavBarLinkProps>`
     ${({isCurrentPath: isSelected}: INavBarLinkProps) => isSelected && navBorderStyle}
 `
 
-export const ExternalNavBarLink = styled.a`
+export const ATagNavBarLink = styled.a`
     ${navBarLinkStyle}
 `

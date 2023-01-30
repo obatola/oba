@@ -2,7 +2,7 @@ import react from 'react';
 import styled from 'styled-components';
 
 export const IntroSection = () => (
-    <IntroSectionWrapper>
+    <IntroSectionWrapper id="intro-section">
         <Text>Hi, my name is</Text>
         <TitleContainer>
             <Title>Oba Seward-Evans</Title>

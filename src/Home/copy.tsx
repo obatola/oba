@@ -137,8 +137,8 @@ export interface ICSProject {
 export const csProjects: ICSProject[] = [
     {
         name: 'Personal Website',
-        date: 'Oba',
-        tech: ['ReactJS'],
+        date: '2023',
+        tech: ['ReactJS', 'Typescript'],
         content: 'Redesigned my personal website designed in Sketch and implimented in React. I plan to use it as a place to showcase my work and also utilize as a quick place to spin up small test projects.',
         projectImageKey: 'personalWebsite',
         isFeatured: true,
@@ -146,7 +146,7 @@ export const csProjects: ICSProject[] = [
     {
         name: 'Dice Roller',
         date: '2022',
-        tech: ['ReactJS'],
+        tech: ['ReactJS', 'Typescript'],
         content: 'Website created to allow people to roll variable sets of die. It allows users to pick from a range of dice, customize color and save sets for use later. It was created using React and hosted on github using gh-pages',
         githubURL: 'https://github.com/obatola/dice',
         url: 'https://obatola.github.io/dice/',
