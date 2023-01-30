@@ -7,8 +7,14 @@ export const Main = styled.main`
     padding: 0 150px 100px 150px;
 `
 
+export enum SpacerSize {
+    small = '10px',
+    medium = '16px',
+    large = '40px',
+}
+
 interface ISpacerProps {
-    bottom: string;
+    bottom: string | SpacerSize;
 }
 
 export const Spacer = styled.div`

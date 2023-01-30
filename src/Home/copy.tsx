@@ -1,15 +1,18 @@
 import React from 'react';
 import { Url } from 'url';
 
-export interface ICSProject {
-    name: string;
-    date: string;
-    tech: string[];
-    content: JSX.Element | string;
-    imageURL?: string;
-    githubURL?: string;
-    url?: string;
-}
+import deucesSolitaire from '../Home/Assets/deuces_solitaire.png';
+import kabaSuji from '../Home/Assets/kaba_suji.gif';
+import venetianBellTower from '../Home/Assets/venetian_bell_tower.png';
+import globalTodo from '../Home/Assets/global_todo.png';
+import veniceBells from '../Home/Assets/venice_bells.png';
+import iosCalculator from '../Home/Assets/ios_calculator.jpeg';
+import scifiSpaceOctopi from '../Home/Assets/sci-fi_spaceoctopi.png';
+import javaCalculator from '../Home/Assets/java_calculator.png';
+import tapTapWars from '../Home/Assets/taptap_wars.jpeg';
+import distanceVector from '../Home/Assets/distance_vector.png';
+import diceRoller from '../Home/Assets/dice_roller.png';
+import personalWebsite from '../Home/Assets/personal_website.png';
 
 export interface IExperience {
     companyName: string;
@@ -98,3 +101,138 @@ export const professionalExperience: IExperience[] = [
         )
     },
 ];
+
+const projectImages: {[key: string]: string} = {
+    deucesSolitaire,
+    kabaSuji,
+    venetianBellTower,
+    globalTodo,
+    veniceBells,
+    iosCalculator,
+    scifiSpaceOctopi,
+    javaCalculator,
+    tapTapWars,
+    distanceVector,
+    diceRoller,
+    personalWebsite
+};
+
+// TODO: move to separate page and see if can add dynamic loading
+export const getProjectImageByKey = (key: string) => {
+  return projectImages[key];
+}
+
+export interface ICSProject {
+    name: string;
+    date: string;
+    tech: string[];
+    content: JSX.Element | string;
+    projectImageKey: string;
+    githubURL?: string;
+    downloadURL?: string;
+    url?: string;
+    isFeatured?: boolean;
+}
+
+export const csProjects: ICSProject[] = [
+    {
+        name: 'Personal Website',
+        date: 'Oba',
+        tech: ['ReactJS'],
+        content: 'Redesigned my personal website designed in Sketch and implimented in React. I plan to use it as a place to showcase my work and also utilize as a quick place to spin up small test projects.',
+        projectImageKey: 'personalWebsite',
+        isFeatured: true,
+    },
+    {
+        name: 'Dice Roller',
+        date: '2022',
+        tech: ['ReactJS'],
+        content: 'Website created to allow people to roll variable sets of die. It allows users to pick from a range of dice, customize color and save sets for use later. It was created using React and hosted on github using gh-pages',
+        githubURL: 'https://github.com/obatola/dice',
+        url: 'https://obatola.github.io/dice/',
+        projectImageKey: 'diceRoller',
+        isFeatured: true,
+    },
+    {
+        name: 'Global Todo',
+        date: '2017',
+        tech: ['Javascript', 'MongoDB', 'jQuery', 'HTML', 'CSS', 'NodeJS', 'Express', 'EJS'],
+        content: 'Small project I created to refresh node.js, express, and MongoDB skills. This is a global todo list where anybody can post an item.',
+        githubURL: 'https://github.com/obatola/web-todo-list',
+        // url: 'https://oba-todo.herokuapp.com/', // TODO: Rehost Project or recreate
+        projectImageKey: 'globalTodo',
+    },
+    {
+        name: 'Venetian Bell Tower Data Collection App',
+        date: '2016',
+        tech: ['AngularJS', 'Firebase', 'Javascript'],
+        content: 'In the process of developing the data collection application for my WPI Venice Project team. I have a working demo version live at the following url tiny.cc/ve-collect. This application is used by the Venice Project Center to collect data of Venetian Bell Towers in Venice.',
+        projectImageKey: 'venetianBellTower',
+        isFeatured: true,
+    },
+    {
+        name: 'Venice Bell Tower Website',
+        date: '2016',
+        tech: ['AngularJS', 'Firebase', 'Javascript'],
+        content: 'Revitalizing a website that showcases venetian bell towers. The original website is functional but really lacks any eye catching design. With a little help of Bootstrap I created a mockup version that I will soon integrate with the actual site.',
+        projectImageKey: 'veniceBells',
+        url: 'http://sample-bells.s3-website-us-east-1.amazonaws.com/#/moreInfo/dffb615e-8a01-afa0-984a-cd7dce25bacf/64a1d94d-c362-87b9-ea17-1feca10dedb4',
+        isFeatured: true,
+    },
+    {
+        name: 'TapTapWars',
+        date: '2016',
+        tech: ['Swift', 'XCode'],
+        content: 'A little game where 2 players tap as fast as they can on their half of the screen. The game is a tug of war where one players tap increments the score while the other decrements it. If the blue player reaches 10 before the red reaches -10 he wins.',
+        projectImageKey: 'tapTapWars',
+        githubURL: 'https://github.com/obatola/iOS-TapWar',
+    },
+    {
+        name: 'iPhone Calculator',
+        date: '2016',
+        tech: ['Swift', 'XCode'],
+        content: 'Moving forward from the Java Calculator, I created a similar calculator for iOS using Swift.',
+        projectImageKey: 'iosCalculator',
+        githubURL: 'https://github.com/obatola/iOS-Calculator',
+    },
+    {
+        name: 'Java Calculator',
+        date: '2016',
+        tech: ['Java',],
+        content: 'Created a calculator with Java. In order to use the application, download the runnable jar or mac app below.',
+        projectImageKey: 'javaCalculator',
+        githubURL: 'https://github.com/obatola/OSE-Calculator',
+    },
+    {
+        name: 'KabaSuji',
+        date: '2016',
+        tech: ['Java',],
+        content: 'My four partners and I used Java to create a shape puzzle game similar to Tangrams. Click the button below to see the progress!.',
+        projectImageKey: 'kabaSuji',
+        githubURL: 'https://github.com/baby-wpi/menelaus',
+    },
+    {
+        name: 'Deuces Solitaire',
+        date: '2016',
+        tech: ['Java',],
+        content: 'Solitaire variation I created using Java.',
+        projectImageKey: 'deucesSolitaire',
+        githubURL: 'https://github.com/obatola/Deuces.git',
+        downloadURL: 'https://obase.weebly.com/uploads/5/6/0/4/56044521/ose_deuces.jar'
+    },
+    {
+        name: 'Sci-Fi SpaceOctopi',
+        date: '2015',
+        tech: ['Java',],
+        content: 'Sci-Fi SpaceOctopi is a small playable visual novel, written in Python. I wrote the majority of the code and created all of the character art and the logo.',
+        projectImageKey: 'scifiSpaceOctopi',
+    },
+    {
+        name: 'Distance Vector Routing Protocol',
+        date: '2015',
+        tech: ['C',],
+        content: 'I implement a distributed asynchronous distance vector (DV) routing protocol. I wrote the sending and receiving IP-level messages for routing data over a network.',
+        projectImageKey: 'distanceVector',
+        downloadURL: 'https://obase.weebly.com/uploads/5/6/0/4/56044521/oasewardevans_dvrp.zip',
+    },
+]

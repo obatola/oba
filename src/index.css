@@ -2,14 +2,31 @@
   /* constants */
   --border-radius: 5px;
   --nav-height: 60px;
-  --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);;
+  --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
 
   /* color */
-  --background-color: #694d3e;
-  --font-color: #f7f6e8;
+  --dark-brown: #595341; /* #694d3e; */
+  --darker-brown: #3c372b;
+  --darkerer-brown: #191d15;
+  --light-grey: #b2b3b0;
+  --white: #ffffff;
+  --gold: #ffffff;
+
+  /* component-color */
+  --background-color: var(--dark-brown);
+  --font-color: var(--white); /* #f7f6e8; */
+  --font-color-inverse: var(--darkerer-brown);
   --a-tag-color: #D3CFD2;
   --a-tag-hover-color: #AEA4AC;
-  --gold-accent: #e9bf70;
+  --gold-accent: #ffa13f; /* #e9bf70; */
+  --accordion-header-color: var(--darker-brown);
+  --accordion-content-background-color: var(--darkerer-brown);
+  --text-bubble-background-color: var(--light-grey); /* #9c937a; */
+  --text-bubble-text-color: var(--font-color-inverse);
+  --project-grid-project-background-color: var(--darkerer-brown);
+
+  --project-image-transition: all cubic-bezier(.4,0,.2,1) .4s;
+
 }
 
 body {
@@ -40,4 +57,9 @@ a {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
 }

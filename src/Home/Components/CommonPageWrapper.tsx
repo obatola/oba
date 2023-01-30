@@ -8,20 +8,6 @@ import { Main } from '../styles';
 import { ExternalNavBarLink, Header, LogoWrapper, NavBar, NavBarLink } from './headerStyles';
 import obaLogo from '../Assets/obase logo.png';
 
-
-interface INavLinkProps {
-  name: string;
-  path: string;
-}
-
-export const NavLink = ({name, path}: INavLinkProps) => {
-  const isCurrentPath = path === window.location.pathname;
-
-  return (
-    <NavBarLink isCurrentPath={isCurrentPath} to={path}>{name.toUpperCase()}</NavBarLink>
-  )
-}
-
 interface ICommonPageWrapperProps {
   children: React.ReactNode
 }
@@ -48,4 +34,17 @@ export const CommonPageWrapper: React.FC<ICommonPageWrapperProps> = ({children})
         </div>
       </div>
     )
+}
+
+interface INavLinkProps {
+  name: string;
+  path: string;
+}
+
+export const NavLink = ({name, path}: INavLinkProps) => {
+  const isCurrentPath = path === window.location.pathname;
+
+  return (
+    <NavBarLink isCurrentPath={isCurrentPath} to={path}>{name.toUpperCase()}</NavBarLink>
+  )
 }
