@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import { csProjects, getProjectImageByKey, ICSProject } from '../../../copy';
-import { Section, Spacer, SpacerSize } from '../../../styles';
+import { device, Section, Spacer, SpacerSize } from '../../../styles';
 import { GoldenLink } from '../Components/GoldenLinks';
 import { TechnologiesPanel, TextBubbleContainer } from '../Components/TechnologiesPanel';
 import { DownloadIcon, ExternalLinkIcon, GithubIcon } from '../../Icons';
@@ -106,6 +106,15 @@ const ProjectContainer = styled.div<IAlignmentProps>`
             filter: none;
         }
     }
+
+    @media ${device.tablet} { 
+        // background-color: var(--project-grid-project-background-color);
+        text-align: left;
+
+        ${TextBubbleContainer} {
+            justify-content: flex-start;
+        }
+    }    
 `;
 
 const ProjectTextContentContainer = styled.div<IAlignmentProps>`
@@ -113,6 +122,16 @@ const ProjectTextContentContainer = styled.div<IAlignmentProps>`
     display: flex;
     align-items: center;
     ${({contentRight}: IAlignmentProps) => contentRight ? contentRightStyle : contentLeftStyle };
+
+    @media ${device.tablet} { 
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 1;
+        grid-column-end: 12;
+
+        padding: 20px;
+        background-color: #191d15E6; // TODO: replace with color object
+    }    
 `;
 
 const TextContainer = styled.div`
@@ -121,6 +140,13 @@ const TextContainer = styled.div`
     padding: 1rem 2rem;
     border-radius: 4px;
     box-shadow: 0 10px 30px -15px var(--darkerer-brown);
+
+    @media ${device.tablet} { 
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+
+    }    
 `;
 
 const ProjectImageContainer = styled.div`
@@ -131,6 +157,13 @@ const ProjectImageContainer = styled.div`
     display: flex;
     justify-content: center;
     ${({contentRight}: IAlignmentProps) => contentRight ? imageLeftStyle : imageRightStyle };
+
+    @media ${device.tablet} { 
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 1;
+        grid-column-end: 12;
+    }
 `;
 
 const ProjectImage = styled.img`
@@ -140,6 +173,10 @@ const ProjectImage = styled.img`
     position: relative;
     z-index: 1;
     transition: var(--project-image-transition);
+
+    @media ${device.tablet} { 
+        object-fit: cover;
+    }
 `;
 
 const imageLeftStyle = css`

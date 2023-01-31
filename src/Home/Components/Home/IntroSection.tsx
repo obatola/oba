@@ -41,5 +41,5 @@ const Subtitle = styled.h2`
 
 const Text = styled.p`
     margin: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
 `

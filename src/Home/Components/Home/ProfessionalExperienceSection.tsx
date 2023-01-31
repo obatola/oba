@@ -65,7 +65,7 @@ const ExperienceAccordion = () => {
 
 const Text = styled.p`
     margin: 0;
-    font-size: 20px;
+    font-size: 1rem;
 `
 
 const AccordionWrapper = styled.div`
@@ -119,7 +119,7 @@ const AccordionContent = styled.div<IIsActiveProps>`
     }};
 
     // transition: all cubic-bezier(.4,0,.2,1) .4s;
-    font-size: 16px;
+    font-size: 1rem;
     background-color: var(--accordion-content-background-color);
 `;
 

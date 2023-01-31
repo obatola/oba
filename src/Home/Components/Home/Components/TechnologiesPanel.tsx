@@ -17,7 +17,7 @@ interface ITextBubbleProps {
 
 export const TextBubble = styled.span<ITextBubbleProps>`
     font-family: "SF Mono","Fira Code","Fira Mono","Roboto Mono",monospace;
-    font-size: 14px;
+    font-size: 0.8rem;
     ${({simple}: ITextBubbleProps) => simple ? simpleBubbleStyle : normalBubbleStyle}
 `;
 
