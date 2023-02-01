@@ -1,0 +1,28 @@
+.link {
+    color: var(--gold-accent);
+    position: relative;
+    display: inline-block;
+}
+
+.link :after {
+    content: "";
+    display: block;
+    background-color: var(--gold-accent);
+    width: 0;
+    height: 1px;
+    bottom: 0.37em;
+    transition: var(--transition);
+}
+
+.link :hover {
+    color: var(--gold-accent);
+}
+
+.link :hover :after {
+    width: 100%;
+}
+
+.text {
+    color: var(--gold-accent);
+    display: inline-block;
+}

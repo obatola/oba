@@ -1,0 +1,50 @@
+.p {
+    margin: 0;
+    font-size: 1rem; 
+}
+
+.accordionWrapper {
+    width: 100%;
+}
+
+.accordionEntry {
+    margin: 10px auto;
+}
+
+.accordionHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: var(--accordion-header-color);
+    cursor: pointer;
+}
+
+.accordionTitle {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    width: 90%;
+}
+
+.accordionContentActive {
+    overflow: hidden;
+    padding: 30px 20px;
+    margin-top: 10px;
+    font-size: 1rem;
+    background-color: var(--accordion-content-background-color);
+}
+
+.accordionContentActive p:first-child {
+    margin-top: 0;
+}
+
+.accordionContentInactive {
+    height: 0px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.openCloseIconContainer {
+    align-self: center;
+}
