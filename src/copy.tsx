@@ -71,7 +71,7 @@ const professionalExperience: IExperience[] = [
         tech: ['Scala'],
         content: (
             <>
-                <p>Optum helps modernize the health system's infrastructure.</p>
+                <p>{"Optum helps modernize the health system's infrastructure."}</p>
                 <ul>
                     <li>Transformed the existing Oracle SQL based ETL process to Spark on Hadoop to accelerate the process and scalability of electronic medical records</li>
                     <li>Reached 300% increase in time to create and complete an ETL spec</li>

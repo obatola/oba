@@ -23,7 +23,7 @@ const ExperienceAccordion = () => {
     }
 
     const content = homeCopy.professionalExperience.experienceArr.map((exp: IExperience, i) =>
-        <ExperienceAccordionEntry experience={exp} isActive={activeEntry === i} onEntryClick={entryClicked(i)} />)
+        <ExperienceAccordionEntry key={exp.companyName} experience={exp} isActive={activeEntry === i} onEntryClick={entryClicked(i)} />)
 
     return (
         <div className={styles.accordionWrapper}>

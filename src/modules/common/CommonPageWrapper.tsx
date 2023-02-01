@@ -60,6 +60,6 @@ const NavLinks = () => (
     <a className={styles.navLink} href={`#${HOME_PAGE_ANCHORS.about}`}>About</a>
     <a className={styles.navLink} href={`#${HOME_PAGE_ANCHORS.work}`}>Work</a>
     <a className={styles.navLink} href={`#${HOME_PAGE_ANCHORS.projects}`}>Projects</a>
-    <a target="_blank" href={LINK_TO_RESUME} className={styles.navLink}>Resume</a>
+    <a target="_blank" href={LINK_TO_RESUME} className={styles.navLink} rel="noreferrer">Resume</a>
   </>
 );

@@ -8,8 +8,8 @@ interface ITechnologiesPanelProps {
 }
 
 export const TechnologiesPanel = ({technologies, simple}: ITechnologiesPanelProps) => {
-    const techDoms = technologies.map((name) => (
-        <span className={clsx({
+    const techDoms = technologies.map((name, index) => (
+        <span key={`${index}${name}`} className={clsx({
             [styles.textBubbleSimple]: simple,
             [styles.textBubbleNormal]: !simple
         })}>
