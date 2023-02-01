@@ -6,6 +6,9 @@ import styles from '../../styles/ProfessionalExperience.module.css';
 import { Spacer, SPACER_SIZE } from "../common/Spacer";
 import { TechnologiesPanel } from "../common/TechnologiesPanel";
 import { HOME_PAGE_ANCHORS } from "@/constants/homeConstants";
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { ICON_SIZE } from "@/contants";
+
 
 
 export const ProfessionalExperienceSection = () => (
@@ -49,9 +52,13 @@ const ExperienceAccordionEntry = ({experience: exp, isActive, onEntryClick}: IEx
                             <GoldenLink href={exp.companyURL} disableLink>{exp.companyName}</GoldenLink>
                         </ span>
                     </span>
-                    <span>{exp.startDate} - {exp.endDate || 'Present'}</span>
+                    <span className={styles.dateSpan}>
+                        <span>{exp.startDate}</span>
+                        <span className={styles.dateDash}> - </span>
+                        <span>{exp.endDate || 'Present'}</span>
+                    </span>
                 </h3>
-                <span className={styles.openCloseIconContainer}>{isActive ? '+' : '-'}</span>
+                <span className={styles.openCloseIconContainer}>{isActive ? <AiOutlinePlus size={ICON_SIZE.tiny} /> : <AiOutlineMinus size={ICON_SIZE.tiny} />}</span>
             </div>
             <div className={clsx({
                 [styles.accordionContentActive]: isActive,
