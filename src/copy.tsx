@@ -15,7 +15,7 @@ const intro = {
     greeting: 'Hi, my name is',
     name: 'Oba Seward-Evans',
     subtitle: 'I help companies launch and grow their products',
-    description: "I'm a full stack engineer with a heavy focus in frontend development based out of Brooklyn, NY. I have a passion for creating clean, intuitive, and elegant user ﬂows, designs, applications and code.",
+    description: "I'm a Frontend Engineer based out of Brooklyn, NY. I have a passion for creating clean, intuitive, and elegant user ﬂows, designs, applications and code.",
 }
 
 const professionalExperience: IExperience[] = [
