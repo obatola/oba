@@ -38,6 +38,17 @@
     margin-top: 0;
 }
 
+.accordionContentActive ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 1rem;
+}
+
+.accordionContentActive li {
+    margin-bottom: 0.5rem;
+}
+
 .accordionContentInactive {
     height: 0px;
     overflow: hidden;

@@ -1,6 +1,6 @@
-import { HOME_PAGE_ANCHORS } from '@/constants/homeConstants';
-import { homeCopy } from '@/copy';
 import React from 'react';
+import { homeCopy } from '@/copy';
+import { HOME_PAGE_ANCHORS } from '@/constants/homeConstants';
 import { FeatureProjectsPane } from './projectComponents/FeaturedProjectPane';
 import { ProjectPane } from './projectComponents/ProjectPane';
 

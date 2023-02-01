@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import { ICSProject } from '@/copy';
 import Image from "next/image";
 import { FaExternalLinkAlt, FaGithub, FaDownload } from 'react-icons/fa';
-import styles from './FeaturedProjectPane.module.css';
+import styles from '../../../styles/FeaturedProjectPane.module.css';
 import { GoldenLink } from '@/modules/common/GoldenLinks';
 import { Spacer, SPACER_SIZE } from '@/modules/common/Spacer';
 import { TechnologiesPanel } from '@/modules/common/TechnologiesPanel';

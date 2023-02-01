@@ -1,15 +1,16 @@
 
 import react from 'react';
-import styles from './GoldenLinks.module.css';
+import styles from '../../styles/GoldenLinks.module.css';
 
 
 interface IProps {
     href?: string;
     children: React.ReactNode;
+    disableLink?: boolean;
 }
 
-export const GoldenLink = ({href, children}: IProps) => {
-    if (href) {
+export const GoldenLink = ({href, children, disableLink}: IProps) => {
+    if (href && !disableLink) {
         return (
             <a className={styles.link} target='_blank' href={href} rel="noreferrer">
                 {children}

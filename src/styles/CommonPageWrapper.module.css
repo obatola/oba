@@ -111,18 +111,9 @@
     margin: 30px 17px;
 }
 
-@media (max-width: 425px) {
-    .header {
-        height: 80px;
-    } 
-
-    .logo {
-        height: 35px;
-        width: auto;
-    }
-
+@media (max-width: 1024px) { 
     .main {
-        padding: 0 20px 100px 20px;
+        padding: 0 60px 100px 60px;
     }
 }
 
@@ -138,10 +129,23 @@
     .navBar :global(#hamburgerMenu) {
         display: block;
     }
+
+    .main {
+        padding: 0 30px 100px 30px;
+    }
 }  
 
-@media (max-width: 1024px) { 
+@media (max-width: 425px) {
+    .header {
+        height: 80px;
+    } 
+
+    .logo {
+        height: 35px;
+        width: auto;
+    }
+
     .main {
-        padding: 0 60px 100px 60px;
+        padding: 0 20px 100px 20px;
     }
 }

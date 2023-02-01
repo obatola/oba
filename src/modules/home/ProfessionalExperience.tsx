@@ -1,8 +1,8 @@
 import react, { useState } from "react";
 import { homeCopy, IExperience } from "@/copy";
-import styles from './ProfessionalExperience.module.css';
-import { GoldenLink } from "../common/GoldenLinks";
 import { clsx } from 'clsx';
+import { GoldenLink } from "../common/GoldenLinks";
+import styles from '../../styles/ProfessionalExperience.module.css';
 import { Spacer, SPACER_SIZE } from "../common/Spacer";
 import { TechnologiesPanel } from "../common/TechnologiesPanel";
 import { HOME_PAGE_ANCHORS } from "@/constants/homeConstants";
@@ -46,7 +46,7 @@ const ExperienceAccordionEntry = ({experience: exp, isActive, onEntryClick}: IEx
                     <span>
                         {exp.position}&nbsp;
                         <span className={styles.companySpan}>@&nbsp;
-                            <GoldenLink href={exp.companyURL}>{exp.companyName}</GoldenLink>
+                            <GoldenLink href={exp.companyURL} disableLink>{exp.companyName}</GoldenLink>
                         </ span>
                     </span>
                     <span>{exp.startDate} - {exp.endDate || 'Present'}</span>

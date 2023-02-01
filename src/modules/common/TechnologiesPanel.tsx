@@ -1,6 +1,6 @@
 import React from 'react';
 import { clsx } from 'clsx';
-import styles from './TechnologiesPanel.module.css';
+import styles from '../../styles/TechnologiesPanel.module.css';
 
 interface ITechnologiesPanelProps {
     technologies: string[];

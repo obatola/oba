@@ -4,7 +4,7 @@ import { FaHamburger } from 'react-icons/fa';
 import { IoClose } from "react-icons/io5";
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './CommonPageWrapper.module.css';
+import styles from '../../styles/CommonPageWrapper.module.css';
 import { ICON_SIZE, LINK_TO_RESUME } from '@/contants';
 import ObaLogo from '../../../public/images/obase_logo.png'
 import { HOME_PAGE_ANCHORS } from '@/constants/homeConstants';

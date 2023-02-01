@@ -1,6 +1,6 @@
 import React from 'react';
 import { ICSProject } from '@/copy';
-import styles from './ProjectPane.module.css';
+import styles from '../../../styles/ProjectPane.module.css';
 import { GoldenLink } from '@/modules/common/GoldenLinks';
 import { Spacer, SPACER_SIZE } from '@/modules/common/Spacer';
 import { TechnologiesPanel } from '@/modules/common/TechnologiesPanel';
