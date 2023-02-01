@@ -27,6 +27,11 @@
 
   --project-image-transition: all cubic-bezier(.4,0,.2,1) .4s;
 
+  /* spacing */
+  --spacing-small: 10px;
+  --spacing-medium: 16px;
+  --spacing-large: 40px;
+
   /* size */
   --size-mobileS: 320px;
   --size-mobileM: 375px;

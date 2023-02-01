@@ -1,12 +1,15 @@
 import react, { useState } from "react";
 import { IExperience, professionalExperience } from "@/copy";
 import styles from './ProfessionalExperience.module.css';
-import { GoldenLink } from "../GoldenLinks";
+import { GoldenLink } from "../common/GoldenLinks";
 import { clsx } from 'clsx';
+import { Spacer, SPACER_SIZE } from "../common/Spacer";
+import { TechnologiesPanel } from "../common/TechnologiesPanel";
+import { HOME_PAGE_ANCHORS } from "@/constants/homeConstants";
 
 
 export const ProfessionalExperienceSection = () => (
-    <section className="home-section" id="professional-experience-section">
+    <section className="home-section" id={HOME_PAGE_ANCHORS.work}>
         <h2>Professional Experience</h2>
         <ExperienceAccordion />
     </section>
@@ -29,9 +32,15 @@ const ExperienceAccordion = () => {
     );
 }
 
+interface IExperienceAccordionEntryProps {
+    experience: IExperience;
+    isActive: boolean;
+    onEntryClick: () => void;
+}
+
 const ExperienceAccordionEntry = ({experience: exp, isActive, onEntryClick}: IExperienceAccordionEntryProps) => {
     return ( 
-        <div className={styles.navLink}>
+        <div className={styles.accordionEntry}>
             <div className={styles.accordionHeader} onClick={onEntryClick}>
                 <h3 className={styles.accordionTitle}>
                     <span>
@@ -49,8 +58,8 @@ const ExperienceAccordionEntry = ({experience: exp, isActive, onEntryClick}: IEx
                 [styles.accordionContentInactive]: !isActive,
             })}>
                 {exp.content}
-                {/* <Spacer bottom='15px' /> */}
-                {/* <TechnologiesPanel technologies={exp.tech} /> */}
+                <Spacer bottom={SPACER_SIZE.medium} />
+                <TechnologiesPanel technologies={exp.tech} />
             </div>
         </div>
     );

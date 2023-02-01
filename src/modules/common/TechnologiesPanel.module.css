@@ -1,0 +1,26 @@
+.textBubbleContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.textBubbleContainer .textBubbleNormal, .textBubbleContainer .textBubbleSimple {
+    margin: 0 15px 6px 0;
+}
+
+.textBubbleSimple, .textBubbleNormal {
+    font-family: "SF Mono","Fira Code","Fira Mono","Roboto Mono",monospace;
+    font-size: 0.8rem;
+}
+
+.textBubbleSimple {
+    color: var(--font-color);
+}
+
+.textBubbleNormal {
+    padding: 5px 15px;
+    border-radius: 20px;
+    background-color: var(--text-bubble-background-color);
+    color: var(--text-bubble-text-color);
+}

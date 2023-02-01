@@ -1,9 +1,10 @@
+import { HOME_PAGE_ANCHORS } from '@/constants/homeConstants';
 import React from 'react';
 import styles from './IntroSection.module.css';
 
 
 export const IntroSection = () => (
-    <section id="intro-section" className={styles.sectionWrapper}>
+    <section id={HOME_PAGE_ANCHORS.about} className={styles.sectionWrapper}>
         <p className={styles.text}>Hi, my name is</p>
         <div className={styles.titleContainer}>
             <h2 className={styles.title}>Oba Seward-Evans</h2>

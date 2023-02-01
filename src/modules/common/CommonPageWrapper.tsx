@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import styles from './CommonPageWrapper.module.css';
-import Link from 'next/link';
-import { ICON_SIZE, LINK_TO_RESUME } from '@/contants';
 import { clsx } from 'clsx';
 import { FaHamburger } from 'react-icons/fa';
 import { IoClose } from "react-icons/io5";
+import Link from 'next/link';
 import Image from 'next/image';
-import ObaLogo from '../../public/images/obase_logo.png'
+import styles from './CommonPageWrapper.module.css';
+import { ICON_SIZE, LINK_TO_RESUME } from '@/contants';
+import ObaLogo from '../../../public/images/obase_logo.png'
+import { HOME_PAGE_ANCHORS } from '@/constants/homeConstants';
 
 
 interface ICommonPageWrapperProps {
@@ -40,7 +41,9 @@ export const CommonPageWrapper: React.FC<ICommonPageWrapperProps> = ({children})
             [styles.closedSideMenu]: !isSideBarOpen,
             [styles.openSideMenu]: isSideBarOpen,
         })}>
-          <IoClose onClick={() => setIsSideBarOpen(false)} size={ICON_SIZE.large} />
+          <div className={styles.closeIcon}>
+            <IoClose onClick={() => setIsSideBarOpen(false)} size={ICON_SIZE.large} />
+          </div>
           <NavLinks />
         </div>
         <div>
@@ -54,9 +57,9 @@ export const CommonPageWrapper: React.FC<ICommonPageWrapperProps> = ({children})
 
 const NavLinks = () => (
   <>
-    <a className={styles.navLink} href={`#1`}>About</a>
-    <a className={styles.navLink} href={`#2`}>Work</a>
-    <a className={styles.navLink} href={`#3`}>Projects</a>
+    <a className={styles.navLink} href={`#${HOME_PAGE_ANCHORS.about}`}>About</a>
+    <a className={styles.navLink} href={`#${HOME_PAGE_ANCHORS.work}`}>Work</a>
+    <a className={styles.navLink} href={`#${HOME_PAGE_ANCHORS.projects}`}>Projects</a>
     <a target="_blank" href={LINK_TO_RESUME} className={styles.navLink}>Resume</a>
   </>
 );

@@ -4,7 +4,7 @@
     display: inline-block;
 }
 
-.link :after {
+.link:after {
     content: "";
     display: block;
     background-color: var(--gold-accent);
@@ -14,11 +14,11 @@
     transition: var(--transition);
 }
 
-.link :hover {
+.link:hover {
     color: var(--gold-accent);
 }
 
-.link :hover :after {
+.link:hover:after {
     width: 100%;
 }
 

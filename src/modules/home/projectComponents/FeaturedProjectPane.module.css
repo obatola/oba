@@ -1,0 +1,120 @@
+.projectContainerLeft,
+.projectContainerRight {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    gap: 10px;
+    margin-bottom: var(--spacing-large)
+}
+
+.projectContainerLeft {
+    text-align: left;
+}
+
+.projectContainerRight {
+    text-align: right;
+}
+
+.projectContainerRight :global(.textBubbleContainer) {
+    justify-content: flex-end;
+}
+
+.projectContainerLeft img,
+.projectContainerRight img {
+    filter: grayscale(80%) brightness(80%) contrast(80%) opacity(80%);
+}
+
+.projectContainerLeft:hover img,
+.projectContainerRight:hover img {
+    filter: none;
+}
+
+.projectTextContentContainerLeft,
+.projectTextContentContainerRight {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.projectTextContentContainerLeft,
+.projectImageContainerLeft {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 1;
+    grid-column-end: 8;
+}
+
+.projectTextContentContainerRight,
+.projectImageContainerRight {
+    grid-row-start: 1;
+    grid-column-start: 4;
+    grid-row-end: 1;
+    grid-column-end: 12;
+}
+
+.textContainer {
+    background-color: var(--project-grid-project-background-color);
+    color: var(--font-color);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px -15px var(--darkerer-brown);
+}
+
+.projectImageContainerLeft,
+.projectImageContainerRight {
+    height: 400px;
+    max-width: 100%;
+    position: relative;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+}
+
+.projectImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    transition: var(--project-image-transition);
+}
+
+.projectLinkContainer a {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) { 
+    .projectContainerLeft,
+    .projectContainerRight {
+        text-align: left;
+    }
+
+    .projectTextContentContainerLeft,
+    .projectTextContentContainerRight,
+    .projectImageContainerRight,
+    .projectImageContainerLeft {
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 1;
+        grid-column-end: 12;
+    }
+
+    .projectTextContentContainerLeft,
+    .projectTextContentContainerRight {
+        padding: 20px;
+        background-color: #191d15E6; /* TODO: replace with color object */
+    }
+
+    .textContainer {
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .textBubbleContainer {
+        justify-content: flex-start;
+    }
+
+    .projectImage {
+        object-fit: cover;
+    }
+}

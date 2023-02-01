@@ -104,6 +104,13 @@
     margin-bottom: 20px;
 }
 
+.closeIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 30px 17px;
+}
+
 @media (max-width: 425px) {
     .header {
         height: 80px;

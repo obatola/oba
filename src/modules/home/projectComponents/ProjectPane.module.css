@@ -1,0 +1,14 @@
+.projectPaneContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.projectWrapper {
+    background-color: var(--darkerer-brown);
+    width: 100%;
+}
+
+.projectContainer {
+    padding: 20px;
+}

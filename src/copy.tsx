@@ -1,18 +1,5 @@
 import React from 'react';
 
-const deucesSolitaire = '../Home/Assets/deuces_solitaire.png';
-const kabaSuji = '../Home/Assets/kaba_suji.gif';
-const venetianBellTower = '../Home/Assets/venetian_bell_tower.png';
-const globalTodo = '../Home/Assets/global_todo.png';
-const veniceBells = '../Home/Assets/venice_bells.png';
-const iosCalculator = '../Home/Assets/ios_calculator.jpeg';
-const scifiSpaceOctopi = '../Home/Assets/sci-fi_spaceoctopi.png';
-const javaCalculator = '../Home/Assets/java_calculator.png';
-const tapTapWars = '../Home/Assets/taptap_wars.jpeg';
-const distanceVector = '../Home/Assets/distance_vector.png';
-const diceRoller = '../Home/Assets/dice_roller.png';
-const personalWebsite = '../Home/Assets/personal_website.png';
-
 export interface IExperience {
     companyName: string;
     position: string;
@@ -100,26 +87,6 @@ export const professionalExperience: IExperience[] = [
         )
     },
 ];
-
-const projectImages: {[key: string]: string} = {
-    deucesSolitaire,
-    kabaSuji,
-    venetianBellTower,
-    globalTodo,
-    veniceBells,
-    iosCalculator,
-    scifiSpaceOctopi,
-    javaCalculator,
-    tapTapWars,
-    distanceVector,
-    diceRoller,
-    personalWebsite
-};
-
-// TODO: move to separate page and see if can add dynamic loading
-export const getProjectImageByKey = (key: string) => {
-  return projectImages[key];
-}
 
 export interface ICSProject {
     name: string;

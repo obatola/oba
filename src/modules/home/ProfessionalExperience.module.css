@@ -48,3 +48,8 @@
 .openCloseIconContainer {
     align-self: center;
 }
+
+.companySpan {
+    color: var(--gold-accent);
+    display: inline-block;
+}
