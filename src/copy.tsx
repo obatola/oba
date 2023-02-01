@@ -11,8 +11,14 @@ export interface IExperience {
     content: JSX.Element;
 }
 
+const intro = {
+    greeting: 'Hi, my name is',
+    name: 'Oba Seward-Evans',
+    subtitle: 'I help companies launch and grow their products',
+    description: "I'm a full stack engineer with a heavy focus in frontend development based out of Brooklyn, NY. I have a passion for creating clean, intuitive, and elegant user ﬂows, designs, applications and code.",
+}
 
-export const professionalExperience: IExperience[] = [
+const professionalExperience: IExperience[] = [
     {
         companyName: 'Doordash',
         companyURL: 'https://www.doordash.com/',
@@ -100,12 +106,12 @@ export interface ICSProject {
     isFeatured?: boolean;
 }
 
-export const csProjects: ICSProject[] = [
+const csProjects: ICSProject[] = [
     {
         name: 'Personal Website',
         date: '2023',
-        tech: ['ReactJS', 'Typescript'],
-        content: 'Redesigned my personal website designed in Sketch and implimented in React. I plan to use it as a place to showcase my work and also utilize as a quick place to spin up small test projects.',
+        tech: ['NextJS', 'ReactJS', 'Typescript'],
+        content: 'Redesigned my personal website designed in Sketch and implimented using NextJS. I plan to use it as a place to showcase my work and also utilize as a quick place to spin up small test projects.',
         projectImageKey: 'personalWebsite',
         isFeatured: true,
     },
@@ -202,3 +208,16 @@ export const csProjects: ICSProject[] = [
         downloadURL: 'https://obase.weebly.com/uploads/5/6/0/4/56044521/oasewardevans_dvrp.zip',
     },
 ]
+
+export const homeCopy = {
+    intro,
+    professionalExperience: {
+        title: 'Professional Experience',
+        experienceArr: professionalExperience,
+    },
+    projects: {
+        featuredProjectsTitle: "Projects I've Worked On",
+        projectsArr: csProjects,
+        normalProjectsTitle: 'Other Projects'
+    }
+}

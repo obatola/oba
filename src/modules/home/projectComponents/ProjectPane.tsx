@@ -13,7 +13,7 @@ interface IProjectsPaneProps {
 
 export const ProjectPane = ({projects}: IProjectsPaneProps) => (
     <div className={styles.projectPaneContainer}>
-        {projects.map((project) => !project.isFeatured && <Project project={project}/>)}
+        {projects.map((project) => <Project project={project}/>)}
     </div>
 )
 

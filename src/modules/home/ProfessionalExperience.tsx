@@ -1,5 +1,5 @@
 import react, { useState } from "react";
-import { IExperience, professionalExperience } from "@/copy";
+import { homeCopy, IExperience } from "@/copy";
 import styles from './ProfessionalExperience.module.css';
 import { GoldenLink } from "../common/GoldenLinks";
 import { clsx } from 'clsx';
@@ -10,7 +10,7 @@ import { HOME_PAGE_ANCHORS } from "@/constants/homeConstants";
 
 export const ProfessionalExperienceSection = () => (
     <section className="home-section" id={HOME_PAGE_ANCHORS.work}>
-        <h2>Professional Experience</h2>
+        <h2>{homeCopy.professionalExperience.title}</h2>
         <ExperienceAccordion />
     </section>
 );
@@ -22,7 +22,7 @@ const ExperienceAccordion = () => {
         setActiveEntry(activeEntry === index ? null : index);
     }
 
-    const content = professionalExperience.map((exp: IExperience, i) =>
+    const content = homeCopy.professionalExperience.experienceArr.map((exp: IExperience, i) =>
         <ExperienceAccordionEntry experience={exp} isActive={activeEntry === i} onEntryClick={entryClicked(i)} />)
 
     return (

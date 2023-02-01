@@ -5,6 +5,7 @@ export const PATHS = {
 }
 
 export const ICON_SIZE = {
+    small: '1em',
     medium: '1.25em',
     large: '1.8em',
 }

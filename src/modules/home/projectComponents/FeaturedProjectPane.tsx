@@ -15,10 +15,6 @@ interface IFeatureProjectsPane {
     featuredProjects: ICSProject[];
 }
 
-const images = {
-    deucesSolitaire: DeucesSolitaire,
-}
-
 export const FeatureProjectsPane = ({featuredProjects}: IFeatureProjectsPane) => (
     <div>
         {featuredProjects.map((project, index) => <FeaturedProject project={project} index={index} />)}
