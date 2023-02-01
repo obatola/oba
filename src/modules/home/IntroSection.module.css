@@ -1,0 +1,31 @@
+.sectionWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100vh;
+    height: 100vh;
+    padding: 0px;
+}
+
+.titleContainer {
+    margin: 20px 0; 
+}
+
+.title {
+    font-size: 7vw;
+    margin: 0;
+    line-height: 1em;
+}
+
+.subTitle {
+    font-size: 4vw;
+    color: var(--gold-accent);
+    margin: 0;
+    line-height: 1em; 
+}
+
+.text {
+    margin: 0;
+    font-size: 1.25rem;
+}
