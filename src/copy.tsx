@@ -108,11 +108,13 @@ export interface ICSProject {
 
 const csProjects: ICSProject[] = [
     {
-        name: 'Personal Website',
+        name: 'Obatola.com',
         date: '2023',
         tech: ['NextJS', 'ReactJS', 'Typescript'],
-        content: 'Redesigned my personal website designed in Sketch and implimented using NextJS. I plan to use it as a place to showcase my work and also utilize as a quick place to spin up small test projects.',
+        content: 'Redesigned my personal website designed in Sketch and implemented using NextJS. I plan to use it as a place to showcase my work and also utilize as a quick place to spin up small test projects.',
         projectImageKey: 'personalWebsite',
+        url: 'https://www.obatola.com/',
+        githubURL: 'https://github.com/obatola/oba',
         isFeatured: true,
     },
     {
@@ -138,7 +140,7 @@ const csProjects: ICSProject[] = [
         name: 'Venetian Bell Tower Data Collection App',
         date: '2016',
         tech: ['AngularJS', 'Firebase', 'Javascript'],
-        content: 'In the process of developing the data collection application for my WPI Venice Project team. I have a working demo version live at the following url tiny.cc/ve-collect. This application is used by the Venice Project Center to collect data of Venetian Bell Towers in Venice.',
+        content: 'Developed a data collection application for my Worcester Polytechnic Institute Venice Project team. This application was used by the WPI Venice Project Center to collect data of Venetian Bell Towers in Venice in the hopes of preserving records of these monuments.',
         projectImageKey: 'venetianBellTower',
         isFeatured: true,
     },
@@ -146,10 +148,20 @@ const csProjects: ICSProject[] = [
         name: 'Venice Bell Tower Website',
         date: '2016',
         tech: ['AngularJS', 'Firebase', 'Javascript'],
-        content: 'Revitalizing a website that showcases venetian bell towers. The original website is functional but really lacks any eye catching design. With a little help of Bootstrap I created a mockup version that I will soon integrate with the actual site.',
         projectImageKey: 'veniceBells',
-        url: 'http://sample-bells.s3-website-us-east-1.amazonaws.com/#/moreInfo/dffb615e-8a01-afa0-984a-cd7dce25bacf/64a1d94d-c362-87b9-ea17-1feca10dedb4',
+        url: 'https://bells2019.veniceprojectcenter.org/#!/',
         isFeatured: true,
+        content: 
+            (
+                <span>
+                    Revitalised a website that showcases venetian bell towers, using data collected by the Venice Project Center. The original website was functional but really lacks any eye catching design. With a little help of Bootstrap, I&nbsp;
+                    <a target="_blank" href='http://sample-bells.s3-website-us-east-1.amazonaws.com/#/moreInfo/dffb615e-8a01-afa0-984a-cd7dce25bacf/64a1d94d-c362-87b9-ea17-1feca10dedb4' rel="noreferrer">
+                        implemented a design
+                    </a>&nbsp;
+                    that was integrated into the main site
+                </span>
+            )
+        ,
     },
     {
         name: 'TapTapWars',

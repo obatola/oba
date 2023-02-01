@@ -79,8 +79,8 @@ interface IProjectLinksProps {
 
 export const ProjectLinks = ({project: {githubURL, url: externalLink, downloadURL}}: IProjectLinksProps) => (
     <span className={styles.projectLinkContainer}>
-        {githubURL && <a href={githubURL} target="_blank" rel="noreferrer"><FaExternalLinkAlt size={ICON_SIZE.small} /></a>}
-        {externalLink && <a href={externalLink} target="_blank" rel="noreferrer"><FaGithub size={ICON_SIZE.small} /></a>}
+        {githubURL && <a href={githubURL} target="_blank" rel="noreferrer"><FaGithub size={ICON_SIZE.small} /></a>}
+        {externalLink && <a href={externalLink} target="_blank" rel="noreferrer"><FaExternalLinkAlt size={ICON_SIZE.small} /></a>}
         {downloadURL && <a href={downloadURL} target="_blank" rel="noreferrer"><FaDownload size={ICON_SIZE.small} /></a>}
     </span>
 )
