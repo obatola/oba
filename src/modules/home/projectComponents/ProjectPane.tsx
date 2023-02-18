@@ -22,7 +22,7 @@ interface IProjectProps {
 }
 
 const Project = ({project}: IProjectProps) => {
-    const {name, date, tech, content, projectImageKey, githubURL, url} = project;
+    const {name, date, tech, content} = project;
 
     if (!project) {
         return <></>

@@ -1,5 +1,3 @@
-import react from 'react';
-
 export enum SPACER_SIZE {
     small = '10px',
     medium = '16px',

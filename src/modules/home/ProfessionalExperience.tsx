@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import { homeCopy, IExperience } from "@/copy";
 import { clsx } from 'clsx';
 import { GoldenLink } from "../common/GoldenLinks";

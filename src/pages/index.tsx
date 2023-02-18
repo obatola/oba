@@ -1,9 +1,6 @@
 import Head from 'next/head'
-import { Inter } from '@next/font/google'
 import { CommonPageWrapper } from '@/modules/common/CommonPageWrapper'
 import { HomePage } from '@/modules/home/HomePage'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (

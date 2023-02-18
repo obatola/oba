@@ -7,7 +7,6 @@ import styles from '../../../styles/FeaturedProjectPane.module.css';
 import { GoldenLink } from '@/modules/common/GoldenLinks';
 import { Spacer, SPACER_SIZE } from '@/modules/common/Spacer';
 import { TechnologiesPanel } from '@/modules/common/TechnologiesPanel';
-import DeucesSolitaire from '../../../../public/images/deuces_solitaire.png'
 import { getProjectImageByKey } from '@/utils/getProjectImageByKey';
 import { ICON_SIZE } from '@/contants';
 
