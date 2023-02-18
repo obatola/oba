@@ -1,8 +1,7 @@
-import { HOME_PAGE_ANCHORS } from '@/constants/homeConstants';
-import { homeCopy } from '@/copy';
-import React from 'react';
-import styles from '../../styles/IntroSection.module.css';
-
+import { HOME_PAGE_ANCHORS } from "@/constants/homeConstants";
+import { homeCopy } from "@/copy";
+import React from "react";
+import styles from "../../styles/IntroSection.module.css";
 
 export const IntroSection = () => (
     <section id={HOME_PAGE_ANCHORS.about} className={styles.sectionWrapper}>
