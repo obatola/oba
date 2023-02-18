@@ -1,7 +1,7 @@
-import React from 'react';
-import { IntroSection } from './IntroSection';
-import { ProfessionalExperienceSection } from './ProfessionalExperience';
-import { ProjectsSection } from './ProjectSection';
+import React from "react";
+import { IntroSection } from "./IntroSection";
+import { ProfessionalExperienceSection } from "./ProfessionalExperience";
+import { ProjectsSection } from "./ProjectSection";
 
 export const HomePage = () => {
     return (
@@ -10,5 +10,5 @@ export const HomePage = () => {
             <ProfessionalExperienceSection />
             <ProjectsSection />
         </>
-    )
-}
+    );
+};

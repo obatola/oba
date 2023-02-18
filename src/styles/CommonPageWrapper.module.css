@@ -23,7 +23,7 @@
     max-width: 1600px;
     min-height: 100vh;
     padding: 0 150px 100px 150px;
-}  
+}
 
 .logo {
     height: 50px;
@@ -37,7 +37,7 @@
     position: relative;
     align-items: center;
     width: 100%;
-    height: var( --nav-height);
+    height: var(--nav-height);
 }
 
 .navBar :global(#hamburgerMenu) {
@@ -70,7 +70,8 @@
     color: var(--font-color) !important;
 }
 
-.closedSideMenu, .openSideMenu {
+.closedSideMenu,
+.openSideMenu {
     background-color: var(--darkerer-brown);
     height: 100%;
     position: fixed;
@@ -96,10 +97,11 @@
     /* open */
     width: 40%;
     padding: 100px 60px;
-    box-shadow: 21px 2px 45px 13px rgba(0,0,0,0.75);
+    box-shadow: 21px 2px 45px 13px rgba(0, 0, 0, 0.75);
 }
 
-.closedSideMenu .navLink, .openSideMenu .navLink {
+.closedSideMenu .navLink,
+.openSideMenu .navLink {
     width: 100%;
     margin-bottom: 20px;
 }
@@ -111,17 +113,17 @@
     margin: 30px 17px;
 }
 
-@media (max-width: 1024px) { 
+@media (max-width: 1024px) {
     .main {
         padding: 0 60px 100px 60px;
     }
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
     .navBar {
         padding: 0 20px;
     }
-    
+
     .navBar :global(#navRow) {
         display: none;
     }
@@ -133,12 +135,12 @@
     .main {
         padding: 0 30px 100px 30px;
     }
-}  
+}
 
 @media (max-width: 425px) {
     .header {
         height: 80px;
-    } 
+    }
 
     .logo {
         height: 35px;

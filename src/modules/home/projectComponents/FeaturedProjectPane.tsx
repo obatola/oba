@@ -1,60 +1,70 @@
-import React from 'react';
-import { clsx } from 'clsx';
-import { ICSProject } from '@/copy';
+import React from "react";
+import { clsx } from "clsx";
+import { ICSProject } from "@/copy";
 import Image from "next/image";
-import { FaExternalLinkAlt, FaGithub, FaDownload } from 'react-icons/fa';
-import styles from '../../../styles/FeaturedProjectPane.module.css';
-import { GoldenLink } from '@/modules/common/GoldenLinks';
-import { Spacer, SPACER_SIZE } from '@/modules/common/Spacer';
-import { TechnologiesPanel } from '@/modules/common/TechnologiesPanel';
-import { getProjectImageByKey } from '@/utils/getProjectImageByKey';
-import { ICON_SIZE } from '@/contants';
+import { FaExternalLinkAlt, FaGithub, FaDownload } from "react-icons/fa";
+import styles from "../../../styles/FeaturedProjectPane.module.css";
+import { GoldenLink } from "@/modules/common/GoldenLinks";
+import { Spacer, SPACER_SIZE } from "@/modules/common/Spacer";
+import { TechnologiesPanel } from "@/modules/common/TechnologiesPanel";
+import { getProjectImageByKey } from "@/utils/getProjectImageByKey";
+import { ICON_SIZE } from "@/contants";
 
 interface IFeatureProjectsPane {
     featuredProjects: ICSProject[];
 }
 
-export const FeatureProjectsPane = ({featuredProjects}: IFeatureProjectsPane) => (
+export const FeatureProjectsPane = ({
+    featuredProjects,
+}: IFeatureProjectsPane) => (
     <div>
-        {featuredProjects.map((project, index) => <FeaturedProject key={project.name} project={project} index={index} />)}
+        {featuredProjects.map((project, index) => (
+            <FeaturedProject
+                key={project.name}
+                project={project}
+                index={index}
+            />
+        ))}
     </div>
-)
+);
 
 interface IFeaturedProjectProps {
     project: ICSProject;
     index?: number;
 }
 
-const FeaturedProject = ({project, index}: IFeaturedProjectProps) => {
-    const {name, date, tech, content, projectImageKey} = project;
+const FeaturedProject = ({ project, index }: IFeaturedProjectProps) => {
+    const { name, date, tech, content, projectImageKey } = project;
 
     if (!project) {
-        return <></>
+        return <></>;
     }
 
-    const isTextContentOnRightSide = typeof index === 'number' && index % 2 > 0;
+    const isTextContentOnRightSide = typeof index === "number" && index % 2 > 0;
     const isImageOnRightSide = !isTextContentOnRightSide;
 
     return (
-        <div className={clsx({
-            [styles.projectContainerRight]: isTextContentOnRightSide,
-            [styles.projectContainerLeft]: !isTextContentOnRightSide,
-        })}>
-            <div className={clsx({
-                [styles.projectTextContentContainerRight]: isTextContentOnRightSide,
-                [styles.projectTextContentContainerLeft]: !isTextContentOnRightSide,
-            })}>
+        <div
+            className={clsx({
+                [styles.projectContainerRight]: isTextContentOnRightSide,
+                [styles.projectContainerLeft]: !isTextContentOnRightSide,
+            })}
+        >
+            <div
+                className={clsx({
+                    [styles.projectTextContentContainerRight]:
+                        isTextContentOnRightSide,
+                    [styles.projectTextContentContainerLeft]:
+                        !isTextContentOnRightSide,
+                })}
+            >
                 <div>
                     <h3>
-                        <GoldenLink href={project.url}>
-                            {name}&nbsp;
-                        </GoldenLink>
+                        <GoldenLink href={project.url}>{name}&nbsp;</GoldenLink>
                         - {date}
                     </h3>
                     <Spacer bottom={SPACER_SIZE.medium} />
-                    <div className={styles.textContainer}>
-                        {content}
-                    </div>
+                    <div className={styles.textContainer}>{content}</div>
                     <Spacer bottom={SPACER_SIZE.medium} />
                     <TechnologiesPanel technologies={tech} />
                     <Spacer bottom={SPACER_SIZE.medium} />
@@ -62,24 +72,59 @@ const FeaturedProject = ({project, index}: IFeaturedProjectProps) => {
                 </div>
             </div>
 
-            <div className={clsx({
-                [styles.projectImageContainerRight]: isImageOnRightSide,
-                [styles.projectImageContainerLeft]: !isImageOnRightSide,
-            })}>
-                <Image src={getProjectImageByKey(projectImageKey)} alt="oba seward-evans" className={styles.projectImage} />
+            <div
+                className={clsx({
+                    [styles.projectImageContainerRight]: isImageOnRightSide,
+                    [styles.projectImageContainerLeft]: !isImageOnRightSide,
+                })}
+            >
+                <Image
+                    src={getProjectImageByKey(projectImageKey)}
+                    alt="oba seward-evans"
+                    className={styles.projectImage}
+                />
             </div>
         </div>
-    )
-}
+    );
+};
 
 interface IProjectLinksProps {
-    project: ICSProject
+    project: ICSProject;
 }
 
-export const ProjectLinks = ({project: {githubURL, url: externalLink, downloadURL}}: IProjectLinksProps) => (
+export const ProjectLinks = ({
+    project: { githubURL, url: externalLink, downloadURL },
+}: IProjectLinksProps) => (
     <span className={styles.projectLinkContainer}>
-        {githubURL && <a href={githubURL} target="_blank" rel="noreferrer"><FaGithub size={ICON_SIZE.small} /></a>}
-        {externalLink && <a href={externalLink} target="_blank" rel="noreferrer"><FaExternalLinkAlt size={ICON_SIZE.small} /></a>}
-        {downloadURL && <a href={downloadURL} target="_blank" rel="noreferrer"><FaDownload size={ICON_SIZE.small} /></a>}
+        {githubURL && (
+            <a
+                href={githubURL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Github"
+            >
+                <FaGithub size={ICON_SIZE.small} />
+            </a>
+        )}
+        {externalLink && (
+            <a
+                href={externalLink}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Go to project"
+            >
+                <FaExternalLinkAlt size={ICON_SIZE.small} />
+            </a>
+        )}
+        {downloadURL && (
+            <a
+                href={downloadURL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Download"
+            >
+                <FaDownload size={ICON_SIZE.small} />
+            </a>
+        )}
     </span>
-)
+);

@@ -5,12 +5,14 @@
     width: 100%;
 }
 
-.textBubbleContainer .textBubbleNormal, .textBubbleContainer .textBubbleSimple {
+.textBubbleContainer .textBubbleNormal,
+.textBubbleContainer .textBubbleSimple {
     margin: 0 6px 6px 0;
 }
 
-.textBubbleSimple, .textBubbleNormal {
-    font-family: "SF Mono","Fira Code","Fira Mono","Roboto Mono",monospace;
+.textBubbleSimple,
+.textBubbleNormal {
+    font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
     font-size: 0.8rem;
 }
 

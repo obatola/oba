@@ -9,7 +9,7 @@
 }
 
 .titleContainer {
-    margin: 20px 0; 
+    margin: 20px 0;
 }
 
 .title {
@@ -23,7 +23,7 @@
     font-weight: bold;
     color: var(--gold-accent);
     margin: 0;
-    line-height: 1em; 
+    line-height: 1em;
 }
 
 .text {

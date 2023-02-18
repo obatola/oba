@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     gap: 10px;
-    margin-bottom: var(--spacing-large)
+    margin-bottom: var(--spacing-large);
 }
 
 .projectContainerLeft {
@@ -82,7 +82,7 @@
     margin-right: 10px;
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
     .projectContainerLeft,
     .projectContainerRight {
         text-align: left;
@@ -101,7 +101,7 @@
     .projectTextContentContainerLeft,
     .projectTextContentContainerRight {
         padding: 20px;
-        background-color: #191d15E6; /* TODO: replace with color object */
+        background-color: #191d15e6; /* TODO: replace with color object */
     }
 
     .textContainer {
