@@ -1,7 +1,17 @@
 import Head from "next/head";
 import Pokedex from "@/modules/pokedex/pokedex";
+import { IPokemonIndex } from "@/modules/pokedex/types";
+import PokemonData from "./api/allPokedexData.json";
 
-export default function PokedexIndex() {
+interface IPokedexProps {
+    pokemonIndex: IPokemonIndex;
+    listOfPokemonIds: string[];
+}
+
+export default function PokedexIndex({
+    pokemonIndex,
+    listOfPokemonIds,
+}: IPokedexProps) {
     return (
         <>
             <Head>
@@ -17,8 +27,20 @@ export default function PokedexIndex() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Pokedex />
+                <Pokedex
+                    pokemonIndex={pokemonIndex}
+                    listOfPokemonIds={listOfPokemonIds}
+                />
             </main>
         </>
     );
+}
+
+export function getStaticProps() {
+    return {
+        props: {
+            pokemonIndex: PokemonData,
+            listOfPokemonIds: Object.keys(PokemonData),
+        },
+    };
 }

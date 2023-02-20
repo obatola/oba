@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
 import styles from "../pokedex/pokedex.module.css";
 import { IPokemon, IPokemonIndex } from "./types";
-import PokemonData from "../../pages/api/allPokedexData.json";
-const listOfPokemonIds = Object.keys(PokemonData);
-
-export default function Pokedex() {
-    return (
-        <div className={styles.pokemonPage}>
-            Pokedex
-            <PokemonGrid
-                pokemonIndex={PokemonData as unknown as IPokemonIndex}
-                listOfPokemonIds={listOfPokemonIds}
-            />
-        </div>
-    );
-}
 
 interface IPokedex {
     pokemonIndex: IPokemonIndex;
     listOfPokemonIds: string[];
+}
+
+export default function Pokedex({ pokemonIndex, listOfPokemonIds }: IPokedex) {
+    return (
+        <div className={styles.pokemonPage}>
+            Pokedex
+            <PokemonGrid
+                pokemonIndex={pokemonIndex}
+                listOfPokemonIds={listOfPokemonIds}
+            />
+        </div>
+    );
 }
 
 const PokemonGrid = ({ pokemonIndex, listOfPokemonIds }: IPokedex) => {
