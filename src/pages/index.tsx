@@ -16,6 +16,7 @@ export default function Home() {
                     content="width=device-width, initial-scale=1"
                 />
                 <link rel="icon" href="/favicon.ico" />
+                <link rel="apple-touch-icon" href="/logo192.png" />
             </Head>
             <main>
                 <CommonPageWrapper>
