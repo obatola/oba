@@ -73,4 +73,4 @@ const PokemonCard = ({ pokemon }: IPokemonCardProps) => {
     );
 };
 
-const getIdDisplayString = (id: number) => `#${`000${id}`.slice(-4)}`;
+const getIdDisplayString = (id: string) => `#${`000${id}`.slice(-4)}`;
