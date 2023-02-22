@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "../pokedex/pokedex.module.css";
+import { PokemonTypeGrid } from "./pokemonType";
 import { IPokemon, IPokemonIndex } from "./types";
+import { getIdDisplayString } from "./utils";
 
 interface IPokedex {
     pokemonIndex: IPokemonIndex;
@@ -67,10 +70,10 @@ const PokemonCard = ({ pokemon }: IPokemonCardProps) => {
                 src={pokemon.imageUrl}
             />
             <div>{getIdDisplayString(pokemon.id)}</div>
-            <div>{pokemon.name}</div>
-            <div>{pokemon.type}</div>
+            <Link href={`/pokedex/${pokemon.id}`}>
+                <div>{pokemon.name}</div>
+            </Link>
+            <PokemonTypeGrid types={pokemon.type} />
         </div>
     );
 };
-
-const getIdDisplayString = (id: string) => `#${`000${id}`.slice(-4)}`;

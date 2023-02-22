@@ -1,0 +1,18 @@
+.typeGrid {
+    padding: 10px;
+}
+
+.type {
+    padding: 5px 15px;
+    border-radius: 100px;
+    color: white;
+}
+
+.typeGrid > .type {
+    margin-bottom: 0.75rem;
+    margin-right: 0.75rem;
+}
+
+.typeGrid > .type:last-child {
+    margin-right: 0;
+}

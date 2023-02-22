@@ -3,7 +3,7 @@ export interface IPokemon {
     name: string;
     tinyImageURL: string;
     imageUrl: string;
-    type: string;
+    type: string[];
     species: string;
     catchRate: number;
     baseExperience: number;

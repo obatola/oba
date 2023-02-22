@@ -1,13 +1,3 @@
-.page {
-    /* color */
-    --pokemon-red: #f35067;
-
-    /* component-color */
-    --pokemon-background-color: var(--pokemon-red);
-
-    background-color: var(--pokemon-background-color);
-}
-
 .pokemonPage {
     display: block;
     margin: 0 40px;
@@ -32,8 +22,11 @@
 }
 
 .pokemonImage {
-    width: 120px;
+    width: 200px;
     height: auto;
+    padding: 20px;
+    border: 10px solid var(--pokemon-border-color);
+    border-radius: var(--border-radius);
 }
 
 @media (max-width: 1024px) {
