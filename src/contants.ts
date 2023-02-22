@@ -3,6 +3,7 @@ export const LINK_TO_RESUME =
 
 export const PATHS = {
     home: "/",
+    pokedex: "/pokedex",
 };
 
 export const ICON_SIZE = {

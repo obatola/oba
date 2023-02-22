@@ -1,4 +1,5 @@
 import React from "react";
+import { PATHS } from "./contants";
 
 export interface IExperience {
     companyName: string;
@@ -181,6 +182,29 @@ export interface ICSProject {
 }
 
 const csProjects: ICSProject[] = [
+    {
+        name: "Pokédex",
+        date: "2023",
+        tech: ["NextJS", "ReactJS", "Typescript", "Python"],
+        content: (
+            <span>
+                Created a{" "}
+                <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href="https://github.com/obatola/pokedex-scraper"
+                >
+                    webscraper
+                </a>{" "}
+                in python to grab data of all pokemon, and a website, using
+                NextJS to display the data.
+            </span>
+        ),
+        projectImageKey: "personalWebsite",
+        url: PATHS.pokedex,
+        githubURL: "https://github.com/obatola/oba",
+        isFeatured: true,
+    },
     {
         name: "Obatola.com",
         date: "2023",

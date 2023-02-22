@@ -7,6 +7,7 @@ import {
     displayWeight,
     getIdDisplayString,
 } from "@/modules/pokedex/utils";
+import { PATHS } from "@/contants";
 
 export interface IPokemonDetailProps {
     pokemon: IPokemon | null;
@@ -47,7 +48,7 @@ export default function PokemonDetailPage({
                         pokemon={previousPokemon}
                         displayString="previous"
                     />
-                    <Link href="/pokedex">all</Link>
+                    <Link href={PATHS.pokedex}>all</Link>
                     <AdjacentPokemonLink
                         pokemon={nextPokemon}
                         displayString="next"
@@ -131,7 +132,7 @@ const AdjacentPokemonLink = ({
         return <span>{displayString}</span>;
     }
     return (
-        <Link href={`/pokedex/${pokemon.id}`}>
+        <Link href={`${PATHS.pokedex}/${pokemon.id}`}>
             {displayString}
             <img src={pokemon.tinyImageURL} alt={pokemon.name} />
         </Link>
