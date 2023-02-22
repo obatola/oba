@@ -1,12 +1,14 @@
-import { IPokemon } from "@/modules/pokedex/types";
+import { IPokemon, IPokemonIndex } from "@/modules/pokedex/types";
 import { getIdDisplayString } from "@/modules/pokedex/utils";
 import PokemonData from "../api/allPokedexData.json";
 import styles from "../../modules/pokedex/pokedex[id].module.css";
 import Link from "next/link";
 import { PokemonTypeGrid } from "@/modules/pokedex/pokemonType";
 
+const pokemonData = PokemonData as unknown as IPokemonIndex;
+
 interface IPokemonDetailProps {
-    pokemon: IPokemon;
+    pokemon: IPokemon | null;
     nextPokemon: IAdjacentPokemon;
     previousPokemon: IAdjacentPokemon;
 }
@@ -16,11 +18,10 @@ export default function PokemonDetail({
     nextPokemon,
     previousPokemon,
 }: IPokemonDetailProps) {
-    console.log({
-        pokemon,
-        nextPokemon,
-        previousPokemon,
-    });
+    if (!pokemon) {
+        return <>no pokemon found</>;
+    }
+
     return (
         <>
             <style jsx global>
@@ -131,7 +132,7 @@ const AdjacentPokemonLink = ({
 };
 
 export async function getStaticPaths() {
-    const paths = Object.keys(PokemonData).map((pokemonId) => ({
+    const paths = Object.keys(pokemonData).map((pokemonId) => ({
         params: {
             id: pokemonId,
         },
@@ -151,14 +152,14 @@ type IAdjacentPokemon = IPokemon;
 
 export async function getStaticProps({ params }: IGetStaticPropsProps) {
     console.log(params);
-    const pokemon = PokemonData[params.id] as unknown as IPokemon;
+    const pokemon = pokemonData[params.id] as unknown as IPokemon;
     const nextPokemon =
-        (PokemonData[+params.id + 1] as unknown as IPokemon) || null;
+        (pokemonData[+params.id + 1] as unknown as IPokemon) || null;
     const previousPokemon =
-        (PokemonData[+params.id - 1] as unknown as IPokemon) || null;
+        (pokemonData[+params.id - 1] as unknown as IPokemon) || null;
 
     const props: IPokemonDetailProps = {
-        pokemon: pokemon.name ? pokemon : {},
+        pokemon: pokemon.name ? pokemon : null,
         nextPokemon,
         previousPokemon,
     };

@@ -20,8 +20,7 @@ const PokemonType = ({ type }: IPokemonTypeProps) => {
         <span
             className={styles.type}
             style={{
-                color: "white",
-                backgroundColor: typeToColorMap[type],
+                backgroundColor: typeToColorMap[type] || "black",
             }}
         >
             {type}
@@ -29,7 +28,11 @@ const PokemonType = ({ type }: IPokemonTypeProps) => {
     );
 };
 
-const typeToColorMap = {
+interface ITypeToColorMap {
+    [type: string]: string;
+}
+
+const typeToColorMap: ITypeToColorMap = {
     grass: "#06b248",
     poison: "#ee00d0",
     fire: "#fd0600",
