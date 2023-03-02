@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.bodyInput {
+    width: 100%;
+    padding: 10px 10px;
+}
+
+.checkbox,
+.wrapper button {
+    height: 30px;
+    width: 30px;
+}
+
+.wrapper button,
+.wrapper input {
+    margin: 5px;
+}

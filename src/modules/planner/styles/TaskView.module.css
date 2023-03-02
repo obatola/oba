@@ -1,0 +1,8 @@
+.wrapper {
+    width: 100%;
+}
+
+.tasksWrapper {
+    display: flex;
+    flex-direction: column;
+}

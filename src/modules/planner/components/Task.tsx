@@ -2,14 +2,16 @@ import { useState } from "react";
 import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
 import { ITask } from "../types";
 import { generateEmptyTask } from "../utils";
+import styles from "../styles/Task.module.css";
 
 interface IProps {
     id?: string;
     isPriority?: boolean;
+    isNewTask?: boolean;
 }
 
 // TODO: instead of id as empty string for empty task view, just add a flag called, is new task
-export const Task = ({ id = "", isPriority }: IProps) => {
+export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
     const { state, dispatch } = usePlanner();
     const [editableTask, setEditableTask] = useState<ITask>(
         state.tasks[id] || generateEmptyTask()
@@ -74,27 +76,30 @@ export const Task = ({ id = "", isPriority }: IProps) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="checkbox"
-                title="isComplete"
-                name="isComplete"
-                checked={editableTask.isComplete}
-                onChange={handleIsCompleteToggle}
-            />
-            {editableTask.isComplete ? (
-                <>{editableTask.body}</>
-            ) : (
+        <form onSubmit={handleSubmit} className={styles.wrapper}>
+            {!isNewTask && (
                 <input
-                    onChange={handleBodyChange}
-                    name="task"
-                    placeholder="...take the dog out"
-                    value={editableTask.body}
+                    className={styles.checkbox}
+                    type="checkbox"
+                    title="isComplete"
+                    name="isComplete"
+                    checked={editableTask.isComplete}
+                    onChange={handleIsCompleteToggle}
                 />
             )}
-            <button type="button" title="button" onClick={handleDelete}>
-                x
-            </button>
+            <input
+                className={styles.bodyInput}
+                onChange={handleBodyChange}
+                name="task"
+                placeholder="...take the dog out"
+                disabled={editableTask.isComplete}
+                value={editableTask.body}
+            />
+            {!isNewTask && (
+                <button type="button" title="button" onClick={handleDelete}>
+                    x
+                </button>
+            )}
             <button type="submit" title="submit" style={{ display: "none" }} />
         </form>
     );

@@ -1,6 +1,7 @@
 import { usePlanner } from "../hooks/usePlannerContext";
 import { sortTasksByIfCompleted } from "../utils";
 import { Task } from "./Task";
+import styles from "../styles/TaskView.module.css";
 
 interface IProps {
     isPriority?: boolean;
@@ -17,12 +18,14 @@ export const TasksView = ({ isPriority }: IProps) => {
     }
 
     return (
-        <div>
+        <div className={styles.wrapper}>
             <h2>{isPriority ? "Priorities" : "Tasks"}</h2>
-            {sortTasksByIfCompleted(tasks, state.tasks).map((taskId) => (
-                <Task key={taskId} id={taskId} isPriority={isPriority} />
-            ))}
-            <Task isPriority={isPriority} />
+            <div className={styles.tasksWrapper}>
+                {sortTasksByIfCompleted(tasks, state.tasks).map((taskId) => (
+                    <Task key={taskId} id={taskId} isPriority={isPriority} />
+                ))}
+                <Task isPriority={isPriority} isNewTask />
+            </div>
         </div>
     );
 };
