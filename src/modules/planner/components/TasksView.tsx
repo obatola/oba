@@ -1,5 +1,5 @@
 import { usePlanner } from "../hooks/usePlannerContext";
-import { sortTasksByIfCompleted } from "../utils";
+import { getCompleteAndIncompleteTasksFromTaskIds } from "../utils";
 import { Task } from "./Task";
 import styles from "../styles/TaskView.module.css";
 
@@ -17,14 +17,20 @@ export const TasksView = ({ isPriority }: IProps) => {
         tasks = currentDay?.tasks || [];
     }
 
+    const { incompleteTasksIds, completeTasksIds } =
+        getCompleteAndIncompleteTasksFromTaskIds(tasks, state.tasks);
+
     return (
         <div className={styles.wrapper}>
             <h2>{isPriority ? "Priorities" : "Tasks"}</h2>
             <div className={styles.tasksWrapper}>
-                {sortTasksByIfCompleted(tasks, state.tasks).map((taskId) => (
+                {incompleteTasksIds.map((taskId) => (
                     <Task key={taskId} id={taskId} isPriority={isPriority} />
                 ))}
                 <Task isPriority={isPriority} isNewTask />
+                {completeTasksIds.map((taskId) => (
+                    <Task key={taskId} id={taskId} isPriority={isPriority} />
+                ))}
             </div>
         </div>
     );
