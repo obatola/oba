@@ -49,6 +49,8 @@ export const Note = ({ id }: INoteProps) => {
         });
     };
 
+    console.log({ editedNote });
+
     return (
         <div
             style={{
@@ -95,9 +97,7 @@ export const Note = ({ id }: INoteProps) => {
                 <button type="button" onClick={handleDelete}>
                     delete
                 </button>
-                <button type="submit" style={{ display: "none" }}>
-                    submit
-                </button>
+                <button type="submit" style={{ display: "none" }}></button>
             </form>
         </div>
     );
