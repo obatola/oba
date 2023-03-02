@@ -46,3 +46,24 @@ export const sortTasksByIfCompleted = (
 
     return [...taskIDs].sort(sortAlgorithm);
 };
+
+export const getCompleteAndIncompleteTasksFromTaskIds = (
+    taskIds: string[],
+    allTasks: ITasksDB
+): {
+    incompleteTasksIds: string[];
+    completeTasksIds: string[];
+} => {
+    const incompleteTasksIds: string[] = [];
+    const completeTasksIds: string[] = [];
+
+    for (const id of taskIds) {
+        if (allTasks[id].isComplete) {
+            completeTasksIds.push(id);
+        } else {
+            incompleteTasksIds.push(id);
+        }
+    }
+
+    return { incompleteTasksIds, completeTasksIds };
+};
