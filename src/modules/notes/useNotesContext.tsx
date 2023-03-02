@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useReducer } from "react";
+import produce from "immer";
 import { IAllNotes, IDBNote, INewNote } from "./types";
 import {
     addNoteToDB,
@@ -66,54 +67,41 @@ function noteHandlerReducer(
 ): INotesState {
     switch (action.type) {
         case INoteActions.AddNote: {
-            const newNote: IDBNote = {
-                ...action.note,
-                dateAdded: Date.now(),
-                lastModified: Date.now(),
-            };
+            return produce(state, (draftState) => {
+                draftState.allNotes[action.note.id] = {
+                    ...action.note,
+                    dateAdded: Date.now(),
+                    lastModified: Date.now(),
+                };
 
-            const allNotes: IAllNotes = {
-                ...state.allNotes,
-                [newNote.id]: newNote,
-            };
-
-            const listOfNoteIds = _getListOfNoteIds(allNotes);
-
-            return {
-                ...state,
-                allNotes,
-                listOfNoteIds,
-            };
+                draftState.listOfNoteIds = _getListOfNoteIds(
+                    draftState.allNotes
+                );
+            });
         }
         case INoteActions.EditNote: {
-            const allNotes: IAllNotes = {
-                ...state.allNotes,
-                [action.id]: action.note,
-            };
-
-            return {
-                ...state,
-                allNotes: allNotes,
-            };
+            return produce(state, (draft) => {
+                draft.allNotes[action.id] = action.note;
+            });
         }
         case INoteActions.RemoveNote: {
-            const allNotes: IAllNotes = {
-                ...state.allNotes,
-            };
-
-            delete allNotes[action.id];
-            const listOfNoteIds = _getListOfNoteIds(allNotes);
-
-            return { ...state, allNotes, listOfNoteIds };
+            return produce(state, (draft) => {
+                delete draft.allNotes[action.id];
+                const indexOfNote = draft.listOfNoteIds.indexOf(action.id);
+                draft.listOfNoteIds.splice(indexOfNote, 1);
+            });
         }
         case INoteActions.SetAllNotes: {
-            const { allNotes } = action;
-            const listOfNoteIds = _getListOfNoteIds(allNotes);
-
-            return { ...state, allNotes, listOfNoteIds };
+            return produce(state, (draft) => {
+                draft.allNotes = action.allNotes;
+                draft.listOfNoteIds = _getListOfNoteIds(action.allNotes);
+            });
         }
         case INoteActions.ClearNotes: {
-            return { ...state, allNotes: {}, listOfNoteIds: [] };
+            return produce(state, (draft) => {
+                draft.allNotes = {};
+                draft.listOfNoteIds = [];
+            });
         }
         default: {
             throw new Error(
