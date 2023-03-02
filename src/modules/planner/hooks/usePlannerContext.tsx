@@ -4,7 +4,6 @@ import { IDay, IDaysDB, ITask, ITasksDB } from "../types";
 import { generateNewDay, getTodaysId } from "../utils";
 import {
     addTaskToDB,
-    deleteTaskFromDB,
     editDayInDB,
     editTaskInDB,
     getAllDaysFromDB,

@@ -8,7 +8,8 @@ interface IProps {
     isPriority?: boolean;
 }
 
-export const Task = ({ id, isPriority }: IProps) => {
+// TODO: instead of id as empty string for empty task view, just add a flag called, is new task
+export const Task = ({ id = "", isPriority }: IProps) => {
     const { state, dispatch } = usePlanner();
     const [editableTask, setEditableTask] = useState<ITask>(
         state.tasks[id] || generateEmptyTask()
@@ -63,7 +64,7 @@ export const Task = ({ id, isPriority }: IProps) => {
         saveTask(editableTask);
     };
 
-    const handleDelete = (event: React.FormEvent<HTMLButtonElement>) => {
+    const handleDelete = () => {
         dispatch({
             type: isPriority
                 ? IPlannerActions.RemoveTaskFromDayPriority

@@ -97,7 +97,9 @@ export const Note = ({ id }: INoteProps) => {
                 <button type="button" onClick={handleDelete}>
                     delete
                 </button>
-                <button type="submit" style={{ display: "none" }}></button>
+                <button type="submit" style={{ display: "none" }}>
+                    submit
+                </button>
             </form>
         </div>
     );

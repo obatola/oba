@@ -1,19 +1,9 @@
 import moment from "moment";
-import { useEffect } from "react";
-import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
-import { generateNewDay } from "../utils";
+import { usePlanner } from "../hooks/usePlannerContext";
 import { TasksView } from "./TasksView";
 
 export const DayView = () => {
-    const { state, dispatch } = usePlanner();
-
-    useEffect(() => {
-        if (!state.days[state.currentDayId]) {
-            console.log("NO DAY AVAILABLE");
-        } else {
-            console.log("found a day", state.days[state.currentDayId]);
-        }
-    }, []);
+    const { state } = usePlanner();
 
     return (
         <>
