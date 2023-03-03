@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import produce from "immer";
+import moment from "moment";
 import { IDay, IDaysDB, ITask, ITasksDB } from "../types";
 import { generateNewDay, getTodaysId } from "../utils";
 import {
@@ -9,6 +10,7 @@ import {
     getAllDaysFromDB,
     getAllTasksFromDB,
 } from "../plannerDB";
+import { DATE_ID_FORMAT } from "../constants";
 
 interface IPlannerState {
     days: IDaysDB;
@@ -18,6 +20,7 @@ interface IPlannerState {
 
 export enum IPlannerActions {
     AddTask = "AddTask",
+    AdvanceByNDays = "AdvanceByNDays",
     AddPriority = "AddPriority",
     SetDays = "SetDays",
     SetDay = "SetDay",
@@ -30,6 +33,7 @@ export enum IPlannerActions {
 
 type IPlannerActionPackages =
     | { type: IPlannerActions.AddTask; newTask: ITask }
+    | { type: IPlannerActions.AdvanceByNDays; numDays: number }
     | { type: IPlannerActions.AddPriority; newTask: ITask }
     | { type: IPlannerActions.SetDay; day: IDay }
     | { type: IPlannerActions.EditTask; id: string; task: ITask }
@@ -60,9 +64,6 @@ function noteHandlerReducerLocalStorageInterceptor(
 ): IPlannerState {
     const newState = noteHandlerReducer(state, action);
     const currentDay = newState.days[state.currentDayId];
-    console.log("noteHandlerReducerLocalStorageInterceptor currentDay", {
-        currentDay,
-    });
 
     switch (action.type) {
         case IPlannerActions.AddTask:
@@ -102,6 +103,25 @@ function noteHandlerReducer(
                 draft.tasks[newTask.id] = newTask;
             });
         }
+        case IPlannerActions.AdvanceByNDays: {
+            return produce(state, (draft) => {
+                // get n days from now, start of day formated string
+                const newDayId = moment(draft.currentDayId)
+                    .add(action.numDays, "day")
+                    .format(DATE_ID_FORMAT);
+                // check to see if there's a day object for that day
+                // if day object exists
+                if (draft.days[newDayId] !== undefined) {
+                    // change current day to that day
+                    draft.currentDayId = newDayId;
+                } else {
+                    // if day object does not exist yet
+                    // change current day to that day and create that day, set in state
+                    draft.days[newDayId] = generateNewDay(newDayId);
+                    draft.currentDayId = newDayId;
+                }
+            });
+        }
         case IPlannerActions.AddPriority: {
             return produce(state, (draft) => {
                 const { newTask } = action;
@@ -112,7 +132,6 @@ function noteHandlerReducer(
             });
         }
         case IPlannerActions.EditTask: {
-            console.log("action.EditTask", action);
             return produce(state, (draft) => {
                 const { id, task } = action;
                 draft.tasks[id] = task;
