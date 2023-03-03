@@ -76,31 +76,37 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.wrapper}>
-            {!isNewTask && (
+        <div>
+            <form onSubmit={handleSubmit} className={styles.wrapper}>
+                {!isNewTask && (
+                    <input
+                        className={styles.checkbox}
+                        type="checkbox"
+                        title="isComplete"
+                        name="isComplete"
+                        checked={editableTask.isComplete}
+                        onChange={handleIsCompleteToggle}
+                    />
+                )}
                 <input
-                    className={styles.checkbox}
-                    type="checkbox"
-                    title="isComplete"
-                    name="isComplete"
-                    checked={editableTask.isComplete}
-                    onChange={handleIsCompleteToggle}
+                    className={styles.bodyInput}
+                    onChange={handleBodyChange}
+                    name="task"
+                    placeholder="...take the dog out"
+                    disabled={editableTask.isComplete}
+                    value={editableTask.body}
                 />
-            )}
-            <input
-                className={styles.bodyInput}
-                onChange={handleBodyChange}
-                name="task"
-                placeholder="...take the dog out"
-                disabled={editableTask.isComplete}
-                value={editableTask.body}
-            />
-            {!isNewTask && (
-                <button type="button" title="button" onClick={handleDelete}>
-                    x
-                </button>
-            )}
-            <button type="submit" title="submit" style={{ display: "none" }} />
-        </form>
+                {!isNewTask && (
+                    <button type="button" title="button" onClick={handleDelete}>
+                        x
+                    </button>
+                )}
+                <button
+                    type="submit"
+                    title="submit"
+                    style={{ display: "none" }}
+                />
+            </form>
+        </div>
     );
 };
