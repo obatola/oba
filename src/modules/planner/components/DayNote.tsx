@@ -18,6 +18,11 @@ export const DayNote = () => {
         }
     }, [state.isStateLoaded]);
 
+    useEffect(() => {
+        // reset notes on current day change
+        setEditableNote(currentDay.note);
+    }, [state.currentDayId]);
+
     console.log({
         currentDay,
         note: currentDay.note,
