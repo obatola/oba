@@ -30,6 +30,7 @@ export enum IPlannerActions {
     EditTask = "EditTask",
     RemoveTaskFromDayTask = "RemoveTaskFromDayTask",
     RemoveTaskFromDayPriority = "RemoveTaskFromDayPriority",
+    MoveTaskToOtherDay = "MoveTaskToOtherDay",
     ClearPlanner = "ClearPlanner",
 }
 
@@ -44,6 +45,12 @@ type IPlannerActionPackages =
     | { type: IPlannerActions.StateLoaded }
     | { type: IPlannerActions.RemoveTaskFromDayTask; id: string }
     | { type: IPlannerActions.RemoveTaskFromDayPriority; id: string }
+    | {
+          type: IPlannerActions.MoveTaskToOtherDay;
+          desiredDateId: string;
+          taskId: string;
+          isPriority: boolean;
+      }
     | { type: IPlannerActions.ClearPlanner };
 
 export interface IUsePlannerPackage {
@@ -86,6 +93,12 @@ function noteHandlerReducerLocalStorageInterceptor(
         case IPlannerActions.RemoveTaskFromDayPriority:
             editDayInDB(currentDay);
             editTaskInDB(newState.tasks[action.id]);
+            break;
+        case IPlannerActions.MoveTaskToOtherDay:
+            // manipulated currentDay and the day we're moving to
+            editDayInDB(currentDay);
+            const dayMovedTo = newState.days[action.desiredDateId];
+            editDayInDB(dayMovedTo);
             break;
     }
 
@@ -157,6 +170,37 @@ function noteHandlerReducer(
                 const indexOfDaysTask = currentDay.priorities.indexOf(id);
                 currentDay.priorities.splice(indexOfDaysTask, 1);
                 draft.tasks[action.id].isDeleted = true;
+            });
+        }
+        case IPlannerActions.MoveTaskToOtherDay: {
+            return produce(state, (draft) => {
+                const { taskId, desiredDateId, isPriority } = action;
+                draft.currentDayId;
+                // remove task from current day
+                const currentDay = draft.days[draft.currentDayId];
+                if (isPriority) {
+                    const indexOfDaysTask =
+                        currentDay.priorities.indexOf(taskId);
+                    currentDay.priorities.splice(indexOfDaysTask, 1);
+                } else {
+                    const indexOfDaysTask = currentDay.tasks.indexOf(taskId);
+                    currentDay.tasks.splice(indexOfDaysTask, 1);
+                }
+
+                const doesDesiredDayExist = !!draft.days[desiredDateId];
+                if (!doesDesiredDayExist) {
+                    // if day does not exist create new day
+                    draft.days[desiredDateId] = generateNewDay(desiredDateId);
+                }
+
+                const desiredDay = draft.days[desiredDateId];
+
+                // add task to new day
+                if (isPriority) {
+                    desiredDay.priorities.push(taskId);
+                } else {
+                    desiredDay.tasks.push(taskId);
+                }
             });
         }
         case IPlannerActions.SetDays: {
