@@ -114,7 +114,6 @@ function noteHandlerReducer(
 }
 
 const _getListOfNoteIds = (allNotes: IAllNotes) => {
-    console.log("sort");
     return sortArrayOfNoteIdsByDateAdded(Object.keys(allNotes), allNotes);
 };
 

@@ -26,7 +26,7 @@ export const deleteNoteFromDB = (id: string) => {
 export const getAllNotesFromDB = async () => {
     const keys = await notesTable.keys();
     const allNotesInTable: IAllNotes = {};
-    console.log({ keys });
+
     for (const key of keys) {
         const note = (await notesTable.getItem(key)) as unknown as IDBNote;
         // TODO: add function to confirm value is INote type
