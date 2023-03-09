@@ -20,3 +20,13 @@
 .wrapper input {
     margin: 5px;
 }
+
+.popOverContainer {
+    width: 200px;
+    padding: 10px;
+    background-color: var(--project-grid-project-background-color);
+}
+
+.popOverContainer button {
+    width: 100%;
+}
