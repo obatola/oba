@@ -2,6 +2,7 @@ import moment from "moment";
 import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
 import { TasksView } from "./TasksView";
 import styles from "../styles/DayView.module.css";
+import { DayNote } from "./DayNote";
 
 export const DayView = () => {
     const { state, dispatch } = usePlanner();
@@ -27,6 +28,7 @@ export const DayView = () => {
             </div>
             <TasksView isPriority />
             <TasksView />
+            <DayNote />
         </div>
     );
 };

@@ -2,10 +2,10 @@ import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
 import { getCompleteAndIncompleteTasksFromTaskIds } from "../utils";
 import { Task } from "./Task";
 import styles from "../styles/TaskView.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Reorder } from "framer-motion";
-import debounce from "lodash.debounce";
 import { IDay } from "../types";
+import { useDebounce } from "../hooks/useDebounce";
 
 const DEBOUNCE_THROTTLE_MS = 700;
 
@@ -19,18 +19,25 @@ export const TasksView = ({ isPriority }: IProps) => {
     const [incompleteTasksIds, setIncompleteTaskList] = useState<string[]>([]);
     const currentDay = state.days[state.currentDayId];
 
+    const _saveTaskArrayInDay = (
+        newTaskArray: string[],
+        currentDayObj: IDay
+    ) => {
+        dispatch({
+            type: IPlannerActions.SetDay,
+            day: {
+                ...currentDayObj,
+                [isPriority ? "priorities" : "tasks"]: newTaskArray,
+            },
+        });
+    };
+
     // debounced call to set re ordered task list to reduce writes on dbs
-    const dispatchSetReorderedTasksListInDayDebounced = useRef(
-        debounce((newTaskArray: string[], currentDayObj: IDay) => {
-            dispatch({
-                type: IPlannerActions.SetDay,
-                day: {
-                    ...currentDayObj,
-                    [isPriority ? "priorities" : "tasks"]: newTaskArray,
-                },
-            });
-        }, DEBOUNCE_THROTTLE_MS)
-    );
+    const { debouncedFunction: dispatchSetReorderedTasksListInDayDebounced } =
+        useDebounce({
+            action: _saveTaskArrayInDay,
+            throttleTimeMS: DEBOUNCE_THROTTLE_MS,
+        });
 
     useEffect(() => {
         let tasks = [];
@@ -60,7 +67,7 @@ export const TasksView = ({ isPriority }: IProps) => {
             }
 
             // save re ordered list in day db (debounced to reduce write calls to db)
-            dispatchSetReorderedTasksListInDayDebounced.current(
+            dispatchSetReorderedTasksListInDayDebounced(
                 newTasksArray,
                 currentDay
             );
