@@ -67,7 +67,6 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log("Submit form");
         event.preventDefault();
         saveTask(editableTask);
     };
@@ -91,8 +90,6 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
             // todays date
             dayIdToMoveTo = getTodaysId();
         }
-
-        console.log({ dayIdToMoveTo });
 
         dispatch({
             type: IPlannerActions.MoveTaskToOtherDay,

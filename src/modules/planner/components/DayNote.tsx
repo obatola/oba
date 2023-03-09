@@ -12,7 +12,6 @@ export const DayNote = () => {
     const [editableNote, setEditableNote] = useState<string>(currentDay?.note);
 
     useEffect(() => {
-        console.log("State loaded changed");
         if (state.isStateLoaded) {
             setEditableNote(currentDay.note);
         }
@@ -22,14 +21,6 @@ export const DayNote = () => {
         // reset notes on current day change
         setEditableNote(currentDay.note);
     }, [state.currentDayId]);
-
-    console.log({
-        currentDay,
-        note: currentDay.note,
-        isLoaded: state.isStateLoaded,
-    });
-
-    console.log(editableNote);
 
     const _saveNoteInDay = (note: string, currentDayObj: IDay) => {
         dispatch({

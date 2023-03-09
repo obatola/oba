@@ -49,8 +49,6 @@ export const Note = ({ id }: INoteProps) => {
         });
     };
 
-    console.log({ editedNote });
-
     return (
         <div
             style={{
