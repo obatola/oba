@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
 import { ITask } from "../types";
-import { generateEmptyTask } from "../utils";
+import {
+    generateEmptyTask,
+    getDateIdOfXDaysFromNow,
+    getTodaysId,
+    isDayIdToday,
+} from "../utils";
 import styles from "../styles/Task.module.css";
 import Popup from "reactjs-popup";
 
@@ -76,6 +81,27 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
         });
     };
 
+    const handleMoveTasksToDay = () => {
+        let dayIdToMoveTo;
+
+        if (isDayIdToday(state.currentDayId)) {
+            // tomorrow's date
+            dayIdToMoveTo = getDateIdOfXDaysFromNow(1);
+        } else {
+            // todays date
+            dayIdToMoveTo = getTodaysId();
+        }
+
+        console.log({ dayIdToMoveTo });
+
+        dispatch({
+            type: IPlannerActions.MoveTaskToOtherDay,
+            desiredDateId: dayIdToMoveTo,
+            taskId: id,
+            isPriority: !!isPriority,
+        });
+    };
+
     return (
         <div>
             <form onSubmit={handleSubmit} className={styles.wrapper}>
@@ -111,9 +137,19 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
                             <button
                                 type="button"
                                 title="button"
+                                onClick={handleMoveTasksToDay}
+                            >
+                                Move task to{" "}
+                                {isDayIdToday(state.currentDayId)
+                                    ? "tomorrow"
+                                    : "today"}
+                            </button>
+                            <button
+                                type="button"
+                                title="button"
                                 onClick={handleDelete}
                             >
-                                delete task
+                                Delete task
                             </button>
                         </div>
                     </Popup>

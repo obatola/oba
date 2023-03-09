@@ -5,6 +5,9 @@ import { IDay, ITask, ITasksDB } from "./types";
 
 export const getTodaysId = () => moment().startOf("day").format(DATE_ID_FORMAT);
 
+export const getDateIdOfXDaysFromNow = (numDaysFromNow: number) =>
+    moment().startOf("day").add(numDaysFromNow, "days").format(DATE_ID_FORMAT);
+
 export const generateNewDay = (dayInIdFormat: string = getTodaysId()): IDay => {
     return {
         tasks: [],
@@ -13,6 +16,15 @@ export const generateNewDay = (dayInIdFormat: string = getTodaysId()): IDay => {
         day: dayInIdFormat,
         note: "",
     };
+};
+
+export const isDayIdToday = (dayId: string) => {
+    const dayFormatedString = moment(dayId)
+        .startOf("day")
+        .format(DATE_ID_FORMAT);
+    const today = moment().startOf("day").format(DATE_ID_FORMAT);
+
+    return dayFormatedString === today;
 };
 
 export const generateEmptyTask = (): ITask => {
