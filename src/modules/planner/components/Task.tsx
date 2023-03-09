@@ -3,6 +3,7 @@ import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
 import { ITask } from "../types";
 import { generateEmptyTask } from "../utils";
 import styles from "../styles/Task.module.css";
+import Popup from "reactjs-popup";
 
 interface IProps {
     id?: string;
@@ -97,9 +98,25 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
                     value={editableTask.body}
                 />
                 {!isNewTask && (
-                    <button type="button" title="button" onClick={handleDelete}>
-                        x
-                    </button>
+                    <Popup
+                        trigger={() => (
+                            <button type="button" title="open task options">
+                                ...
+                            </button>
+                        )}
+                        position="left bottom"
+                        closeOnDocumentClick
+                    >
+                        <div className={styles.popOverContainer}>
+                            <button
+                                type="button"
+                                title="button"
+                                onClick={handleDelete}
+                            >
+                                delete task
+                            </button>
+                        </div>
+                    </Popup>
                 )}
                 <button
                     type="submit"
