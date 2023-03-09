@@ -16,6 +16,7 @@ interface IPlannerState {
     days: IDaysDB;
     tasks: ITasksDB;
     currentDayId: string;
+    isStateLoaded: boolean;
 }
 
 export enum IPlannerActions {
@@ -25,6 +26,7 @@ export enum IPlannerActions {
     SetDays = "SetDays",
     SetDay = "SetDay",
     SetTasks = "SetTasks",
+    StateLoaded = "StateLoaded",
     EditTask = "EditTask",
     RemoveTaskFromDayTask = "RemoveTaskFromDayTask",
     RemoveTaskFromDayPriority = "RemoveTaskFromDayPriority",
@@ -39,6 +41,7 @@ type IPlannerActionPackages =
     | { type: IPlannerActions.EditTask; id: string; task: ITask }
     | { type: IPlannerActions.SetDays; days: IDaysDB }
     | { type: IPlannerActions.SetTasks; tasks: ITasksDB }
+    | { type: IPlannerActions.StateLoaded }
     | { type: IPlannerActions.RemoveTaskFromDayTask; id: string }
     | { type: IPlannerActions.RemoveTaskFromDayPriority; id: string }
     | { type: IPlannerActions.ClearPlanner };
@@ -56,6 +59,7 @@ const initialState: IPlannerState = {
     },
     tasks: {},
     currentDayId: getTodaysId(),
+    isStateLoaded: false,
 };
 
 function noteHandlerReducerLocalStorageInterceptor(
@@ -165,6 +169,11 @@ function noteHandlerReducer(
                 draft.days[action.day.id] = action.day;
             });
         }
+        case IPlannerActions.StateLoaded: {
+            return produce(state, (draft) => {
+                draft.isStateLoaded = true;
+            });
+        }
         case IPlannerActions.SetTasks: {
             return produce(state, (draft) => {
                 draft.tasks = action.tasks;
@@ -214,6 +223,7 @@ export const PlannerContextProvider = ({
                 type: IPlannerActions.SetTasks,
                 tasks: tasksInTable,
             });
+            dispatch({ type: IPlannerActions.StateLoaded });
         })();
     }, []);
 
