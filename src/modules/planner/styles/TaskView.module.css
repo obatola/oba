@@ -1,0 +1,14 @@
+.wrapper {
+    width: 100%;
+}
+
+.tasksWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.tasksWrapper ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}

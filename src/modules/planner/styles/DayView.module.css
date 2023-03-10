@@ -1,0 +1,13 @@
+.wrapper {
+    padding: 20px;
+}
+
+.headerWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.wrapper input {
+    font-size: 16px;
+}
