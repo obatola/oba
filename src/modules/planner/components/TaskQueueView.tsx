@@ -15,6 +15,7 @@ const DEFAULT_DURATION = 60;
 export const TaskQueueView = () => {
     const { state, dispatch } = usePlanner();
     const [isTaskStarted, setIsTaskStarted] = useState(false); //TODO: set to false
+    const [lastDurationCheck, setLastDurationCheck] = useState<number>();
     const currentDay = state.days[state.currentDayId];
     const taskQueue = state.taskQueues[currentDay.taskQueues[0]];
 
@@ -28,6 +29,15 @@ export const TaskQueueView = () => {
     const [timeLeft, setTimeLeft] = useState<number>(
         currentTaskInQueue?.durationSeconds || DEFAULT_DURATION
     );
+
+    const handleStartTime = () => {
+        setIsTaskStarted(true);
+        setLastDurationCheck(new Date().getTime());
+    };
+
+    const handleStopTime = () => {
+        setIsTaskStarted(false);
+    };
 
     useEffect(() => {
         if (currentTaskInQueue) {
@@ -43,9 +53,34 @@ export const TaskQueueView = () => {
         if (isTaskStarted) {
             if (timeLeft > 0) {
                 setTimeout(() => {
+                    if (lastDurationCheck) {
+                        const timeSinceLastDurationCheck =
+                            new Date().getTime() - lastDurationCheck;
+                        console.log(timeSinceLastDurationCheck);
+
+                        if (timeSinceLastDurationCheck > 2000) {
+                            setTimeLeft((previousTime) => {
+                                const differenceSinceLastCheck =
+                                    previousTime -
+                                    Math.floor(
+                                        timeSinceLastDurationCheck / 1000
+                                    );
+                                if (differenceSinceLastCheck > 0) {
+                                    return differenceSinceLastCheck;
+                                } else {
+                                    return 0;
+                                }
+                            });
+                            setLastDurationCheck(new Date().getTime());
+                            return;
+                        }
+                    }
+
                     setTimeLeft((previousTime) => {
                         return previousTime - 1;
                     });
+
+                    setLastDurationCheck(new Date().getTime());
                 }, 1000);
             } else {
                 playSound("/success-1-compressed.wav");
@@ -115,10 +150,8 @@ export const TaskQueueView = () => {
                             type="button"
                             onClick={
                                 !isTaskStarted
-                                    ? () => {
-                                          setIsTaskStarted(true);
-                                      }
-                                    : () => setIsTaskStarted(false)
+                                    ? handleStartTime
+                                    : handleStopTime
                             }
                         >
                             {!isTaskStarted ? (
