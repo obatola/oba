@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Reorder } from "framer-motion";
 import { IDay } from "../types";
 import { useDebounce } from "../hooks/useDebounce";
+import { DraggableTask } from "./DraggableTask";
 
 const DEBOUNCE_THROTTLE_MS = 700;
 
@@ -83,13 +84,11 @@ export const TasksView = ({ isPriority }: IProps) => {
                     onReorder={handleSetTasksList("incomplete")}
                 >
                     {incompleteTasksIds.map((taskId) => (
-                        <Reorder.Item key={taskId} value={taskId}>
-                            <Task
-                                key={taskId}
-                                id={taskId}
-                                isPriority={isPriority}
-                            />
-                        </Reorder.Item>
+                        <DraggableTask
+                            key={taskId}
+                            id={taskId}
+                            isPriority={isPriority}
+                        />
                     ))}
                 </Reorder.Group>
                 <Task isPriority={isPriority} isNewTask />
