@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { PointerEventHandler, useState } from "react";
 import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
 import { ITask } from "../types";
 import {
@@ -10,12 +10,13 @@ import {
 import styles from "../styles/Task.module.css";
 import Popup from "reactjs-popup";
 
-interface IProps {
+export interface ITaskProps {
     id?: string;
     isPriority?: boolean;
     isNewTask?: boolean;
     showDuration?: boolean;
     taskQueueId?: string; // id added if viewing from task queuess
+    draggableControl?: PointerEventHandler<HTMLButtonElement>;
 }
 
 // TODO: instead of id as empty string for empty task view, just add a flag called, is new task
@@ -25,7 +26,8 @@ export const Task = ({
     isNewTask,
     taskQueueId,
     showDuration,
-}: IProps) => {
+    draggableControl,
+}: ITaskProps) => {
     const { state, dispatch } = usePlanner();
     const [editableTask, setEditableTask] = useState<ITask>(
         state.tasks[id] || generateEmptyTask()
@@ -199,7 +201,11 @@ export const Task = ({
                 {!isNewTask && (
                     <Popup
                         trigger={() => (
-                            <button type="button" title="open task options">
+                            <button
+                                type="button"
+                                title="open task options"
+                                onPointerDown={draggableControl}
+                            >
                                 ...
                             </button>
                         )}

@@ -5,6 +5,7 @@ import styles from "../styles/TaskView.module.css";
 import { useEffect, useState } from "react";
 import { Reorder } from "framer-motion";
 import { useDebounce } from "../hooks/useDebounce";
+import { DraggableTask } from "./DraggableTask";
 
 const DEBOUNCE_THROTTLE_MS = 700;
 
@@ -71,15 +72,13 @@ export const TaskQueueListView = ({
                     onReorder={handleSetTasksList("incomplete")}
                 >
                     {incompleteTasksIds.map((taskId) => (
-                        <Reorder.Item key={taskId} value={taskId}>
-                            <Task
-                                key={taskId}
-                                id={taskId}
-                                isPriority={isPriority}
-                                showDuration={showDuration}
-                                taskQueueId={taskQueueId}
-                            />
-                        </Reorder.Item>
+                        <DraggableTask
+                            key={taskId}
+                            id={taskId}
+                            isPriority={isPriority}
+                            showDuration={showDuration}
+                            taskQueueId={taskQueueId}
+                        />
                     ))}
                 </Reorder.Group>
                 <Task
