@@ -1,0 +1,15 @@
+.playlistTimerView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.taskTitle {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.timeText {
+    font-size: 3rem;
+}

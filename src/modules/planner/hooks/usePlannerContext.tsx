@@ -1,13 +1,22 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import produce from "immer";
 import moment from "moment";
-import { IDay, IDaysDB, ITask, ITasksDB } from "../types";
-import { generateNewDay, getTodaysId } from "../utils";
+import {
+    IDay,
+    IDaysDB,
+    ITask,
+    ITaskQueue,
+    ITasksDB,
+    ITasksQueuesDB,
+} from "../types";
+import { generateNewDay, generateNewTaskQueue, getTodaysId } from "../utils";
 import {
     addTaskToDB,
     editDayInDB,
     editTaskInDB,
+    editTaskQueueInDB,
     getAllDaysFromDB,
+    getAllTaskQueuesForDayFromDB,
     getAllTasksFromDB,
 } from "../plannerDB";
 import { DATE_ID_FORMAT } from "../constants";
@@ -15,43 +24,61 @@ import { DATE_ID_FORMAT } from "../constants";
 interface IPlannerState {
     days: IDaysDB;
     tasks: ITasksDB;
+    taskQueues: ITasksQueuesDB;
     currentDayId: string;
     isStateLoaded: boolean;
+    viewTaskQueue?: string;
 }
 
 export enum IPlannerActions {
-    AddTask = "AddTask",
-    AdvanceByNDays = "AdvanceByNDays",
     AddPriority = "AddPriority",
-    SetDays = "SetDays",
-    SetDay = "SetDay",
-    SetTasks = "SetTasks",
-    StateLoaded = "StateLoaded",
-    EditTask = "EditTask",
-    RemoveTaskFromDayTask = "RemoveTaskFromDayTask",
-    RemoveTaskFromDayPriority = "RemoveTaskFromDayPriority",
-    MoveTaskToOtherDay = "MoveTaskToOtherDay",
+    AddTask = "AddTask",
+    AddTaskToQueue = "AddTaskToQueue",
+    AdvanceByNDays = "AdvanceByNDays",
     ClearPlanner = "ClearPlanner",
+    EditTask = "EditTask",
+    MoveTaskToOtherDay = "MoveTaskToOtherDay",
+    RemoveTaskFromDayPriority = "RemoveTaskFromDayPriority",
+    RemoveTaskFromDayTask = "RemoveTaskFromDayTask",
+    RemoveTaskFromTaskQueue = "RemoveTaskFromTaskQueue",
+    SetDay = "SetDay",
+    SetDays = "SetDays",
+    SetTasks = "SetTasks",
+    SetTaskQueue = "SetTaskQueue",
+    SetTaskQueues = "SetTaskQueues",
+    StateLoaded = "StateLoaded",
+    ViewTaskQueue = "ViewTaskQueue",
+    CloseTaskQueue = "CloseTaskQueue",
 }
 
 type IPlannerActionPackages =
-    | { type: IPlannerActions.AddTask; newTask: ITask }
-    | { type: IPlannerActions.AdvanceByNDays; numDays: number }
     | { type: IPlannerActions.AddPriority; newTask: ITask }
-    | { type: IPlannerActions.SetDay; day: IDay }
+    | { type: IPlannerActions.AddTask; newTask: ITask }
+    | { type: IPlannerActions.AddTaskToQueue; taskId: string } // assume there's only one task queue per day
+    | { type: IPlannerActions.AdvanceByNDays; numDays: number }
+    | { type: IPlannerActions.ClearPlanner }
     | { type: IPlannerActions.EditTask; id: string; task: ITask }
-    | { type: IPlannerActions.SetDays; days: IDaysDB }
-    | { type: IPlannerActions.SetTasks; tasks: ITasksDB }
-    | { type: IPlannerActions.StateLoaded }
-    | { type: IPlannerActions.RemoveTaskFromDayTask; id: string }
-    | { type: IPlannerActions.RemoveTaskFromDayPriority; id: string }
     | {
           type: IPlannerActions.MoveTaskToOtherDay;
           desiredDateId: string;
           taskId: string;
           isPriority: boolean;
       }
-    | { type: IPlannerActions.ClearPlanner };
+    | { type: IPlannerActions.RemoveTaskFromDayPriority; id: string }
+    | { type: IPlannerActions.RemoveTaskFromDayTask; id: string }
+    | {
+          type: IPlannerActions.RemoveTaskFromTaskQueue;
+          taskId: string;
+          taskQueueId: string;
+      }
+    | { type: IPlannerActions.SetDay; day: IDay }
+    | { type: IPlannerActions.SetDays; days: IDaysDB }
+    | { type: IPlannerActions.SetTasks; tasks: ITasksDB }
+    | { type: IPlannerActions.SetTaskQueue; taskQueue: ITaskQueue }
+    | { type: IPlannerActions.SetTaskQueues; taskQueues: ITasksQueuesDB }
+    | { type: IPlannerActions.StateLoaded }
+    | { type: IPlannerActions.ViewTaskQueue; taskQueueId: string }
+    | { type: IPlannerActions.CloseTaskQueue };
 
 export interface IUsePlannerPackage {
     state: IPlannerState;
@@ -65,51 +92,17 @@ const initialState: IPlannerState = {
         [intitialToday.id]: intitialToday,
     },
     tasks: {},
+    taskQueues: {},
     currentDayId: getTodaysId(),
     isStateLoaded: false,
+    viewTaskQueue: undefined,
 };
-
-function noteHandlerReducerLocalStorageInterceptor(
-    state: IPlannerState,
-    action: IPlannerActionPackages
-): IPlannerState {
-    const newState = noteHandlerReducer(state, action);
-    const currentDay = newState.days[state.currentDayId];
-
-    switch (action.type) {
-        case IPlannerActions.AddTask:
-        case IPlannerActions.AddPriority:
-            const newTask = newState.tasks[action.newTask.id];
-            addTaskToDB(newTask);
-            editDayInDB(currentDay);
-            break;
-        case IPlannerActions.EditTask:
-            editTaskInDB(action.task);
-            break;
-        case IPlannerActions.SetDay:
-            editDayInDB(action.day);
-            break;
-        case IPlannerActions.RemoveTaskFromDayTask:
-        case IPlannerActions.RemoveTaskFromDayPriority:
-            editDayInDB(currentDay);
-            editTaskInDB(newState.tasks[action.id]);
-            break;
-        case IPlannerActions.MoveTaskToOtherDay:
-            // manipulated currentDay and the day we're moving to
-            editDayInDB(currentDay);
-            const dayMovedTo = newState.days[action.desiredDateId];
-            editDayInDB(dayMovedTo);
-            break;
-    }
-
-    return newState;
-}
 
 function noteHandlerReducer(
     state: IPlannerState,
     action: IPlannerActionPackages
 ): IPlannerState {
-    console.log("action fired", action.type);
+    console.log("action fired", action.type, action);
     switch (action.type) {
         case IPlannerActions.AddTask: {
             return produce(state, (draft) => {
@@ -118,6 +111,31 @@ function noteHandlerReducer(
                 draft.days[draft.currentDayId].tasks.push(newTask.id);
                 // add task to task list
                 draft.tasks[newTask.id] = newTask;
+            });
+        }
+        case IPlannerActions.AddTaskToQueue: {
+            // add task to queue or create new one if queue does not exist
+            // if new queue created, add queue to current day
+            return produce(state, (draft) => {
+                const { taskId } = action;
+                const { currentDayId } = draft;
+                const currentDay = draft.days[currentDayId];
+                let taskQueueId = currentDay.taskQueues[0];
+                let taskQueue = draft.taskQueues[taskQueueId];
+
+                if (taskQueueId === undefined) {
+                    taskQueue = generateNewTaskQueue(currentDayId);
+                    taskQueueId = taskQueue.id;
+                    currentDay.taskQueues = [taskQueueId];
+                    taskQueue.tasks.push(taskId);
+                    draft.taskQueues[taskQueueId] = taskQueue;
+                } else if (taskQueue === undefined) {
+                    taskQueue = generateNewTaskQueue(currentDayId, taskQueueId);
+                    taskQueue.tasks.push(taskId);
+                    draft.taskQueues[taskQueueId] = taskQueue;
+                } else {
+                    taskQueue.tasks.push(taskId);
+                }
             });
         }
         case IPlannerActions.AdvanceByNDays: {
@@ -223,10 +241,39 @@ function noteHandlerReducer(
                 draft.tasks = action.tasks;
             });
         }
+        case IPlannerActions.SetTaskQueue: {
+            return produce(state, (draft) => {
+                const { id } = action.taskQueue;
+                draft.taskQueues[id] = action.taskQueue;
+            });
+        }
+        case IPlannerActions.SetTaskQueues: {
+            return produce(state, (draft) => {
+                draft.taskQueues = action.taskQueues;
+            });
+        }
         case IPlannerActions.ClearPlanner: {
             return produce(state, (draft) => {
                 draft.days = {};
                 draft.tasks = {};
+            });
+        }
+        case IPlannerActions.ViewTaskQueue: {
+            return produce(state, (draft) => {
+                draft.viewTaskQueue = action.taskQueueId;
+            });
+        }
+        case IPlannerActions.RemoveTaskFromTaskQueue: {
+            return produce(state, (draft) => {
+                const { taskId, taskQueueId } = action;
+                const taskQueue = draft.taskQueues[taskQueueId];
+                const indexOfTaskInQueue = taskQueue.tasks.indexOf(taskId);
+                taskQueue.tasks.splice(indexOfTaskInQueue, 1);
+            });
+        }
+        case IPlannerActions.CloseTaskQueue: {
+            return produce(state, (draft) => {
+                draft.viewTaskQueue = undefined;
             });
         }
         default: {
@@ -237,6 +284,55 @@ function noteHandlerReducer(
             );
         }
     }
+}
+
+function noteHandlerReducerLocalStorageInterceptor(
+    state: IPlannerState,
+    action: IPlannerActionPackages
+): IPlannerState {
+    const newState = noteHandlerReducer(state, action);
+    const currentDay = newState.days[state.currentDayId];
+
+    switch (action.type) {
+        case IPlannerActions.AddTask:
+        case IPlannerActions.AddPriority:
+            const newTask = newState.tasks[action.newTask.id];
+            addTaskToDB(newTask);
+            editDayInDB(currentDay);
+            break;
+        case IPlannerActions.AddTaskToQueue:
+            // modified {day, queue}
+            const queueId = currentDay.taskQueues[0];
+            editTaskQueueInDB(newState.taskQueues[queueId]);
+            editDayInDB(currentDay);
+            break;
+        case IPlannerActions.EditTask:
+            editTaskInDB(action.task);
+            break;
+        case IPlannerActions.SetDay:
+            editDayInDB(action.day);
+            break;
+        case IPlannerActions.SetTaskQueue:
+            editTaskQueueInDB(action.taskQueue);
+            break;
+        case IPlannerActions.RemoveTaskFromDayTask:
+        case IPlannerActions.RemoveTaskFromDayPriority:
+            editDayInDB(currentDay);
+            editTaskInDB(newState.tasks[action.id]);
+            break;
+        case IPlannerActions.RemoveTaskFromTaskQueue:
+            const { taskQueueId } = action;
+            editTaskQueueInDB(newState.taskQueues[taskQueueId]);
+            break;
+        case IPlannerActions.MoveTaskToOtherDay:
+            // manipulated currentDay and the day we're moving to
+            editDayInDB(currentDay);
+            const dayMovedTo = newState.days[action.desiredDateId];
+            editDayInDB(dayMovedTo);
+            break;
+    }
+
+    return newState;
 }
 
 const PlannerContext = createContext<IUsePlannerPackage | null>(null);
@@ -255,6 +351,8 @@ export const PlannerContextProvider = ({
     useEffect(() => {
         (async () => {
             const tasksInTable: ITasksDB = await getAllTasksFromDB();
+            const taskQueuesInTable: ITasksQueuesDB =
+                await getAllTaskQueuesForDayFromDB();
             const daysInTable: IDaysDB = await getAllDaysFromDB();
             dispatch({
                 type: IPlannerActions.SetDays,
@@ -266,6 +364,10 @@ export const PlannerContextProvider = ({
             dispatch({
                 type: IPlannerActions.SetTasks,
                 tasks: tasksInTable,
+            });
+            dispatch({
+                type: IPlannerActions.SetTaskQueues,
+                taskQueues: taskQueuesInTable,
             });
             dispatch({ type: IPlannerActions.StateLoaded });
         })();

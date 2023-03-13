@@ -1,20 +1,35 @@
 import moment from "moment";
-import { generateId } from "../notes/utils";
 import { DATE_ID_FORMAT } from "./constants";
-import { IDay, ITask, ITasksDB } from "./types";
+import { DayIdType, IDay, ITask, ITaskQueue, ITasksDB } from "./types";
+import { v4 as uuidv4 } from "uuid";
 
 export const getTodaysId = () => moment().startOf("day").format(DATE_ID_FORMAT);
 
 export const getDateIdOfXDaysFromNow = (numDaysFromNow: number) =>
     moment().startOf("day").add(numDaysFromNow, "days").format(DATE_ID_FORMAT);
 
-export const generateNewDay = (dayInIdFormat: string = getTodaysId()): IDay => {
+export const generateNewDay = (
+    dayInIdFormat: DayIdType = getTodaysId()
+): IDay => {
     return {
         tasks: [],
         priorities: [],
         id: dayInIdFormat,
         day: dayInIdFormat,
+        taskQueues: [],
         note: "",
+    };
+};
+
+export const generateNewTaskQueue = (
+    dayInIdFormat: DayIdType,
+    queueId: string = uuidv4()
+): ITaskQueue => {
+    return {
+        id: queueId,
+        tasks: [],
+        gapDurationBetweenTasksSeconds: 3,
+        associatedDay: dayInIdFormat,
     };
 };
 
@@ -29,7 +44,7 @@ export const isDayIdToday = (dayId: string) => {
 
 export const generateEmptyTask = (): ITask => {
     return {
-        id: generateId(),
+        id: uuidv4(),
         dateAdded: new Date().getTime(),
         dateModified: new Date().getTime(),
         body: "",
@@ -79,3 +94,14 @@ export const getCompleteAndIncompleteTasksFromTaskIds = (
 
     return { incompleteTasksIds, completeTasksIds };
 };
+
+export const getTimeLeftDisplayText = (timeLeftSeconds: number) => {
+    const minutes = `${Math.floor(timeLeftSeconds / 60)}`.padStart(2, "0");
+    const seconds = `${timeLeftSeconds % 60}`.padStart(2, "0");
+    return `${minutes}:${seconds}`;
+};
+
+export function playSound(url: string) {
+    const audio = new Audio(url);
+    audio.play();
+}

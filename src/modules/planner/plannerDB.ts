@@ -1,5 +1,12 @@
 import localforage from "localforage";
-import { IDay, IDaysDB, ITask, ITasksDB } from "./types";
+import {
+    IDay,
+    IDaysDB,
+    ITask,
+    ITaskQueue,
+    ITasksDB,
+    ITasksQueuesDB,
+} from "./types";
 
 const DB_NAME = "PlannerDB";
 
@@ -17,6 +24,12 @@ const tasksTable = localforage.createInstance({
     name: DB_NAME,
     storeName: "tasks",
     description: "this is where the tasks are stored",
+});
+
+const taskQueuesTable = localforage.createInstance({
+    name: DB_NAME,
+    storeName: "taskQueues",
+    description: "this is where the queues are stored",
 });
 
 export const addTaskToDB = (task: ITask) => editTaskInDB(task);
@@ -63,4 +76,30 @@ export const getAllDaysFromDB = async () => {
     }
 
     return allDaysInTable;
+};
+
+/* QUEUES DB */
+
+export const addTaskQueueToDB = (queue: ITaskQueue) => editTaskQueueInDB(queue);
+
+export const editTaskQueueInDB = (queue: ITaskQueue) => {
+    taskQueuesTable.setItem(`${queue.id}`, queue);
+};
+
+export const deleteTaskQueueFromDB = (id: string) => {
+    taskQueuesTable.removeItem(id);
+};
+
+export const getAllTaskQueuesForDayFromDB = async () => {
+    const keys = await taskQueuesTable.keys();
+    const allTaskQueuesInTable: ITasksQueuesDB = {};
+    for (const key of keys) {
+        const queue = (await taskQueuesTable.getItem(
+            key
+        )) as unknown as ITaskQueue;
+        // TODO: add function to confirm value is IDay type
+        allTaskQueuesInTable[queue.id] = queue;
+    }
+
+    return allTaskQueuesInTable;
 };
