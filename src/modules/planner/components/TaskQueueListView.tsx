@@ -1,60 +1,51 @@
-import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
+import { usePlanner } from "../hooks/usePlannerContext";
 import { getCompleteAndIncompleteTasksFromTaskIds } from "../utils";
 import { Task } from "./Task";
 import styles from "../styles/TaskView.module.css";
 import { useEffect, useState } from "react";
 import { Reorder } from "framer-motion";
-import { IDay } from "../types";
 import { useDebounce } from "../hooks/useDebounce";
 import { DraggableTask } from "./DraggableTask";
 
 const DEBOUNCE_THROTTLE_MS = 700;
 
 interface IProps {
+    taskList: string[];
+    title: string;
+    handleSaveList: (newTaskArray: string[]) => void;
+    showDuration: boolean;
     isPriority?: boolean;
+    taskQueueId: string;
 }
 
-export const TasksView = ({ isPriority }: IProps) => {
-    const { state, dispatch } = usePlanner();
+export const TaskQueueListView = ({
+    taskList,
+    title,
+    handleSaveList,
+    showDuration,
+    isPriority = false,
+    taskQueueId,
+}: IProps) => {
+    const { state } = usePlanner();
     const [completeTasksIds, setCompleteTaskList] = useState<string[]>([]);
     const [incompleteTasksIds, setIncompleteTaskList] = useState<string[]>([]);
-    const currentDay = state.days[state.currentDayId];
-
-    const _saveTaskArrayInDay = (
-        newTaskArray: string[],
-        currentDayObj: IDay
-    ) => {
-        dispatch({
-            type: IPlannerActions.SetDay,
-            day: {
-                ...currentDayObj,
-                [isPriority ? "priorities" : "tasks"]: newTaskArray,
-            },
-        });
-    };
 
     // debounced call to set re ordered task list to reduce writes on dbs
     const { debouncedFunction: dispatchSetReorderedTasksListInDayDebounced } =
         useDebounce({
-            action: _saveTaskArrayInDay,
+            action: handleSaveList,
             throttleTimeMS: DEBOUNCE_THROTTLE_MS,
         });
 
     useEffect(() => {
-        let tasks = [];
-
-        if (isPriority) {
-            tasks = currentDay?.priorities || [];
-        } else {
-            tasks = currentDay?.tasks || [];
-        }
+        const tasks = taskList;
 
         const { incompleteTasksIds, completeTasksIds } =
             getCompleteAndIncompleteTasksFromTaskIds(tasks, state.tasks);
 
         setCompleteTaskList(completeTasksIds);
         setIncompleteTaskList(incompleteTasksIds);
-    }, [currentDay, isPriority, state.tasks]);
+    }, [taskList, state.tasks]);
 
     const handleSetTasksList =
         (type: "complete" | "incomplete") => (stringArr: string[]) => {
@@ -68,15 +59,12 @@ export const TasksView = ({ isPriority }: IProps) => {
             }
 
             // save re ordered list in day db (debounced to reduce write calls to db)
-            dispatchSetReorderedTasksListInDayDebounced(
-                newTasksArray,
-                currentDay
-            );
+            dispatchSetReorderedTasksListInDayDebounced(newTasksArray);
         };
 
     return (
         <div className={styles.wrapper}>
-            <h2>{isPriority ? "Priorities" : "Tasks"}</h2>
+            <h2>{title}</h2>
             <div className={styles.tasksWrapper}>
                 <Reorder.Group
                     axis="y"
@@ -88,12 +76,23 @@ export const TasksView = ({ isPriority }: IProps) => {
                             key={taskId}
                             id={taskId}
                             isPriority={isPriority}
+                            showDuration={showDuration}
+                            taskQueueId={taskQueueId}
                         />
                     ))}
                 </Reorder.Group>
-                <Task isPriority={isPriority} isNewTask />
+                <Task
+                    isPriority={isPriority}
+                    isNewTask
+                    taskQueueId={taskQueueId}
+                />
                 {completeTasksIds.map((taskId) => (
-                    <Task key={taskId} id={taskId} isPriority={isPriority} />
+                    <Task
+                        key={`task-queue-${taskId}`}
+                        id={taskId}
+                        isPriority={isPriority}
+                        taskQueueId={taskQueueId}
+                    />
                 ))}
             </div>
         </div>

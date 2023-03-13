@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { PointerEventHandler, useState } from "react";
 import { IPlannerActions, usePlanner } from "../hooks/usePlannerContext";
 import { ITask } from "../types";
 import {
@@ -10,14 +10,24 @@ import {
 import styles from "../styles/Task.module.css";
 import Popup from "reactjs-popup";
 
-interface IProps {
+export interface ITaskProps {
     id?: string;
     isPriority?: boolean;
     isNewTask?: boolean;
+    showDuration?: boolean;
+    taskQueueId?: string; // id added if viewing from task queuess
+    draggableControl?: PointerEventHandler<Element>;
 }
 
 // TODO: instead of id as empty string for empty task view, just add a flag called, is new task
-export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
+export const Task = ({
+    id = "",
+    isPriority,
+    isNewTask,
+    taskQueueId,
+    showDuration,
+    draggableControl,
+}: ITaskProps) => {
     const { state, dispatch } = usePlanner();
     const [editableTask, setEditableTask] = useState<ITask>(
         state.tasks[id] || generateEmptyTask()
@@ -29,6 +39,18 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
             ...editableTask,
             body: value,
         } as ITask);
+    };
+
+    const handleDurationChange = (
+        event: React.FormEvent<HTMLSelectElement>
+    ) => {
+        const { value } = event.target as HTMLInputElement;
+        const edditedTask: ITask = {
+            ...editableTask,
+            durationSeconds: +value,
+        };
+        setEditableTask(edditedTask);
+        saveTask(edditedTask);
     };
 
     const handleIsCompleteToggle = (
@@ -49,13 +71,26 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
 
     const saveTask = (task: ITask) => {
         if (!id) {
+            console.log("new task", { taskQueueId });
             // TODO: ensure body is full
-            dispatch({
-                type: isPriority
-                    ? IPlannerActions.AddPriority
-                    : IPlannerActions.AddTask,
-                newTask: task,
-            });
+            if (taskQueueId) {
+                dispatch({
+                    type: IPlannerActions.AddTask,
+                    newTask: task,
+                });
+                dispatch({
+                    type: IPlannerActions.AddTaskToQueue,
+                    taskId: task.id,
+                });
+            } else {
+                dispatch({
+                    type: isPriority
+                        ? IPlannerActions.AddPriority
+                        : IPlannerActions.AddTask,
+                    newTask: task,
+                });
+            }
+
             setEditableTask(generateEmptyTask());
         } else {
             dispatch({
@@ -67,6 +102,7 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        console.log("task submit");
         event.preventDefault();
         saveTask(editableTask);
     };
@@ -99,6 +135,20 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
         });
     };
 
+    const handleAddTaskToTaskQueue = () => {
+        dispatch({ type: IPlannerActions.AddTaskToQueue, taskId: id });
+    };
+
+    const handleRemoveTaskFromTaskQueue = () => {
+        if (taskQueueId) {
+            dispatch({
+                type: IPlannerActions.RemoveTaskFromTaskQueue,
+                taskId: id,
+                taskQueueId,
+            });
+        }
+    };
+
     return (
         <div>
             <form onSubmit={handleSubmit} className={styles.wrapper}>
@@ -113,6 +163,7 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
                     />
                 )}
                 <input
+                    onPointerDown={draggableControl}
                     className={styles.bodyInput}
                     onChange={handleBodyChange}
                     name="task"
@@ -120,6 +171,34 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
                     disabled={editableTask.isComplete}
                     value={editableTask.body}
                 />
+                {showDuration && (
+                    <select
+                        className={styles.bodyInput}
+                        onChange={handleDurationChange}
+                        name="duration"
+                        title="duration"
+                        placeholder="30 seconds"
+                        disabled={editableTask.isComplete}
+                        value={editableTask.durationSeconds}
+                    >
+                        <option value={30}>30 seconds</option>
+                        <option value={60}>1 minute</option>
+                        <option value={1.5 * 60}>1.5 minutes</option>
+                        <option value={2 * 60}>2 minutes</option>
+                        <option value={2.5 * 60}>2.5 minutes</option>
+                        <option value={3 * 60}>3 minutes</option>
+                        <option value={4 * 60}>4 minutes</option>
+                        <option value={5 * 60}>5 minutes</option>
+                        <option value={10 * 60}>10 minutes</option>
+                        <option value={15 * 60}>15 minutes</option>
+                        <option value={20 * 60}>20 minutes</option>
+                        <option value={25 * 60}>25 minutes</option>
+                        <option value={25 * 60}>25 minutes</option>
+                        <option value={30 * 60}>30 minutes</option>
+                        <option value={45 * 60}>45 minutes</option>
+                        <option value={60 * 60}>1 hour</option>
+                    </select>
+                )}
                 {!isNewTask && (
                     <Popup
                         trigger={() => (
@@ -131,23 +210,45 @@ export const Task = ({ id = "", isPriority, isNewTask }: IProps) => {
                         closeOnDocumentClick
                     >
                         <div className={styles.popOverContainer}>
-                            <button
-                                type="button"
-                                title="button"
-                                onClick={handleMoveTasksToDay}
-                            >
-                                Move task to{" "}
-                                {isDayIdToday(state.currentDayId)
-                                    ? "tomorrow"
-                                    : "today"}
-                            </button>
-                            <button
-                                type="button"
-                                title="button"
-                                onClick={handleDelete}
-                            >
-                                Delete task
-                            </button>
+                            {!taskQueueId && (
+                                <button
+                                    type="button"
+                                    title="button"
+                                    onClick={handleMoveTasksToDay}
+                                >
+                                    Move task to{" "}
+                                    {isDayIdToday(state.currentDayId)
+                                        ? "tomorrow"
+                                        : "today"}
+                                </button>
+                            )}
+                            {!taskQueueId && (
+                                <button
+                                    type="button"
+                                    title="button"
+                                    onClick={handleAddTaskToTaskQueue}
+                                >
+                                    Add to task playlist
+                                </button>
+                            )}
+                            {taskQueueId && (
+                                <button
+                                    type="button"
+                                    title="button"
+                                    onClick={handleRemoveTaskFromTaskQueue}
+                                >
+                                    Remove from playlist
+                                </button>
+                            )}
+                            {!taskQueueId && (
+                                <button
+                                    type="button"
+                                    title="button"
+                                    onClick={handleDelete}
+                                >
+                                    Delete task
+                                </button>
+                            )}
                         </div>
                     </Popup>
                 )}
