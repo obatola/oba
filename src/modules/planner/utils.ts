@@ -49,6 +49,7 @@ export const generateEmptyTask = (): ITask => {
         dateModified: new Date().getTime(),
         body: "",
         isComplete: false,
+        durationSeconds: 60,
         isDeleted: false,
         isArchived: false,
     };
