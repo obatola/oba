@@ -16,7 +16,7 @@ export interface ITaskProps {
     isNewTask?: boolean;
     showDuration?: boolean;
     taskQueueId?: string; // id added if viewing from task queuess
-    draggableControl?: PointerEventHandler<HTMLButtonElement>;
+    draggableControl?: PointerEventHandler<Element>;
 }
 
 // TODO: instead of id as empty string for empty task view, just add a flag called, is new task
@@ -163,6 +163,7 @@ export const Task = ({
                     />
                 )}
                 <input
+                    onPointerDown={draggableControl}
                     className={styles.bodyInput}
                     onChange={handleBodyChange}
                     name="task"
@@ -201,11 +202,7 @@ export const Task = ({
                 {!isNewTask && (
                     <Popup
                         trigger={() => (
-                            <button
-                                type="button"
-                                title="open task options"
-                                onPointerDown={draggableControl}
-                            >
+                            <button type="button" title="open task options">
                                 ...
                             </button>
                         )}
