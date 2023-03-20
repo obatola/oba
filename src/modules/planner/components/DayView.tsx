@@ -54,7 +54,7 @@ export const DayView = () => {
                     {">"}
                 </button>
             </div>
-            {currentDay.taskQueues.length === 1 && (
+            {currentDay?.taskQueues.length === 1 && (
                 <button type="button" onClick={handleViewTaskPlaylist}>
                     view task playlist
                 </button>
