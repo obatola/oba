@@ -15,6 +15,7 @@ export default function Home() {
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                 />
+                <link rel="manifest" href="/home.webmanifest" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>

@@ -1,0 +1,15 @@
+{
+    "background_color": "#7490A5",
+    "description": "Obatola's resources.",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "/logo192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "name": "Oba",
+    "short_name": "Oba",
+    "start_url": "/"
+}
