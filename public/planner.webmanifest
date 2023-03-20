@@ -1,0 +1,15 @@
+{
+    "background_color": "#7490A5",
+    "description": "Task Playlist App.",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "/logo192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "name": "Oba's Playnlist",
+    "short_name": "Playnlist",
+    "start_url": "/planner"
+}
