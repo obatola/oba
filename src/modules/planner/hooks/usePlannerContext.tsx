@@ -354,13 +354,28 @@ export const PlannerContextProvider = ({
             const taskQueuesInTable: ITasksQueuesDB =
                 await getAllTaskQueuesForDayFromDB();
             const daysInTable: IDaysDB = await getAllDaysFromDB();
-            dispatch({
-                type: IPlannerActions.SetDays,
-                days:
-                    Object.keys(daysInTable).length > 0
-                        ? daysInTable
-                        : initialState.days,
-            });
+
+            // if there's no day in table for today, set it right now
+            if (Object.keys(daysInTable).length > 0) {
+                const daysToSetInTable = daysInTable;
+                const todaysDayId = getTodaysId();
+
+                if (daysToSetInTable[getTodaysId()] === undefined) {
+                    daysToSetInTable[todaysDayId] =
+                        initialState.days[todaysDayId];
+                }
+
+                dispatch({
+                    type: IPlannerActions.SetDays,
+                    days: daysInTable,
+                });
+            } else {
+                dispatch({
+                    type: IPlannerActions.SetDays,
+                    days: initialState.days,
+                });
+            }
+
             dispatch({
                 type: IPlannerActions.SetTasks,
                 tasks: tasksInTable,
