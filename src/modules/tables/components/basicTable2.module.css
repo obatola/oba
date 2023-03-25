@@ -1,0 +1,44 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 80%;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    min-width: 500px;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    color: black;
+}
+
+.table thead {
+    background-color: #029879;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f3f3f3;
+    color: black;
+}
+
+.table :global(.selected-row) {
+    background-color: #029879;
+    color: white;
+}
+
+.table td,
+.table th {
+    text-align: left;
+    padding: 10px;
+    border-bottom: thin solid #dfdfdf;
+}

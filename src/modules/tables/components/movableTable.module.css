@@ -1,0 +1,92 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    overflow: auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+
+    display: grid;
+    grid-template-columns:
+        minmax(150px, 3fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr);
+}
+
+.table th {
+    position: relative;
+    background-color: #029879;
+}
+
+.table thead {
+    color: white;
+}
+
+.table tbody tr:hover > td {
+    background-color: #f3f3f3;
+    color: black;
+}
+
+.table :global(.selected-row) > td {
+    background-color: #029879;
+    color: white;
+}
+
+.table td,
+.table th {
+    text-align: left;
+    padding: 10px;
+    border-bottom: thin solid #dfdfdf;
+}
+
+.table th span,
+.table td span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+
+.table thead,
+.table tbody,
+.table tr {
+    display: contents;
+}
+
+.table :global(.resize-handle) {
+    display: block;
+    position: absolute;
+    cursor: col-resize;
+    width: 7px;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    border-right: 2px solid transparent;
+}
+
+.table :global(.resize-handle):hover {
+    border-color: #dfdfdf;
+}
+
+.table :global(.resize-handle).active {
+    border-color: #517ea5;
+}
