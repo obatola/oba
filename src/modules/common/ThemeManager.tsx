@@ -3,6 +3,8 @@ import styles from "../../styles/ThemeManager.module.css";
 import { FaPaintRoller } from "react-icons/fa";
 import clsx from "clsx";
 
+const defaultTheme = "default";
+
 function ThemeView({
 	activeTheme,
 	label,
@@ -66,9 +68,9 @@ export function ThemeManager() {
 		} else {
 			document.documentElement.setAttribute(
 				"data-theme",
-				storedTheme || "light",
+				storedTheme || defaultTheme,
 			);
-			setActiveTheme(storedTheme || "light");
+			setActiveTheme(storedTheme || defaultTheme);
 		}
 	};
 
