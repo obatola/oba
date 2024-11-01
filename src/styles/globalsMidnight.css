@@ -1,0 +1,14 @@
+[data-theme="midnight"] {
+    /* color scheme */
+    --colors-a-tag-hover: #94a3b8;
+    --colors-a-tag: #d1d5db;
+    --colors-background: #1f2937;
+    --colors-font-inverse: #111827;
+    --colors-font: #f9fafb;
+    --colors-neutral: #d1d5db;
+    --colors-on-neutral: var(--colors-font-inverse);
+    --colors-primary: #3b82f6;
+    --colors-secondary-surface: #374151;
+    --colors-shadow: #111827;
+    --colors-surface: #111827;
+}

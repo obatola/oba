@@ -4,11 +4,11 @@ import { ProfessionalExperienceSection } from "./ProfessionalExperience";
 import { ProjectsSection } from "./ProjectSection";
 
 export const HomePage = () => {
-    return (
-        <>
-            <IntroSection />
-            <ProfessionalExperienceSection />
-            <ProjectsSection />
-        </>
-    );
+	return (
+		<>
+			<IntroSection />
+			<ProfessionalExperienceSection />
+			<ProjectsSection />
+		</>
+	);
 };

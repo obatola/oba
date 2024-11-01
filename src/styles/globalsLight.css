@@ -1,0 +1,14 @@
+[data-theme="light"] {
+    /* color scheme */
+    --colors-a-tag-hover: #fefffe;
+    --colors-a-tag: #a86344;
+    --colors-background: #eee8e2;
+    --colors-font-inverse: #000000;
+    --colors-font: #453d36;
+    --colors-neutral: #e3dac9;
+    --colors-on-neutral: var(--colors-font-inverse);
+    --colors-primary: #a86344;
+    --colors-secondary-surface: #bfaa97;
+    --colors-shadow: #212529;
+    --colors-surface: #d9cdc2;
+}

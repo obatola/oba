@@ -21,7 +21,7 @@
 .subTitle {
     font-size: 4vw;
     font-weight: bold;
-    color: var(--gold-accent);
+    color: var(--colors-primary);
     margin: 0;
     line-height: 1em;
 }

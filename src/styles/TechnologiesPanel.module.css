@@ -17,12 +17,12 @@
 }
 
 .textBubbleSimple {
-    color: var(--font-color);
+    color: var(--colors-font);
 }
 
 .textBubbleNormal {
     padding: 5px 15px;
     border-radius: 20px;
-    background-color: var(--text-bubble-background-color);
-    color: var(--text-bubble-text-color);
+    background-color: var(--colors-neutral);
+    color: var(--colors-on-neutral);
 }
