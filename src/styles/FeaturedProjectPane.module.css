@@ -101,7 +101,8 @@
     .projectTextContentContainerLeft,
     .projectTextContentContainerRight {
         padding: 20px;
-        background-color: #191d15e6; /* TODO: replace with color object */
+        background-color: var(--colors-background);
+        opacity: 0.8;
     }
 
     .textContainer {

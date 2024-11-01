@@ -108,6 +108,14 @@ export function ThemeManager() {
 					<li>
 						<ThemeView
 							activeTheme={activeTheme}
+							theme="terminal-green"
+							label="Terminal"
+							setTheme={setTheme}
+						/>
+					</li>
+					<li>
+						<ThemeView
+							activeTheme={activeTheme}
 							theme="default"
 							label="Dark Sand"
 							setTheme={setTheme}

@@ -1,0 +1,14 @@
+[data-theme="terminal-green"] {
+    /* color scheme */
+    --colors-a-tag-hover: #fff;
+    --colors-a-tag: #00ff00;
+    --colors-background: #001a00;
+    --colors-font-inverse: #000000;
+    --colors-font: #00ff00;
+    --colors-neutral: #00ff00;
+    --colors-on-neutral: var(--colors-font-inverse);
+    --colors-primary: #fff;
+    --colors-secondary-surface: #006400;
+    --colors-shadow: #000000;
+    --colors-surface: #000000;
+}
