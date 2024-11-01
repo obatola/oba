@@ -21,6 +21,33 @@ const intro = {
 
 const professionalExperience: IExperience[] = [
 	{
+		companyName: "Cinder",
+		companyURL: "https://www.cinder.co/",
+		position: "Software Engineer",
+		startDate: "2023",
+		location: "Brooklyn, NY",
+		tech: ["ReactJS", "Typescript", "Javascript"],
+		content: (
+			<>
+				<p>
+					Cinder is dedicated to making the internet safer through advanced
+					Trust and Safety software.
+				</p>
+				<p>
+					As the sole frontend engineer, I spearheaded the complete redesign of
+					Cinder’s frontend, aligning it with future-ready architectural
+					patterns and improving scalability for evolving Trust and Safety
+					challenges. By implementing Bolt, our new design system, I streamlined
+					our component library and introduced robust design tokens for
+					consistent theming. This overhaul has simplified the development
+					process, minimized potential errors, and enabled faster feature
+					rollouts, empowering our team to build solutions that keep pace with
+					the shifting digital landscape.
+				</p>
+			</>
+		),
+	},
+	{
 		companyName: "Doordash",
 		companyURL: "https://www.doordash.com/",
 		position: "Software Engineer",
