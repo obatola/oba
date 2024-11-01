@@ -1,5 +1,5 @@
 .link {
-    color: var(--gold-accent);
+    color: var(--colors-primary);
     position: relative;
     display: inline-block;
 }
@@ -7,7 +7,7 @@
 .link:after {
     content: "";
     display: block;
-    background-color: var(--gold-accent);
+    background-color: var(--colors-primary);
     width: 0;
     height: 1px;
     bottom: 0.37em;
@@ -15,7 +15,7 @@
 }
 
 .link:hover {
-    color: var(--gold-accent);
+    color: var(--colors-primary);
 }
 
 .link:hover:after {
@@ -23,6 +23,6 @@
 }
 
 .text {
-    color: var(--gold-accent);
+    color: var(--colors-primary);
     display: inline-block;
 }

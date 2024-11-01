@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-between;
     padding: 15px 20px;
-    background-color: var(--accordion-header-color);
+    background-color: var(--colors-secondary-surface);
     cursor: pointer;
 }
 
@@ -32,7 +32,7 @@
     padding: 30px 20px;
     margin-top: 10px;
     font-size: 1rem;
-    background-color: var(--accordion-content-background-color);
+    background-color: var(--colors-surface);
 }
 
 .accordionContentActive p:first-child {
@@ -62,7 +62,7 @@
 }
 
 .companySpan {
-    color: var(--gold-accent);
+    color: var(--colors-primary);
     display: inline-block;
 }
 

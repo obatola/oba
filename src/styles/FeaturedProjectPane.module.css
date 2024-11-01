@@ -52,11 +52,11 @@
 }
 
 .textContainer {
-    background-color: var(--project-grid-project-background-color);
-    color: var(--font-color);
+    background-color: var(--colors-surface);
+    color: var(--colors-font);
     padding: 1rem 2rem;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px -15px var(--darkerer-brown);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px -15px var(--colors-shadow);
 }
 
 .projectImageContainerLeft,
@@ -101,7 +101,8 @@
     .projectTextContentContainerLeft,
     .projectTextContentContainerRight {
         padding: 20px;
-        background-color: #191d15e6; /* TODO: replace with color object */
+        background-color: var(--colors-background);
+        opacity: 0.8;
     }
 
     .textContainer {
