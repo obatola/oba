@@ -1,12 +1,12 @@
 import Head from "next/head";
 import { CommonPageWrapper } from "@/modules/common/CommonPageWrapper";
 import { HomePage } from "@/modules/home/HomePage";
-import { ThemeManager } from "@/modules/common/ThemeManager";
+import { ThemeProvider } from "@/modules/common/ThemeManager";
 import { Analytics } from "@vercel/analytics/react"
 
 export default function Home() {
 	return (
-		<>
+		<ThemeProvider>
 			<Analytics />
 			<Head>
 				<title>Oba</title>
@@ -19,8 +19,7 @@ export default function Home() {
 				<CommonPageWrapper>
 					<HomePage />
 				</CommonPageWrapper>
-				<ThemeManager />
 			</main>
-		</>
+		</ThemeProvider>
 	);
 }
