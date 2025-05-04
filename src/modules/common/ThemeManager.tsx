@@ -1,26 +1,108 @@
-import { useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import styles from "../../styles/ThemeManager.module.css";
 import { FaPaintRoller } from "react-icons/fa";
 import clsx from "clsx";
 
+const themes = ["light", "terminal-green", "default", "midnight", "dark", "system"] as const;
+type Theme = (typeof themes)[number];
+
 const defaultTheme = "default";
 
+interface ThemeContextType {
+	/** The theme that is currently active. */
+	activeTheme: Theme;
+	/** The theme that is currently displayed. Can be different from the active theme if the active theme is "system". */
+	displayedTheme: Theme;
+	/** Set the theme. */
+	setTheme: (theme: Theme) => void;
+	/** Whether the active theme is a light theme. */
+	isLightTheme: boolean;
+}
+
+const ThemeContext = createContext<ThemeContextType>({
+	activeTheme: defaultTheme,
+	displayedTheme: defaultTheme,
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	setTheme: () => { },
+	isLightTheme: false,
+});
+
+export const useTheme = () => useContext(ThemeContext);
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
+	const [activeTheme, setActiveTheme] = useState<Theme>(defaultTheme);
+	const [displayedTheme, setDisplayedTheme] = useState<Theme>(defaultTheme);
+
+	// Helper function to apply the theme based on localStorage or system preferences
+	const applyTheme = () => {
+		const storedTheme = window.localStorage.getItem("theme") as Theme;
+		if (storedTheme === "system") {
+			const systemPrefersDark = window.matchMedia(
+				"(prefers-color-scheme: dark)",
+			).matches;
+			const newDisplayedTheme = systemPrefersDark ? "dark" : "light";
+			document.documentElement.setAttribute("data-theme", newDisplayedTheme);
+			setActiveTheme("system");
+			setDisplayedTheme(newDisplayedTheme);
+		} else {
+			document.documentElement.setAttribute(
+				"data-theme",
+				storedTheme || defaultTheme,
+			);
+			setActiveTheme(storedTheme || defaultTheme);
+			setDisplayedTheme(storedTheme || defaultTheme);
+		}
+	};
+
+	// Function to set the theme and store it in localStorage
+	const setTheme = (theme: string) => {
+		window.localStorage.setItem("theme", theme);
+		applyTheme();
+	};
+
+	// Apply theme on initial mount
+	useEffect(() => {
+		applyTheme();
+	}, []);
+
+	// Listen for changes in system theme preferences and update the theme accordingly
+	useEffect(() => {
+		const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+		const handleSystemThemeChange = () => {
+			const storedTheme = window.localStorage.getItem("theme");
+			if (storedTheme === "system") {
+				const newDisplayedTheme = systemTheme.matches ? "dark" : "light";
+				document.documentElement.setAttribute("data-theme", newDisplayedTheme);
+				setDisplayedTheme(newDisplayedTheme);
+			}
+		};
+
+		systemTheme.addEventListener("change", handleSystemThemeChange);
+		return () =>
+			systemTheme.removeEventListener("change", handleSystemThemeChange);
+	}, []);
+
+	const isLightTheme = useMemo(() => displayedTheme === "light", [displayedTheme]);
+
+	return (
+		<ThemeContext.Provider value={{ activeTheme, displayedTheme, setTheme, isLightTheme }}>
+			{children}
+			<ThemeManager />
+		</ThemeContext.Provider>
+	);
+}
+
 function ThemeView({
-	activeTheme,
 	label,
-	setTheme,
 	theme,
 }: {
-	activeTheme: string;
 	label: string;
-	setTheme: (theme: string) => void;
-	theme: string;
+	theme: Theme;
 }) {
-	let themeToDisplay = theme;
-	const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
-	if (theme === "system") {
-		themeToDisplay = systemTheme.matches ? "dark" : "light";
-	}
+	const { activeTheme, displayedTheme, setTheme } = useTheme();
+
+	const themeToDisplay = theme === "system" ? displayedTheme : theme;
 
 	return (
 		<button
@@ -41,59 +123,10 @@ function ThemeView({
 }
 
 export function ThemeManager() {
-	const [activeTheme, setActiveTheme] = useState("");
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
-
-	// Function to set the theme and store it in localStorage
-	const setTheme = (theme: string) => {
-		window.localStorage.setItem("theme", theme);
-		applyTheme();
-	};
-
-	// Helper function to apply the theme based on localStorage or system preferences
-	const applyTheme = () => {
-		const storedTheme = window.localStorage.getItem("theme");
-		if (storedTheme === "system") {
-			const systemPrefersDark = window.matchMedia(
-				"(prefers-color-scheme: dark)",
-			).matches;
-			document.documentElement.setAttribute(
-				"data-theme",
-				systemPrefersDark ? "dark" : "light",
-			);
-			setActiveTheme("system");
-		} else {
-			document.documentElement.setAttribute(
-				"data-theme",
-				storedTheme || defaultTheme,
-			);
-			setActiveTheme(storedTheme || defaultTheme);
-		}
-	};
-
-	// Apply theme on initial mount
-	useEffect(() => {
-		applyTheme();
-	}, []);
-
-	// Listen for changes in system theme preferences and update the theme accordingly
-	useEffect(() => {
-		const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
-
-		const handleSystemThemeChange = () => {
-			const storedTheme = window.localStorage.getItem("theme");
-			if (storedTheme === "system") {
-				applyTheme();
-			}
-		};
-
-		systemTheme.addEventListener("change", handleSystemThemeChange);
-		return () =>
-			systemTheme.removeEventListener("change", handleSystemThemeChange);
-	}, []);
 
 	return (
 		<div className={styles["theme-manager__container"]}>
@@ -101,50 +134,38 @@ export function ThemeManager() {
 				<ul className={styles["theme-manager__menu"]}>
 					<li>
 						<ThemeView
-							activeTheme={activeTheme}
 							theme="light"
 							label="Light"
-							setTheme={setTheme}
 						/>
 					</li>
 					<li>
 						<ThemeView
-							activeTheme={activeTheme}
 							theme="terminal-green"
 							label="Terminal"
-							setTheme={setTheme}
 						/>
 					</li>
 					<li>
 						<ThemeView
-							activeTheme={activeTheme}
 							theme="default"
 							label="Dark Sand"
-							setTheme={setTheme}
 						/>
 					</li>
 					<li>
 						<ThemeView
-							activeTheme={activeTheme}
 							theme="midnight"
 							label="Midnight"
-							setTheme={setTheme}
 						/>
 					</li>
 					<li>
 						<ThemeView
-							activeTheme={activeTheme}
 							theme="dark"
 							label="Dark"
-							setTheme={setTheme}
 						/>
 					</li>
 					<li>
 						<ThemeView
-							activeTheme={activeTheme}
 							theme="system"
 							label="System"
-							setTheme={setTheme}
 						/>
 					</li>
 				</ul>
