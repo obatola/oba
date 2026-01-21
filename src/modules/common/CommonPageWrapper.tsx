@@ -1,15 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { clsx } from "clsx";
 import { FaHamburger } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import Link from "next/link";
-import Image from "next/image";
 import styles from "../../styles/CommonPageWrapper.module.css";
-import { ICON_SIZE, LINK_TO_RESUME } from "@/contants";
-import ObaLogo from "../../../public/images/obase_logo.png";
-import ObaLogoDark from "../../../public/images/obase_logo_dark.png";
+import { ICON_SIZE, PATHS } from "@/contants";
 import { HOME_PAGE_ANCHORS } from "@/constants/homeConstants";
-import { useTheme } from "./ThemeManager";
+import { HeaderLogo } from "./HeaderLogo";
 
 interface ICommonPageWrapperProps {
 	children: React.ReactNode;
@@ -19,24 +15,18 @@ export const CommonPageWrapper: React.FC<ICommonPageWrapperProps> = ({
 	children,
 }) => {
 	const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-	const { isLightTheme } = useTheme();
-
-	const Logo = useMemo(() => (isLightTheme ? ObaLogoDark : ObaLogo), [isLightTheme]);
-
 
 	return (
 		<div>
 			<div className={styles.header}>
 				<nav className={styles.navBar}>
 					<div className={styles.logoWrapper}>
-						<Link href="/">
-							<Image priority src={Logo} className={styles.logo} alt="" />
-						</Link>
+						<HeaderLogo className={styles.logo} />
 					</div>
 					<div id="navRow">
 						<NavLinks />
 					</div>
-					<div id="hamburgerMenu">
+					<div className={styles.hamburgerMenu}>
 						<FaHamburger
 							size={ICON_SIZE.large}
 							onClick={() => setIsSideBarOpen(true)}
@@ -78,8 +68,7 @@ const NavLinks = () => (
 			Projects
 		</a>
 		<a
-			target="_blank"
-			href={LINK_TO_RESUME}
+			href={PATHS.resume}
 			className={styles.navLink}
 			rel="noreferrer"
 		>

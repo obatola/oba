@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+:root {
+  --resume-font-decorative: "Roboto Slab", Arial, Helvetica, "Noto Sans Devanagari", "Noto Sans CJK SC Thin", "Noto Sans SC", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
+  --resume-font-normal: "Open Sans", Arial, Helvetica, "Noto Sans Devanagari", "Noto Sans CJK SC Thin", "Noto Sans SC", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
+
+  --resume-color-site-background: #fafbfd;
+  --resume-color-paper-background: white;
+  --resume-color-text: #3e3e3e;
+  --resume-color-text-primary: #000000;
+  --resume-color-text-secondary: #60696c;
+  --resume-color-icon: #b9b9b9;
+  --resume-color-text-accented: #3d8af7;
+
+  --resume-margin-x: 0.5in;
+  --resume-margin-y: 0.7in;
+}

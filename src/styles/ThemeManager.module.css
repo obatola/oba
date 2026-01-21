@@ -55,3 +55,9 @@
 .theme-manager__theme-button__accent-box--active {
     box-shadow: 0 0 10px 3px var(--colors-primary);
 }
+
+@media print {
+    .theme-manager__container {
+        display: none;
+    }
+}
