@@ -141,6 +141,10 @@
     .main {
         padding: 0 30px 100px 30px;
     }
+
+    .openSideMenu {
+        width: 60%;
+    }
 }
 
 @media (max-width: 425px) {
@@ -155,5 +159,9 @@
 
     .main {
         padding: 0 20px 100px 20px;
+    }
+
+    .openSideMenu {
+        width: 100%;
     }
 }
