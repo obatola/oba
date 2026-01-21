@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+:root {
+  --resume-font-decorative: "Roboto Slab", Arial, Helvetica, "Noto Sans Devanagari", "Noto Sans CJK SC Thin", "Noto Sans SC", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
+  --resume-font-normal: "Open Sans", Arial, Helvetica, "Noto Sans Devanagari", "Noto Sans CJK SC Thin", "Noto Sans SC", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
+
+  --resume-color-site-background: #fafbfd;
+  --resume-color-paper-background: white;
+  --resume-color-text: #3e3e3e;
+  --resume-color-text-primary: #000000;
+  --resume-color-text-secondary: #60696c;
+  --resume-color-icon: #b9b9b9;
+  --resume-color-text-accented: #3d8af7;
+}
+
+.resume-page-container {
+  background-color: var(--resume-color-site-background);
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px 0;
+}
+
+/* Reset all default styles - scoped to resume page only */
+.resume-page-container h1,
+.resume-page-container h2,
+.resume-page-container h3,
+.resume-page-container h4,
+.resume-page-container h5,
+.resume-page-container p,
+.resume-page-container section,
+.resume-page-container ul,
+.resume-page-container li {
+  line-height: 1.3;
+  margin: 0;
+  padding: 0;
+}
+
+.resume-page__resume-wrapper {
+  /* Wrapper for the white page - no margin needed, container handles spacing */
+}
+
+.resume-page__resume {
+  width: 8.5in;
+  min-height: 11in;
+  max-width: 100%;
+
+  background-color: var(--resume-color-paper-background);
+  box-shadow: 0 0 2px 0 rgba(83, 83, 83, 0.5);
+
+  /* Approximate ANSI A (8.5in x 11in) with standard margins */
+  box-sizing: border-box;
+
+  /* Common print-style margins: ~1in around the page */
+  padding: 0.5in 0.7in;
+  margin: 0 auto;
+
+  font-family: var(--resume-font-normal);
+  font-size: 14px;
+  color: var(--resume-color-text);
+
+  h1 {
+    font-family: var(--resume-font-decorative);
+    font-weight: 500;
+    font-size: 31px;
+    line-height: 37px;
+    color: var(--resume-color-text-primary);
+  }
+
+  h2 {
+    font-family: var(--resume-font-decorative);
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: var(--resume-color-text-secondary);
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 16px;
+    color: var(--resume-color-text-primary);
+    font-family: var(--resume-font-decorative);
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: var(--resume-font-decorative);
+  }
+
+  li {
+    margin-left: 16px;
+  }
+}
+
+.resume-page__caption {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--resume-color-text-secondary);
+}
+
+.resume-page__header-item {
+  font-size: 13px;
+}
+
+.resume-page__accented-text {
+  color: var(--resume-color-text-accented);
+}
+
+.resume-page__technology {
+  padding: 0 6px;
+  font-family: var(--resume-font-decorative);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--resume-color-text);
+  border-bottom: 1px solid var(--resume-color-text);
+}
+
+.resume-page__achievement {
+  p {
+    font-family: var(--resume-font-decorative);
+    font-weight: 500;
+  }
+}
+
+.resume-page__icon {
+  color: var(--resume-color-icon);
+  height: 14px;
+}
+
+@media print {
+  @page {
+    size: letter; /* ANSI A = 8.5in x 11in */
+    margin: 0.5in 0.7in;
+  }
+
+  .resume-page__resume-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-page__resume {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .resume-page-container h1,
+  .resume-page-container h2,
+  .resume-page-container h3,
+  .resume-page-container h4,
+  .resume-page-container h5,
+  .resume-page-container article {
+    page-break-inside: avoid;
+  }
+}

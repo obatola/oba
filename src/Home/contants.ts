@@ -3,4 +3,5 @@ export const linkToResume = "https://app.enhancv.com/r/3f0a895d/oba-seward-evans
 
 export const paths = {
     home: "/",
+    resume: "/resume"
 }
