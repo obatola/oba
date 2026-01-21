@@ -1,0 +1,148 @@
+.resume-page-container {
+  padding: 0 0 15pt 0;
+}
+
+/* Reset all default styles - scoped to resume page only */
+.resume-page-container h1,
+.resume-page-container h2,
+.resume-page-container h3,
+.resume-page-container h4,
+.resume-page-container h5,
+.resume-page-container p,
+.resume-page-container section,
+.resume-page-container ul,
+.resume-page-container li {
+  line-height: 1.3;
+  margin: 0;
+  padding: 0;
+}
+
+.resume-page__logo-wrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+}
+
+.resume-page__resume {
+  width: 8.5in;
+  min-height: 11in;
+  max-width: 100%;
+
+  background-color: var(--resume-color-paper-background);
+  box-shadow: 0 0 1.5pt 0 rgba(83, 83, 83, 0.5);
+
+  /* Approximate ANSI A (8.5in x 11in) with standard margins */
+  box-sizing: border-box;
+
+  /* Common print-style margins: ~1in around the page */
+  padding: var(--resume-margin-x) var(--resume-margin-y);
+  margin: 0 auto;
+
+  font-family: var(--resume-font-normal);
+  font-size: 10.5pt;
+  color: var(--resume-color-text);
+}
+
+.resume-page__resume h1 {
+  font-family: var(--resume-font-decorative);
+  font-weight: 500;
+  font-size: 23pt;
+  line-height: 28pt;
+  color: var(--resume-color-text-primary);
+}
+
+.resume-page__resume h2 {
+  font-family: var(--resume-font-decorative);
+  font-weight: 400;
+  font-size: 8pt;
+  line-height: 15pt;
+  text-transform: uppercase;
+  color: var(--resume-color-text-secondary);
+}
+
+.resume-page__resume h3 {
+  font-size: 13.5pt;
+  font-weight: 400;
+  line-height: 12pt;
+  color: var(--resume-color-text-primary);
+  font-family: var(--resume-font-decorative);
+}
+
+.resume-page__resume h4 {
+  font-size: 11pt;
+  font-weight: 500;
+  font-family: var(--resume-font-decorative);
+}
+
+.resume-page__resume li {
+  margin-left: 12pt;
+}
+
+.resume-page__caption {
+  font-size: 9pt;
+  font-weight: 300;
+  color: var(--resume-color-text-secondary);
+}
+
+.resume-page__header-item {
+  font-size: 10pt;
+}
+
+.resume-page__accented-text {
+  color: var(--resume-color-text-accented);
+}
+
+.resume-page__technology {
+  padding: 0 4.5pt;
+  font-family: var(--resume-font-decorative);
+  font-weight: 600;
+  font-size: 9pt;
+  color: var(--resume-color-text);
+  border-bottom: 1px solid var(--resume-color-text);
+}
+
+.resume-page__achievement p {
+  font-family: var(--resume-font-decorative);
+  font-weight: 500;
+}
+
+.resume-page__icon {
+  color: var(--resume-color-icon);
+  height: 10.5pt;
+}
+
+@media print {
+  @page {
+    size: letter; /* ANSI A (8.5in x 11in) */
+    margin: var(--resume-margin-x) var(--resume-margin-y);
+  }
+
+  .resume-page__resume-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-page__resume {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .resume-page__logo-wrapper {
+    display: none;
+  }
+
+  .resume-page-container h1,
+  .resume-page-container h2,
+  .resume-page-container h3,
+  .resume-page-container h4,
+  .resume-page-container h5,
+  .resume-page-container article {
+    page-break-inside: avoid;
+  }
+}
