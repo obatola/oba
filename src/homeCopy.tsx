@@ -163,6 +163,29 @@ const csProjects: ICSProject[] = [
 		isFeatured: true,
 	},
 	{
+		name: "Cartoon Glove Cursor",
+		date: "2023",
+		tech: ["Mousecape", "Illustration", "macOS"],
+		content: (
+			<>
+				<p>
+					A playful custom macOS cursor inspired by classic cartoon glove hands.
+					This project was primarily a graphic design and interaction exercise,
+					focused on creating a cursor that feels expressive, readable, and fun
+					to use throughout the day.
+				</p>
+				<p>
+					I designed and exported multiple cursor states and packaged them for
+					use with Mousecape, exploring how small visual details can meaningfully
+					affect everyday user experience.
+				</p>
+			</>
+		),
+		projectImageKey: "handCursor",
+		url: "https://github.com/obatola/mousecape-hand-cursor",
+		isFeatured: true,
+	},
+	{
 		name: "Obatola.com",
 		date: "2023",
 		tech: ["NextJS", "ReactJS", "Typescript"],

@@ -23,6 +23,8 @@
   align-items: center;
   width: 100%;
   padding: 10px 15px;
+  position: sticky;
+  top: 0;
 }
 
 .resume-page__resume {
@@ -158,6 +160,13 @@
   .resume-page-container h2 {
     page-break-after: avoid;
     page-break-inside: avoid;
+  }
+}
+
+@media (max-width: 975px) {
+  /* Once the logo intersects with the content, we want to move it to the top of the page on scroll */
+  .resume-page__logo-wrapper {
+    position: relative;
   }
 }
 
