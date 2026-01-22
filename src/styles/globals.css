@@ -17,6 +17,15 @@
   --colors-secondary-surface: #585343;
   --colors-shadow: #1b1a17;
   --colors-surface: #1b1a17;
+  --colors-surface-high-contrast: #1b1a17;
+
+  --colors-paper-background: #fdf9f6;
+  --colors-paper-text: #453d36;
+  --colors-paper-text-primary: #000000;
+  --colors-paper-text-secondary: #9F9089;
+  --colors-paper-text-accented: #B08E52;
+  --colors-paper-icon: #C1C1C1;
+  --colors-paper-shadow: 0 12px 30px rgba(0, 255, 0, 0.08);
 
   --project-image-transition: all cubic-bezier(.4,0,.2,1) .4s;
   --cursor: url('/images/first_pointer_45.png') 5 5, auto;
@@ -45,6 +54,13 @@
   --device-laptopL: max-width: var(--size-laptopL);
   --device-desktop: max-width: var(--size-desktop);
   --device-desktopL: max-width: var(--size-desktopL);
+}
+
+@media print {
+  :root[data-theme="default"], :root[data-theme="light"], :root[data-theme="dark"], :root[data-theme="terminal-green"], :root[data-theme="midnight"] {
+    --colors-paper-background: white !important;
+    --colors-background: white !important;
+  }
 }
 
 html {

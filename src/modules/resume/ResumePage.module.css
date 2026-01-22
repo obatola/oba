@@ -33,7 +33,7 @@
   max-width: 100%;
 
   background-color: var(--resume-color-paper-background);
-  box-shadow: 0 0 1.5pt 0 rgba(83, 83, 83, 0.5);
+  box-shadow: var(--resume-color-paper-shadow,  0 0 1.5pt 0 rgba(83, 83, 83, 0.5));
 
   /* Approximate ANSI A (8.5in x 11in) with standard margins */
   box-sizing: border-box;
