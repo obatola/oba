@@ -4,10 +4,10 @@ import { FaPaintRoller } from "react-icons/fa";
 import clsx from "clsx";
 import { UnstyledButton } from "@mantine/core";
 
-const themes = ["light", "terminal-green", "default", "midnight", "dark", "system"] as const;
+const themes = ["light", "terminal-green", "default", "midnight", "dark", "system", "dark-sand"] as const;
 type Theme = (typeof themes)[number];
 
-const defaultTheme = "default";
+const defaultTheme = "system";
 
 interface ThemeContextType {
 	/** The theme that is currently active. */
@@ -36,22 +36,20 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
 	// Helper function to apply the theme based on localStorage or system preferences
 	const applyTheme = () => {
-		const storedTheme = window.localStorage.getItem("theme") as Theme;
-		if (storedTheme === "system") {
+		const storedTheme = window.localStorage.getItem("theme") as Theme | null;
+		// If no theme is stored or theme is "system", use system preference
+		if (!storedTheme || storedTheme === "system") {
 			const systemPrefersDark = window.matchMedia(
 				"(prefers-color-scheme: dark)",
 			).matches;
-			const newDisplayedTheme = systemPrefersDark ? "dark" : "light";
+			const newDisplayedTheme = systemPrefersDark ? "dark-sand" : "light";
 			document.documentElement.setAttribute("data-theme", newDisplayedTheme);
 			setActiveTheme("system");
 			setDisplayedTheme(newDisplayedTheme);
 		} else {
-			document.documentElement.setAttribute(
-				"data-theme",
-				storedTheme || defaultTheme,
-			);
-			setActiveTheme(storedTheme || defaultTheme);
-			setDisplayedTheme(storedTheme || defaultTheme);
+			document.documentElement.setAttribute("data-theme", storedTheme);
+			setActiveTheme(storedTheme);
+			setDisplayedTheme(storedTheme);
 		}
 	};
 
@@ -72,8 +70,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
 		const handleSystemThemeChange = () => {
 			const storedTheme = window.localStorage.getItem("theme");
-			if (storedTheme === "system") {
-				const newDisplayedTheme = systemTheme.matches ? "dark" : "light";
+			// If no theme is stored or theme is "system", respond to system changes
+			if (!storedTheme || storedTheme === "system") {
+				const newDisplayedTheme = systemTheme.matches ? "dark-sand" : "light";
 				document.documentElement.setAttribute("data-theme", newDisplayedTheme);
 				setDisplayedTheme(newDisplayedTheme);
 			}
@@ -141,13 +140,7 @@ export function ThemeManager() {
 					</li>
 					<li>
 						<ThemeView
-							theme="terminal-green"
-							label="Terminal"
-						/>
-					</li>
-					<li>
-						<ThemeView
-							theme="default"
+							theme="dark-sand"
 							label="Dark Sand"
 						/>
 					</li>
@@ -161,6 +154,12 @@ export function ThemeManager() {
 						<ThemeView
 							theme="dark"
 							label="Dark"
+						/>
+					</li>
+					<li>
+						<ThemeView
+							theme="terminal-green"
+							label="Terminal"
 						/>
 					</li>
 					<li>

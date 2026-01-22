@@ -1,6 +1,7 @@
 import '@mantine/core/styles.css';
 import "@/styles/globals.css";
 import "@/styles/globalsMidnight.css";
+import "@/styles/globalsDarkSand.css";
 import "@/styles/globalsDark.css";
 import "@/styles/globalsLight.css";
 import "@/styles/globalsTerminalGreen.css";
