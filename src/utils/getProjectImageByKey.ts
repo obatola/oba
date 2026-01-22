@@ -12,6 +12,7 @@ import distanceVector from "../../public/images/distance_vector.png";
 import diceRoller from "../../public/images/dice_roller.png";
 import personalWebsite from "../../public/images/personal_website.png";
 import cinderRedesign from "../../public/images/cinder_redesign.png";
+import handCursor from "../../public/images/hand_cursor.png";
 
 const projectImages: { [key: string]: StaticImageData } = {
     deucesSolitaire,
@@ -27,6 +28,7 @@ const projectImages: { [key: string]: StaticImageData } = {
     diceRoller,
     personalWebsite,
     cinderRedesign,
+    handCursor,
 };
 
 export const getProjectImageByKey = (key: string) => {
