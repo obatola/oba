@@ -24,7 +24,6 @@
   --colors-paper-text-secondary: #9F9089;
   --colors-paper-text-accented: #B08E52;
   --colors-paper-icon: #C1C1C1;
-  --colors-paper-shadow: 0 12px 30px rgba(0, 255, 0, 0.08);
 
   --project-image-transition: all cubic-bezier(.4,0,.2,1) .4s;
   --cursor: url('/images/first_pointer_45.png') 5 5, auto;
