@@ -17,7 +17,7 @@ export const ProfessionalExperienceSection = () => (
 );
 
 const ExperienceAccordion = () => {
-    const [activeEntry, setActiveEntry] = useState<number | null>(null);
+    const [activeEntry, setActiveEntry] = useState<number | null>(0);
 
     const entryClicked = (index: number) => () => {
         setActiveEntry(activeEntry === index ? null : index);
