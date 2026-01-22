@@ -1,4 +1,4 @@
-import { ResumeType } from "./ResumePage.types";
+import { ResumeType } from "@/modules/resume/ResumePage.types";
 
 export const RESUME: ResumeType = {
     header: {
@@ -19,8 +19,8 @@ export const RESUME: ResumeType = {
                     type: 'generic',
                     children: (
                         <p>
-                            I&apos;m a frontend engineer. I have a passion for creating clean, intuitive,
-                            and elegant user flows, designs, applications and code.
+                            Frontend engineer focused on owning and evolving complex product surfaces,
+                            building thoughtful, well-crafted interfaces in close collaboration with design and product.
                         </p>
                     )
                 }
@@ -32,42 +32,72 @@ export const RESUME: ResumeType = {
                 {
                     type: 'experience',
                     title: "Software Engineer",
+                    company: <a href="https://cinder.co/" target="_blank" rel="noopener noreferrer">Cinder</a>,
+                    date: "05/2023 - Present",
+                    location: "New York, NY",
+                    children: (
+                        <>
+                            <p>
+                                Cinder is a unified trust & safety operations platform that helps
+                                companies manage review workflows, investigations, and policy
+                                enforcement at scale.
+                            </p>
+                            <ul>
+                                <li>
+                                    Owned and led long-term frontend development across Cinder&apos;s most critical
+                                    reviewer-facing surfaces, shaping product discovery and implementation through
+                                    close collaboration with customers across core review, QA, and the Bolt design system.
+                                </li>
+                                <li>
+                                    Led an in-place visual refresh of the entire Cinder frontend in close
+                                    partnership with design, rolling out changes safely behind feature
+                                    flags and enabling the platform to support the company&apos;s transition
+                                    from five-figure to multi-million-dollar enterprise deals.
+                                </li>
+                                <li>
+                                    Defined and delivered One Review, a unified experience that brings
+                                    decision, review, and investigation workflows into a single cohesive
+                                    surface shared across moderation flows.
+                                </li>
+                                <li>
+                                    Created and evolved Bolt, Cinder&apos;s component library and design system,
+                                    establishing shared UI patterns and foundations that scaled frontend
+                                    development across the application.
+
+                                </li>
+                            </ul>
+                        </>
+                    )
+                },
+                {
+                    type: 'experience',
+                    title: "Software Engineer",
                     company: <a href="https://www.doordash.com/" target="_blank" rel="noopener noreferrer">DoorDash</a>,
                     date: "06/2021 - 09/2022",
                     location: "San Francisco Bay Area",
                     children: (
                         <>
                             <p>
-                                DoorDash is a global online food ordering and food delivery platform
+                                DoorDash is a global online food ordering and food delivery platform.
                             </p>
                             <ul>
                                 <li>
-                                    When joining, the login and sign up page was minimally maintained,
-                                    poorly tested, and lead to convoluted development.
+                                    Took ownership of the login and signup web application, which was
+                                    previously under-maintained and difficult to extend.
                                 </li>
                                 <li>
-                                    Took over the login and sign up web app and redesigned the internal
-                                    code base to increase developer velocity by 60% and increase site
-                                    speed by 5% using React JS and Typescript
+                                    Redesigned core frontend architecture to increase developer
+                                    velocity by ~60% and improve site performance by ~5% using
+                                    React and TypeScript.
                                 </li>
                                 <li>
-                                    Added E2E testing to improve trust of the project / code /
-                                    deployments
+                                    Shipped product experiments and user flow improvements that
+                                    generated over $1M in annual revenue, including a Bypass Login
+                                    feature resulting in a $700k lift.
                                 </li>
                                 <li>
-                                    Added experimental features that lead to over $1,000,000 in annual
-                                    revenue
-                                </li>
-                                <li>
-                                    In order to alleviate the frustrations of legitimate customers who
-                                    are having trouble logging in, we implemented a Bypass Login
-                                    feature that lead to a $700k annual lift in orders.
-                                </li>
-                                <li>
-                                    Created a guided sign up and login flow to guide users attempting
-                                    to log in with unknown accounts and users attempting to sign up
-                                    with known accounts down the right path. This lead to a 2.7% lift
-                                    in user logins and signups.
+                                    Designed guided authentication flows that improved successful
+                                    logins and signups by 2.7%.
                                 </li>
                             </ul>
                         </>
@@ -87,23 +117,14 @@ export const RESUME: ResumeType = {
                             </p>
                             <ul>
                                 <li>
-                                    Designed and developed features for Shape&apos;s web protection dashboard
-                                    to customize Shape&apos;s security solutions as well as visualize,
-                                    analyze, and comprehend real-time traffic and attack patterns
+                                    Designed and developed features for Shape&apos;s web protection dashboard,
+                                    enabling customers to configure security solutions and analyze real-time
+                                    traffic and attack patterns.
                                 </li>
                                 <li>
-                                    Worked with Google Cloud Function and Google App Engine to create a
-                                    scheduled report downloader, to automate previously manually
-                                    generated weekly reports
-                                </li>
-                                <li>
-                                    Implemented security-sensitive features such as Domain Whitelist
-                                    Validation and User Session Timeout to better secure the web
-                                    dashboard
-                                </li>
-                                <li>
-                                    Built Chrome Extension in React, NodeJS to interact with their main
-                                    platform to simulate web entries
+                                    Built supporting tooling and security-sensitive features, including
+                                    automated reporting pipelines and protections such as domain whitelisting
+                                    and session timeouts.
                                 </li>
                             </ul>
                         </>
@@ -111,6 +132,7 @@ export const RESUME: ResumeType = {
                 },
                 {
                     type: 'experience',
+                    disabled: true,
                     title: "Data Engineering Intern",
                     company: <a href="https://www.optum.com/" target="_blank" rel="noopener noreferrer">Optum</a>,
                     date: "06/2017 - 08/2017",
@@ -133,6 +155,7 @@ export const RESUME: ResumeType = {
                 },
                 {
                     type: 'experience',
+                    disabled: true,
                     title: "iOS Developer",
                     company: "Step Champion",
                     date: "06/2016 - 10/2016",
@@ -158,7 +181,7 @@ export const RESUME: ResumeType = {
             content: [
                 {
                     type: 'technologies',
-                    technologies: ["ReactJS", "Typescript", "Javascript", "NodeJS", "GCP", "Java", "Python", "HTML / CSS"]
+                    technologies: ["ReactJS", "TypeScript", "Javascript", "GraphQL", "HTML / CSS", "Python", "Node.js", "GCP", "Java"]
                 }
             ]
         },
@@ -211,7 +234,7 @@ export const RESUME: ResumeType = {
                 },
                 {
                     type: 'project',
-                    title: "Data Collection Website - AngularJS",
+                    title: "Data Collection Website",
                     url: "tiny.cc/ve-collect",
                     children: (
                         <>

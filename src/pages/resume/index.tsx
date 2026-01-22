@@ -2,7 +2,7 @@ import Head from "next/head";
 import { ThemeProvider } from "@/modules/common/ThemeManager";
 import { Analytics } from "@vercel/analytics/react"
 import { DynamicResumePage } from "@/modules/resume/ResumePage";
-import { RESUME } from "@/modules/resume/ResumePage.constants";
+import { RESUME } from "@/resumeCopy";
 
 export default function Resume() {
     return (

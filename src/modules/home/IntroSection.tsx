@@ -1,5 +1,5 @@
 import { HOME_PAGE_ANCHORS } from "@/constants/homeConstants";
-import { homeCopy } from "@/copy";
+import { homeCopy } from "@/homeCopy";
 import React from "react";
 import styles from "../../styles/IntroSection.module.css";
 

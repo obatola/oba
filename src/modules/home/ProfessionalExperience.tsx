@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { homeCopy, IExperience } from "@/copy";
+import { homeCopy, IExperience } from "@/homeCopy";
 import { clsx } from "clsx";
 import { GoldenLink } from "../common/GoldenLinks";
 import styles from "../../styles/ProfessionalExperience.module.css";

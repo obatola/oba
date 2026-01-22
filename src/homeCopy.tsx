@@ -14,9 +14,9 @@ export interface IExperience {
 const intro = {
 	greeting: "Hi, my name is",
 	name: "Oba Seward-Evans",
-	subtitle: "I help companies launch and grow their products",
+	subtitle: "I build thoughtful interfaces for complex products",
 	description:
-		"I'm a Frontend Engineer based out of Brooklyn, NY. I have a passion for creating clean, intuitive, and elegant user ﬂows, designs, applications and code.",
+		"Frontend engineer with a strong product and design focus, experienced in owning and evolving complex, high-volume SaaS products.",
 };
 
 const professionalExperience: IExperience[] = [
@@ -30,19 +30,10 @@ const professionalExperience: IExperience[] = [
 		content: (
 			<>
 				<p>
-					Cinder is dedicated to making the internet safer through advanced
-					Trust and Safety software.
+					I owned and led frontend development across Cinder’s core reviewer-facing surfaces, working closely with design and customers to shape how trust & safety teams review and investigate content at scale.
 				</p>
 				<p>
-					As the sole frontend engineer, I spearheaded the complete redesign of
-					Cinder’s frontend, aligning it with future-ready architectural
-					patterns and improving scalability for evolving Trust and Safety
-					challenges. By implementing Bolt, our new design system, I streamlined
-					our component library and introduced robust design tokens for
-					consistent theming. This overhaul has simplified the development
-					process, minimized potential errors, and enabled faster feature
-					rollouts, empowering our team to build solutions that keep pace with
-					the shifting digital landscape.
+					I led an in-place visual refresh using feature-flagged rollouts, helped unify fragmented review workflows into a cohesive experience, and built foundational UI systems that scaled as the company moved into enterprise.
 				</p>
 			</>
 		),
@@ -58,40 +49,17 @@ const professionalExperience: IExperience[] = [
 		content: (
 			<>
 				<p>
-					DoorDash is a global online food ordering and food delivery platform
+					At DoorDash, I worked on high-traffic authentication flows used by millions of users daily.
+					I took ownership of an under-maintained login and signup experience and reworked its
+					frontend architecture to improve reliability, performance, and development velocity.
 				</p>
-				<ul>
-					<li>
-						When joining, the login and sign up page was minimally maintained,
-						poorly tested, and lead to convoluted development.
-					</li>
-					<li>
-						Took over the login and sign up web app and redesigned the internal
-						code base to increase developer velocity by 60% and increase site
-						speed by 5% using React JS and Typescript
-					</li>
-					<li>
-						Added E2E testing to improve trust of the project / code /
-						deployments
-					</li>
-					<li>
-						Added experimental features that lead to over $1,000,000 in annual
-						revenue
-					</li>
-					<li>
-						In order to alleviate the frustrations of legitimate customers who
-						are having trouble logging in, we implemented a Bypass Login feature
-						that lead to a $700k annual lift in orders.
-					</li>
-					<li>
-						Created a guided sign up and login ﬂow to guide users attempting to
-						log in with unknown accounts and users attempting to sign up with
-						known accounts down the right path. This lead to a 2.7% lift in user
-						logins and signups.
-					</li>
-				</ul>
+				<p>
+					I partnered closely with product and experimentation teams to ship improvements that
+					meaningfully impacted user conversion and business outcomes, while introducing better
+					testing and deployment confidence to a critical surface.
+				</p>
 			</>
-		),
+		)
 	},
 	{
 		companyName: "F5 / Shape Security",
@@ -112,30 +80,13 @@ const professionalExperience: IExperience[] = [
 		content: (
 			<>
 				<p>
-					Shape Security provides best-in-class cybersecurity to protect your
-					enterprise from automated attacks on web and mobile apps.
+					At Shape Security, I built and maintained frontend features for a security dashboard used
+					to configure and analyze protections against large-scale automated attacks.
 				</p>
-				<ul>
-					<li>
-						Designed and developed features for Shapes’ web protection dashboard
-						to customize Shape’s security solutions as well as visualize,
-						analyze, and comprehend real-time traﬃc and attack patterns
-					</li>
-					<li>
-						Worked with Google Cloud Function and Google App Engine to create a
-						scheduled report downloader, to automate previously manually
-						generated weekly reports
-					</li>
-					<li>
-						Implemented security-sensitive features such as Domain Whitelist
-						Validation and User Session Timeout to better secure the web
-						dashboard
-					</li>
-					<li>
-						Built Chrome Extension in React, NodeJS to interact with their main
-						platform to simulate web entries
-					</li>
-				</ul>
+				<p>
+					The work involved visualizing complex traffic patterns, building secure administrative
+					tooling, and supporting internal teams with automation and reporting infrastructure.
+				</p>
 			</>
 		),
 	},
@@ -201,7 +152,12 @@ const csProjects: ICSProject[] = [
 		date: "2024",
 		tech: ["ReactJS", "Typescript"],
 		content:
-			"Built out the front-end code for Cinder’s new design system, Bolt, working closely with designer Jon Hsiung. This included implementing a streamlined component library, introducing design token efficiency, and developing flexible architecture for seamless updates. Bolt empowers Trust & Safety teams with precision, speed, and a scalable interface.",
+			(
+				<>
+					<p>Led the frontend implementation of Cinder’s redesigned product experience, translating a new visual system into scalable, reusable components used across complex moderation workflows.</p>
+					<p>The work focused on clarity, consistency, and speed across high-volume review surfaces used daily by trust & safety teams.</p>
+				</>
+			),
 		projectImageKey: "cinderRedesign",
 		url: "https://www.cinder.co/blog-posts/bolt-cinder-design-system",
 		isFeatured: true,
@@ -211,7 +167,7 @@ const csProjects: ICSProject[] = [
 		date: "2023",
 		tech: ["NextJS", "ReactJS", "Typescript"],
 		content:
-			"Redesigned my personal website designed in Sketch and implemented using NextJS. I plan to use it as a place to showcase my work and also utilize as a quick place to spin up small test projects.",
+			"A personal playground for exploring visual design, layout, and interaction. I use it to showcase selected work and to experiment with ideas outside of company constraints.",
 		projectImageKey: "personalWebsite",
 		url: "https://www.obatola.com/",
 		githubURL: "https://github.com/obatola/oba",

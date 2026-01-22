@@ -1,5 +1,5 @@
 import React from "react";
-import { ICSProject } from "@/copy";
+import { ICSProject } from "@/homeCopy";
 import styles from "../../../styles/ProjectPane.module.css";
 import { GoldenLink } from "@/modules/common/GoldenLinks";
 import { Spacer, SPACER_SIZE } from "@/modules/common/Spacer";

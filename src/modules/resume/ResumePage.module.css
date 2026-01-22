@@ -41,7 +41,7 @@
   margin: 0 auto;
 
   font-family: var(--resume-font-normal);
-  font-size: 10.5pt;
+  font-size: 10pt;
   color: var(--resume-color-text);
 }
 
@@ -127,6 +127,10 @@
     margin: var(--resume-margin-y) var(--resume-margin-x);
   }
 
+  .resume-page-container {
+    padding: 0 !important;
+  }
+
   .resume-page__resume-wrapper {
     width: 100%;
     margin: 0;
@@ -135,9 +139,9 @@
 
   .resume-page__resume {
     width: 100%;
-    height: auto;
+    min-height: auto !important; /* Override min-height: 11in to prevent forced page break */
     margin: 0;
-    padding: 0;
+    padding: 0 0 !important;
     box-shadow: none;
   }
 
@@ -145,12 +149,14 @@
     display: none;
   }
 
-  .resume-page-container h1,
-  .resume-page-container h2,
-  .resume-page-container h3,
-  .resume-page-container h4,
-  .resume-page-container h5,
+  /* Prevent breaks inside articles (individual experience/project entries) */
   .resume-page-container article {
+    page-break-inside: avoid;
+  }
+
+  /* Keep section titles with their content */
+  .resume-page-container h2 {
+    page-break-after: avoid;
     page-break-inside: avoid;
   }
 }

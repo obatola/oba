@@ -41,12 +41,12 @@ export type ResumeEducationType = {
 }
 
 type SectionContentType =
-    (ResumeExperienceType & {type: 'experience'}) | 
+(    (ResumeExperienceType & {type: 'experience'}) | 
     (ResumeTechnologiesType & {type: 'technologies'}) |
     (ResumeAchievementsType & {type: 'achievements'}) |
     (ResumeProjectType & {type: 'project'}) |
     (ResumeEducationType & {type: 'education'}) |
-    ({children: React.ReactNode} & {type: 'generic'})
+    ({children: React.ReactNode} & {type: 'generic'}) ) & {disabled?: boolean}
 
 
 export type SectionType = {
