@@ -4,10 +4,11 @@ export const RESUME: ResumeType = {
     header: {
         name: "Obatola Seward-Evans",
         items: [
-            { icon: "Call", content: "510 459 8051" },
-            { icon: "Mail", content: "oba.seward@gmail.com" },
-            { icon: "Link", content: "linkedin.com/in/obatola | obase.weebly.com" },
-            { icon: "Location", content: "Brooklyn, NY" },
+            { icon: "Call", content: <a href="tel:5104598051" target="_blank" rel="noopener noreferrer">510.459.8051</a> },
+            { icon: "Mail", content: <a href="mailto:oba.seward@gmail.com" target="_blank" rel="noopener noreferrer">oba.seward@gmail.com</a> },
+            { icon: "LogoLinkedin", content: <a href="https://linkedin.com/in/obatola" target="_blank" rel="noopener noreferrer">linkedin.com/in/obatola</a> },
+            { icon: "Globe", content: <a href="https://obatola.com" target="_blank" rel="noopener noreferrer">obatola.com</a> },
+            { icon: "Location", content: <a href="https://maps.app.goo.gl/E2CcqNXRWG1JLNU66" target="_blank" rel="noopener noreferrer">Brooklyn, NY</a> },
         ]
     },
     mainPanel: [
@@ -31,7 +32,7 @@ export const RESUME: ResumeType = {
                 {
                     type: 'experience',
                     title: "Software Engineer",
-                    company: "DoorDash",
+                    company: <a href="https://www.doordash.com/" target="_blank" rel="noopener noreferrer">DoorDash</a>,
                     date: "06/2021 - 09/2022",
                     location: "San Francisco Bay Area",
                     children: (
@@ -75,7 +76,7 @@ export const RESUME: ResumeType = {
                 {
                     type: 'experience',
                     title: "Software Engineer II",
-                    company: "Shape Security",
+                    company: <a href="https://community.f5.com/kb/technicalarticles/what-is-shape-security/284359" target="_blank" rel="noopener noreferrer">Shape Security</a>,
                     date: "02/2018 - 05/2021",
                     location: "San Francisco Bay Area",
                     children: (
@@ -111,7 +112,7 @@ export const RESUME: ResumeType = {
                 {
                     type: 'experience',
                     title: "Data Engineering Intern",
-                    company: "Optum",
+                    company: <a href="https://www.optum.com/" target="_blank" rel="noopener noreferrer">Optum</a>,
                     date: "06/2017 - 08/2017",
                     location: "Boston, MA",
                     children: (
@@ -180,7 +181,7 @@ export const RESUME: ResumeType = {
                 {
                     type: 'project',
                     title: "Personal Website",
-                    url: "https://www.obatola.com/",
+                    url: <a href="https://www.obatola.com/" target="_blank" rel="noopener noreferrer">https://www.obatola.com/</a>,
                     children: (
                         <>
                             <p>
@@ -194,7 +195,7 @@ export const RESUME: ResumeType = {
                 {
                     type: 'project',
                     title: "Dice Roller",
-                    url: "https://obatola.github.io/dice/",
+                    url: <a href="https://obatola.github.io/dice/" target="_blank" rel="noopener noreferrer">https://obatola.github.io/dice/</a>,
                     children: (
                         <>
                             <p>Website created to allow people roll sets of die.</p>

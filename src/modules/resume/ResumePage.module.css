@@ -1,5 +1,5 @@
 .resume-page-container {
-  padding: 0 0 15pt 0;
+  padding: 0 0 40pt 0;
 }
 
 /* Reset all default styles - scoped to resume page only */
@@ -19,7 +19,7 @@
 
 .resume-page__logo-wrapper {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 10px 15px;
@@ -37,12 +37,20 @@
   box-sizing: border-box;
 
   /* Common print-style margins: ~1in around the page */
-  padding: var(--resume-margin-x) var(--resume-margin-y);
+  padding: var(--resume-margin-y) var(--resume-margin-x);
   margin: 0 auto;
 
   font-family: var(--resume-font-normal);
   font-size: 10.5pt;
   color: var(--resume-color-text);
+}
+
+.resume-page__resume a {
+  color: inherit;
+}
+
+.resume-page__resume a:hover {
+  text-decoration: underline;
 }
 
 .resume-page__resume h1 {
@@ -116,7 +124,7 @@
 @media print {
   @page {
     size: letter; /* ANSI A (8.5in x 11in) */
-    margin: var(--resume-margin-x) var(--resume-margin-y);
+    margin: var(--resume-margin-y) var(--resume-margin-x);
   }
 
   .resume-page__resume-wrapper {
@@ -144,5 +152,11 @@
   .resume-page-container h5,
   .resume-page-container article {
     page-break-inside: avoid;
+  }
+}
+
+@media (max-width: 425px) {
+  .resume-page__resume {
+    padding: var(--resume-margin-y) 0.2in;
   }
 }

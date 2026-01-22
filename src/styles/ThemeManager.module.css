@@ -20,7 +20,7 @@
 }
 
 .theme-manager__menu li {
-    cursor: pointer;
+    cursor: var(--cursor-hover) !important;
 }
 
 .theme-manager__menu li:hover {
@@ -54,6 +54,16 @@
 
 .theme-manager__theme-button__accent-box--active {
     box-shadow: 0 0 10px 3px var(--colors-primary);
+}
+
+.theme-manager__icon-button {
+    /* unstyled button */
+    line-height: 0;
+    background-color: transparent;
+    color: var(--colors-font);
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 @media print {
