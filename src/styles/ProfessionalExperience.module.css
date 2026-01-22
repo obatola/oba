@@ -16,7 +16,7 @@
     justify-content: space-between;
     padding: 15px 20px;
     background-color: var(--colors-secondary-surface);
-    cursor: pointer;
+    cursor: var(--cursor-hover) !important;
 }
 
 .accordionTitle {

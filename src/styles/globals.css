@@ -19,6 +19,8 @@
   --colors-surface: #1b1a17;
 
   --project-image-transition: all cubic-bezier(.4,0,.2,1) .4s;
+  --cursor: url('/images/first_pointer_45.png') 5 5, auto;
+  --cursor-hover: url('/images/first_pointer_45_hover.png') 5 11, auto;
 
   /* spacing */
   --spacing-small: 10px;
@@ -48,6 +50,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  cursor: var(--cursor) !important;
 }
 
 body {
@@ -59,6 +62,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--colors-background);
   color: var(--colors-font);
+  cursor: var(--cursor) !important;
 }
 
 section {
@@ -73,6 +77,12 @@ a:hover {
 a {
   color:var(--colors-a-tag);
   text-decoration: none;
+  cursor: var(--cursor-hover) !important;
+}
+
+button {
+  cursor: var(--cursor-hover) !important;
+  line-height: 0;
 }
 
 code {

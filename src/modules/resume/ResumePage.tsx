@@ -1,4 +1,4 @@
-import { Center, Grid, Group, Stack } from "@mantine/core";
+import { Center, Grid, Group, Stack, UnstyledButton } from "@mantine/core";
 import classes from "./ResumePage.module.css";
 import * as Icons from "@styled-icons/ionicons-solid";
 import type { ResumeAchievementsType, ResumeEducationType, ResumeExperienceType, ResumeHeaderType, ResumeProjectType, ResumeTechnologiesType, ResumeType, SectionType } from "./ResumePage.types";
@@ -31,7 +31,7 @@ function Header({
                 <h1>{name}</h1>
                 <Group gap={SPACING.lg}>
                     {items.map((item) => (
-                        <Group key={item.icon} gap={SPACING.sm} className={classes["resume-page__header-item"]}>
+                        <Group key={item.icon} gap={SPACING.sm} className={classes["resume-page__header-item"]} wrap="nowrap">
                             <Icon icon={item.icon} />
                             <p>{item.content}</p>
                         </Group>
@@ -162,6 +162,9 @@ export function DynamicResumePage({ resume }: { resume: ResumeType }) {
         <div className={classes["resume-page-container"]}>
             <div className={classes["resume-page__logo-wrapper"]}>
                 <HeaderLogo height={25} />
+                <UnstyledButton onClick={() => window.print()}>
+                    <Icons.Print size={20} />
+                </UnstyledButton>
             </div>
             <div className={classes["resume-page__resume-wrapper"]}>
                 <div className={classes["resume-page__resume"]}>

@@ -4,13 +4,13 @@ export type ResumeHeaderType = {
     name: string;
     items: {
         icon: keyof typeof Icons;
-        content: string;
+        content: React.ReactNode;
     }[]
 }
 
 export type ResumeExperienceType = {
     title: string;
-    company: string;
+    company: React.ReactNode;
     date: string;
     location: string;
     children: React.ReactNode;
@@ -29,7 +29,7 @@ export type ResumeAchievementsType = {
 
 export type ResumeProjectType = {
     title: string;
-    url: string;
+    url: React.ReactNode;
     children: React.ReactNode;
 }
 

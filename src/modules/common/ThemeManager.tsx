@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useMemo, useState } fr
 import styles from "../../styles/ThemeManager.module.css";
 import { FaPaintRoller } from "react-icons/fa";
 import clsx from "clsx";
+import { UnstyledButton } from "@mantine/core";
 
 const themes = ["light", "terminal-green", "default", "midnight", "dark", "system"] as const;
 type Theme = (typeof themes)[number];
@@ -170,7 +171,7 @@ export function ThemeManager() {
 					</li>
 				</ul>
 			)}
-			<FaPaintRoller onClick={toggleMenu}>Select Theme</FaPaintRoller>
+			<UnstyledButton title="Select Theme" className={styles["theme-manager__icon-button"]} onClick={toggleMenu} type="button"><FaPaintRoller /></UnstyledButton>
 		</div>
 	);
 }
