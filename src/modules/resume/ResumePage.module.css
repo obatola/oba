@@ -151,6 +151,37 @@
     display: none;
   }
 
+  /* Force Mantine Grid to maintain two column layout in print, even on mobile */
+  /* Target Mantine Grid root element - override all responsive breakpoints */
+  .resume-page-container [class*="mantine-Grid-root"] {
+    display: grid !important;
+    grid-template-columns: repeat(12, 1fr) !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  /* Override all responsive column spans - force two-column layout */
+  .resume-page-container [class*="mantine-Grid-col"] {
+    flex: none !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  /* Force first column (main panel) to span 7 columns regardless of breakpoint */
+  .resume-page-container [class*="mantine-Grid-col"]:nth-child(1) {
+    grid-column: span 7 !important;
+    grid-column-start: 1 !important;
+    grid-column-end: 8 !important;
+  }
+
+  /* Force second column (right panel) to span 5 columns regardless of breakpoint */
+  .resume-page-container [class*="mantine-Grid-col"]:nth-child(2) {
+    grid-column: span 5 !important;
+    grid-column-start: 8 !important;
+    grid-column-end: 13 !important;
+  }
+
   /* Prevent breaks inside articles (individual experience/project entries) */
   .resume-page-container article {
     page-break-inside: avoid;
