@@ -1,6 +1,6 @@
 import React from "react";
 import { clsx } from "clsx";
-import { ICSProject } from "@/copy";
+import { ICSProject } from "@/homeCopy";
 import Image from "next/image";
 import { FaExternalLinkAlt, FaGithub, FaDownload } from "react-icons/fa";
 import styles from "../../../styles/FeaturedProjectPane.module.css";

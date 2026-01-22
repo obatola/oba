@@ -113,7 +113,7 @@ function Education({ degree, school, date, gpa }: ResumeEducationType) {
                 <Stack gap={SPACING.sm}>
                     <Stack gap={SPACING.none}>
                         <h3>{degree}</h3>
-                        <h4 className={classes["resume-page__accented-text"]}>{school}</h4>
+                        <h4>{school}</h4>
                     </Stack>
                     <Group gap={SPACING.lg}>
                         <p className={classes["resume-page__caption"]}>{date}</p>
@@ -128,6 +128,9 @@ function Education({ degree, school, date, gpa }: ResumeEducationType) {
 
 function DynamicSection({ title, content }: SectionType) {
     const contentDOM = content.map((item, index) => {
+        if (item.disabled) {
+            return null;
+        }
         switch (item.type) {
             case 'generic':
                 return <div key={index}>{item.children}</div>;
@@ -168,16 +171,16 @@ export function DynamicResumePage({ resume }: { resume: ResumeType }) {
             </div>
             <div className={classes["resume-page__resume-wrapper"]}>
                 <div className={classes["resume-page__resume"]}>
-                    <Stack>
+                    <Stack gap={SPACING.lg}>
                         <Header {...resume.header} />
                         <Grid gutter={14}>
                             <Grid.Col span={{ base: 12, xs: 7 }}>
-                                <Stack gap={SPACING.xl}>
+                                <Stack gap={SPACING.lg}>
                                     {mainPanelDOM}
                                 </Stack>
                             </Grid.Col>
                             <Grid.Col span={{ base: 12, xs: 5 }}>
-                                <Stack gap={SPACING.xl}>
+                                <Stack gap={SPACING.lg}>
                                     {rightPanelDOM}
                                 </Stack>
                             </Grid.Col>
