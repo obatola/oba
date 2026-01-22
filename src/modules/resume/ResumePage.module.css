@@ -45,6 +45,11 @@
   font-family: var(--resume-font-normal);
   font-size: 10pt;
   color: var(--resume-color-text);
+
+  background-image: url(/images/resume_background_image.png);
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .resume-page__resume a {
@@ -145,6 +150,7 @@
     margin: 0;
     padding: 0 0 !important;
     box-shadow: none;
+    background-image: none;
   }
 
   .resume-page__logo-wrapper {
