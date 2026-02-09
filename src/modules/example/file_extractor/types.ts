@@ -1,0 +1,1 @@
+export type FileSchema = "invoice" | "resume" | "other" | "contract" | "document"

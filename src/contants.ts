@@ -4,6 +4,7 @@ export const LINK_TO_RESUME =
 export const PATHS = {
     home: "/",
     resume: "/resume",
+    example: "/example",
 };
 
 export const ICON_SIZE = {
