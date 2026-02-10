@@ -1,0 +1,83 @@
+/* Table container: single grid so header and rows share column alignment */
+.hypha-table {
+    display: grid;
+    width: 100%;
+    border: 1px solid var(--hypha-border, #e3e5e8);
+    border-radius: 6px;
+    background: var(--hypha-bg, #fff);
+    overflow: hidden;
+}
+
+/* Body uses contents so section headers and rows participate in the grid */
+.hypha-table__body {
+    display: contents;
+}
+
+/* Main header row: subtle grey background, centered labels */
+.hypha-table__header {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+    background: var(--hypha-header-bg, #f7f6f3);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: var(--hypha-header-fg, #37352f);
+    border-bottom: 1px solid var(--hypha-border, #e3e5e8);
+}
+
+.hypha-table__header-cell {
+    padding: 10px 14px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.hypha-table__header-cell:first-child {
+    justify-content: flex-start;
+}
+
+/* Section header (e.g. "Overview", "Residents"): full-width, light grey, bold */
+.hypha-table-section__header-row {
+    grid-column: 1 / -1;
+    padding: 8px 14px 8px 12px;
+    background: var(--hypha-section-bg, #f1f1ef);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--hypha-section-fg, #37352f);
+    border-bottom: 1px solid var(--hypha-border, #e3e5e8);
+}
+
+/* Data row: subgrid so cells align with header columns */
+.hypha-table__row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+    min-height: 36px;
+    border-bottom: 1px solid var(--hypha-border, #e3e5e8);
+}
+
+.hypha-table__row:last-child {
+    border-bottom: none;
+}
+
+/* Base cell: padding, no heavy borders */
+.hypha-table__cell {
+    padding: 8px 14px;
+    font-size: 0.875rem;
+    color: var(--hypha-cell-fg, #37352f);
+}
+
+/* Label column: left-aligned, supports indentation for hierarchy */
+.hypha-table__cell--label {
+    text-align: left;
+    font-weight: 400;
+}
+
+/* Data columns: right-aligned for numbers */
+.hypha-table__cell--data {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}

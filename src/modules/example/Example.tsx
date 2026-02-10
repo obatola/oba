@@ -1,22 +1,28 @@
 import React from "react";
 import { Tabs } from "@mantine/core";
-import { SumTable } from "./sum_table/SumTable";
-import { FileExtractor } from "./file_extractor/FileExtractor";
+import { FinancialTable } from "./hypha_table/FinancialTable";
+import { SpreadingTable } from "./hypha_table/SpreadingTable";
+import { DataTable } from "./hypha_table/DatatTable";
 
 const TABS: Record<string, { key: string, label: string, content: React.ReactNode }> = {
-    fileExtractor: {
-        key: 'file-extractor',
-        label: 'File Extractor',
-        content: (<FileExtractor />)
+    spreadingTable: {
+        key: 'spreading-table',
+        label: 'Spreading Table',
+        content: (<SpreadingTable />)
     },
-    sumTable: {
-        key: 'sum-table',
-        label: 'Sum Table',
-        content: (<SumTable />)
+    financialTable: {
+        key: 'financial-table',
+        label: 'Financial Table',
+        content: (<FinancialTable />)
+    },
+    dataTable: {
+        key: 'data-table',
+        label: 'Data Table',
+        content: (<DataTable />)
     },
 }
 
-const DEFAULT_TAB = TABS.fileExtractor.key
+const DEFAULT_TAB = TABS.financialTable.key
 
 export const Example = () => {
     return (
