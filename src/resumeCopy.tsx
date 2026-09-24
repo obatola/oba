@@ -32,8 +32,51 @@ export const RESUME: ResumeType = {
                 {
                     type: 'experience',
                     title: "Software Engineer",
+                    company: <a href="https://www.hypha.co/" target="_blank" rel="noopener noreferrer">Hypha</a>,
+                    date: "03/2026 - Present",
+                    location: "New York, NY",
+                    children: (
+                        <>
+                            <p>
+                                Hypha is an enterprise document intelligence platform that turns
+                                unstructured documents into structured, queryable data through
+                                AI extraction pipelines.
+                            </p>
+                            <ul>
+                                <li>
+                                    Wrote the design guidelines and guardrails for frontend development
+                                    by AI agents, letting AI coding agents produce consistent UI and
+                                    flows with less review overhead.
+                                </li>
+                                <li>
+                                    Built the company&apos;s design system, including color, typography,
+                                    and layering token systems and a reusable component library, removing
+                                    inconsistent styling across the product.
+                                </li>
+                                <li>
+                                    Shipped the production frontend for the Email Ingestion and Triage
+                                    feature on top of an early prototype, a fast, keyboard driven UI that
+                                    lets users route inbound documents into structured entities.
+                                </li>
+                                <li>
+                                    Streamlined how users work with large datasets across tables,
+                                    topology, and entity lists, adding filtering, sorting, and pagination
+                                    so they can find and act on records faster.
+                                </li>
+                                <li>
+                                    Rebuilt the app navigation and page layout shell with responsive
+                                    overflow handling and org switching, giving every surface a coherent,
+                                    responsive layout.
+                                </li>
+                            </ul>
+                        </>
+                    )
+                },
+                {
+                    type: 'experience',
+                    title: "Software Engineer",
                     company: <a href="https://cinder.co/" target="_blank" rel="noopener noreferrer">Cinder</a>,
-                    date: "05/2023 - Present",
+                    date: "05/2023 - 03/2026",
                     location: "New York, NY",
                     children: (
                         <>
