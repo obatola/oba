@@ -38,24 +38,24 @@ export const RESUME: ResumeType = {
                     children: (
                         <>
                             <p>
-                                Hypha is an enterprise document-intelligence platform that turns
+                                Hypha is an enterprise document intelligence platform that turns
                                 unstructured documents into structured, queryable data through
                                 AI extraction pipelines.
                             </p>
                             <ul>
                                 <li>
-                                    Wrote the design guidelines and guardrails for AI-agent-driven
-                                    frontend development, letting AI coding agents produce on-pattern
-                                    UI and flows with less review overhead.
+                                    Wrote the design guidelines and guardrails for frontend development
+                                    by AI agents, letting AI coding agents produce consistent UI and
+                                    flows with less review overhead.
                                 </li>
                                 <li>
                                     Built the company&apos;s design system, including color, typography,
-                                    and z-index token systems and a reusable component library, removing
-                                    ad-hoc styling across the product.
+                                    and layering token systems and a reusable component library, removing
+                                    inconsistent styling across the product.
                                 </li>
                                 <li>
                                     Shipped the production frontend for the Email Ingestion and Triage
-                                    feature on top of an early prototype, a keyboard-navigable UI that
+                                    feature on top of an early prototype, a fast, keyboard driven UI that
                                     lets users route inbound documents into structured entities.
                                 </li>
                                 <li>
@@ -64,7 +64,7 @@ export const RESUME: ResumeType = {
                                     so they can find and act on records faster.
                                 </li>
                                 <li>
-                                    Rebuilt the app navigation and page-layout shell with responsive
+                                    Rebuilt the app navigation and page layout shell with responsive
                                     overflow handling and org switching, giving every surface a coherent,
                                     responsive layout.
                                 </li>
